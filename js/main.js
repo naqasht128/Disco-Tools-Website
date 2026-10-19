@@ -145,18 +145,21 @@ function triggerToolDownload(filename, toolTitle) {
   }
 
   // Handle direct download for PITCSuite and Bill Scrapper
-  const localPath = `downloads/${filename}`;
+  // Uses dedicated secure release distribution URLs hosted on Vercel backend
+  const downloadTarget = (tool && tool.downloadUrl) ? tool.downloadUrl : `downloads/${filename}`;
+  const targetFilename = (tool && tool.filename) ? tool.filename : filename;
 
   const link = document.createElement('a');
-  link.href = localPath;
-  link.setAttribute('download', filename);
+  link.href = downloadTarget;
+  link.setAttribute('download', targetFilename);
   link.setAttribute('target', '_blank');
+  link.setAttribute('rel', 'noopener noreferrer');
   document.body.appendChild(link);
   link.click();
   document.body.removeChild(link);
 
   showToast(
-    `Starting download for <strong>${filename}</strong>.`,
+    `Starting download for <strong>${tool ? tool.name : targetFilename}</strong>.`,
     'success',
     'Download Initiated'
   );

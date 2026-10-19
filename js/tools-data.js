@@ -29,8 +29,10 @@ const PESCO_TOOLS = [
     status: "ready", // 'ready' (downloadable), 'on-request' (contact for exe), 'in-development'
     isPublicDownload: true,
     version: "v2.8.97",
-    size: "68.4 MB",
-    filename: "PitcSuite.exe",
+    size: "144.8 MB",
+    filename: "PITCSuite_Setup.exe",
+    downloadUrl: "https://pit-csuite.vercel.app/api/updates/download?asset_id=656535865",
+    updateApi: "https://pit-csuite.vercel.app/api/updates/latest",
     updated: "October 2026",
     icon: "layers",
     summary: "A complete unified workstation package having all the tools in one unified desktop suite. Includes CP posting verifiers, converters, bill scrapers, and ledger reconcilers.",
@@ -54,7 +56,7 @@ const PESCO_TOOLS = [
         {
           step: 1,
           title: "Download & Launch v2.8.97",
-          desc: "Download `PitcSuite.exe` and place it in your tools folder. Double-click to run immediately without installation."
+          desc: "Download `PITCSuite_Setup.exe` and run the installer. Launch directly from your desktop shortcut."
         },
         {
           step: 2,
@@ -91,9 +93,11 @@ const PESCO_TOOLS = [
     isFlagship: false,
     status: "ready",
     isPublicDownload: true,
-    version: "v1.4.2",
-    size: "40.5 MB",
-    filename: "BillScrapper.exe",
+    version: "v1.3.2",
+    size: "22.1 MB",
+    filename: "BillScrapper-Setup.exe",
+    downloadUrl: "https://bill-scrapper.vercel.app/api/updates/download?asset_id=656052606",
+    updateApi: "https://bill-scrapper.vercel.app/api/updates/latest",
     updated: "October 2026",
     icon: "file-spreadsheet",
     summary: "Scrape Billing information into Excel. Extracts consumer bills, tariff breakdowns, current arrears, due dates, and paid amounts directly into clean spreadsheets.",
@@ -116,28 +120,28 @@ const PESCO_TOOLS = [
       steps: [
         {
           step: 1,
-          title: "Open Bill Scrapper",
-          desc: "Run `BillScrapper.exe`. Paste consumer reference numbers into the input box or click 'Import List'."
+          title: "Launch Bill Scrapper v1.3.2",
+          desc: "Run `BillScrapper-Setup.exe`. Paste consumer reference numbers into the input box or click 'Import List'."
         },
         {
           step: 2,
-          title: "Select Billing Month & Fields",
-          desc: "Select the billing cycle month and choose which fields to capture (Arrears, Taxes, Units, Due Date)."
+          title: "Configure Extraction Fields",
+          desc: "Select the data points you need (Billing Amount, Units, Tax Breakdown, Arrears, Tariff Category)."
         },
         {
           step: 3,
-          title: "Start Scraping Process",
-          desc: "Click 'Start Scraping'. The progress bar will show real-time processed bills and success status."
+          title: "Run Scraper",
+          desc: "Click 'Start Scraping'. The utility queries servers concurrently with live progress."
         },
         {
           step: 4,
-          title: "Export to Excel",
-          desc: "Click 'Save to Excel'. A styled workbook with column calculations and totals will be saved."
+          title: "Save to Excel (.xlsx)",
+          desc: "Once complete, click 'Save as Excel' to output cleanly formatted workbooks with all calculated columns."
         }
       ],
       tips: [
-        "Ensure reference numbers are 14 digits with no spaces or dashes.",
-        "You can run up to 5 concurrent scraping threads for faster results."
+        "Use multi-batch mode for lists over 1,000 reference numbers to prevent sub-divisional network timeouts.",
+        "Filtered lists can be exported directly into CP-139 verifier formats."
       ]
     }
   },
@@ -702,5 +706,12 @@ function getToolById(id) {
 }
 
 function getToolByFilename(filename) {
-  return PESCO_TOOLS.find(t => t.filename.toLowerCase() === filename.toLowerCase());
+  if (!filename) return null;
+  const clean = filename.toLowerCase().replace(/[\s_\-\.]+/g, '');
+  return PESCO_TOOLS.find(t => {
+    const tFile = (t.filename || '').toLowerCase().replace(/[\s_\-\.]+/g, '');
+    const tId = (t.id || '').toLowerCase().replace(/[\s_\-\.]+/g, '');
+    const tName = (t.name || '').toLowerCase().replace(/[\s_\-\.]+/g, '');
+    return tFile.includes(clean) || clean.includes(tFile) || tId === clean || tName === clean;
+  });
 }
