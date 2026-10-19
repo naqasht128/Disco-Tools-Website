@@ -145,13 +145,10 @@ function triggerToolDownload(filename, toolTitle) {
   }
 
   // Handle direct download for PITCSuite and Bill Scrapper
-  const ghUrl = tool.githubReleaseUrl || '';
   const localPath = `downloads/${filename}`;
-  const isLocalDev = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
-  const downloadTarget = (isLocalDev || !ghUrl) ? localPath : ghUrl;
 
   const link = document.createElement('a');
-  link.href = downloadTarget;
+  link.href = localPath;
   link.setAttribute('download', filename);
   link.setAttribute('target', '_blank');
   document.body.appendChild(link);
@@ -159,7 +156,7 @@ function triggerToolDownload(filename, toolTitle) {
   document.body.removeChild(link);
 
   showToast(
-    `Starting download for <strong>${filename}</strong>.<br><span class="text-slate-400 text-[11px]">${ghUrl ? 'Downloading from official release repository.' : 'Downloading local copy.'}</span>`,
+    `Starting download for <strong>${filename}</strong>.`,
     'success',
     'Download Initiated'
   );
@@ -182,11 +179,11 @@ function openContactRequestModal(tool) {
   }
 
   const profile = typeof DEVELOPER_PROFILE !== 'undefined' ? DEVELOPER_PROFILE : {
-    corporateName: "PESCO Commercial Automation",
-    developerName: "Naqash",
-    email: "naqasht128@gmail.com",
-    cell: "+92 (300) 000-0000",
-    whatsappNumber: "923000000000"
+    corporateName: "TN Developers & Co.",
+    developerName: "Tahir Naqash",
+    email: "tahir.naqash4@gmail.com",
+    cell: "0333-9962474",
+    whatsappNumber: "923339962474"
   };
 
   const isDev = tool && tool.status === 'in-development';
@@ -196,11 +193,11 @@ function openContactRequestModal(tool) {
 
   // Pre-filled messages for WhatsApp & Email
   const waText = encodeURIComponent(
-    `Hello Naqash, I am contacting you regarding "${toolName}" (${toolFilename}). I would like to inquire about obtaining the executable / sub-division license.`
+    `Hello Tahir Naqash, I am contacting you regarding "${toolName}" (${toolFilename}). I would like to inquire about obtaining the executable / sub-division license.`
   );
   const mailSubject = encodeURIComponent(`Software Request: ${toolName}`);
   const mailBody = encodeURIComponent(
-    `Hello Naqash,\n\nI am interested in acquiring the executable for:\nSoftware: ${toolName} (${toolFilename})\n\nPlease provide licensing / purchase details and delivery instructions.\n\nThank you,\n[Your Name & Sub-Division]`
+    `Hello Tahir Naqash,\n\nI am interested in acquiring the executable for:\nSoftware: ${toolName} (${toolFilename})\n\nPlease provide licensing / purchase details and delivery instructions.\n\nThank you,\n[Your Name & Sub-Division]`
   );
 
   const badgeHtml = isDev
@@ -226,8 +223,8 @@ function openContactRequestModal(tool) {
 
       <p class="text-xs sm:text-sm text-slate-300 leading-relaxed mb-6">
         ${isDev 
-          ? 'This utility is currently under active development. Contact lead developer <strong>Naqash</strong> to request priority access, suggest features, or pre-order for your sub-division.'
-          : 'This standalone software is distributed directly upon request. Contact lead developer <strong>Naqash</strong> to arrange payment, licensing, and receive the executable file directly.'}
+          ? 'This utility is currently under active development. Contact developer <strong>Tahir Naqash</strong> (TN Developers & Co.) to request priority access, suggest features, or pre-order for your sub-division.'
+          : 'This standalone software is distributed directly upon request. Contact developer <strong>Tahir Naqash</strong> (TN Developers & Co.) to arrange payment, licensing, and receive the executable file directly.'}
       </p>
 
       <!-- Developer Contact Information Card -->
@@ -243,7 +240,7 @@ function openContactRequestModal(tool) {
           target="_blank"
           class="w-full py-3 px-4 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs sm:text-sm transition-all flex items-center justify-center gap-2.5 shadow-lg shadow-emerald-600/20"
         >
-          <i data-lucide="phone-call" class="w-4 h-4"></i> WhatsApp Naqash (+92 300 000-0000)
+          <i data-lucide="phone-call" class="w-4 h-4"></i> WhatsApp Tahir Naqash (0333-9962474)
         </a>
 
         <!-- Email Button -->
@@ -316,7 +313,7 @@ function submitQuickInquiry(e, toolName) {
   closeContactRequestModal();
 
   showToast(
-    `Thank you <strong>${name}</strong>! Your inquiry for <em>"${toolName}"</em> has been logged. Naqash will connect with you via ${contact}.`,
+    `Thank you <strong>${name}</strong>! Your inquiry for <em>"${toolName}"</em> has been logged. Tahir Naqash will connect with you via ${contact}.`,
     'success',
     'Request Dispatched'
   );
@@ -336,10 +333,10 @@ function openRequestSoftwareModal(presetToolName = '') {
   }
 
   const profile = typeof DEVELOPER_PROFILE !== 'undefined' ? DEVELOPER_PROFILE : {
-    corporateName: "PESCO Commercial Automation",
-    developerName: "Naqash",
-    email: "naqasht128@gmail.com",
-    cell: "+92 300 0000000"
+    corporateName: "TN Developers & Co.",
+    developerName: "Tahir Naqash",
+    email: "tahir.naqash4@gmail.com",
+    cell: "0333-9962474"
   };
 
   modal.innerHTML = `
@@ -359,7 +356,7 @@ function openRequestSoftwareModal(presetToolName = '') {
       </div>
 
       <p class="text-xs text-slate-300 leading-relaxed mb-6">
-        Need a specialized PESCO billing utility, bank scroll matcher, PDF converter, or custom Excel macro? Submit your requirements directly to Naqash.
+        Need a specialized PESCO billing utility, bank scroll matcher, PDF converter, or custom Excel macro? Submit your requirements directly to Tahir Naqash (TN Developers & Co.).
       </p>
 
       <form id="software-request-form" onsubmit="submitSoftwareRequest(event)" class="space-y-4">
@@ -479,7 +476,7 @@ function submitSoftwareRequest(e) {
   closeRequestModal();
 
   showToast(
-    `Thank you <strong>${userName}</strong>! Your proposal for <em>"${toolName}"</em> has been dispatched to Naqash.`,
+    `Thank you <strong>${userName}</strong>! Your proposal for <em>"${toolName}"</em> has been dispatched to Tahir Naqash.`,
     'success',
     'Proposal Dispatched'
   );

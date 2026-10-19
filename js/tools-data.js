@@ -4,14 +4,13 @@
  */
 
 const DEVELOPER_PROFILE = {
-  corporateName: "PESCO Commercial Automation & IT Systems",
-  developerName: "Naqash",
-  role: "Lead Systems & Automation Engineer",
-  email: "naqasht128@gmail.com",
-  cell: "+92 (300) 000-0000",
-  whatsappNumber: "923000000000", // Format for wa.me link without '+' or spaces
-  whatsappFormatted: "+92 (300) 000-0000",
-  github: "https://github.com/naqasht128",
+  corporateName: "TN Developers & Co.",
+  developerName: "Tahir Naqash",
+  role: "Developer",
+  email: "tahir.naqash4@gmail.com",
+  cell: "0333-9962474",
+  whatsappNumber: "923339962474",
+  whatsappFormatted: "0333-9962474",
   location: "Peshawar, Khyber Pakhtunkhwa, Pakistan",
   mission: "Eliminating manual billing errors, automating CP posting reconciliations, and engineering zero-friction desktop utilities for PESCO sub-divisions."
 };
@@ -34,8 +33,6 @@ const PESCO_TOOLS = [
     filename: "PitcSuite.exe",
     updated: "October 2026",
     icon: "layers",
-    githubReleaseUrl: "https://github.com/naqasht128/PitcSuite/releases/download/v2.8.97/PitcSuite.exe",
-    githubRepoUrl: "https://github.com/naqasht128/PitcSuite/releases",
     summary: "A complete unified workstation package having all the tools in one unified desktop suite. Includes CP posting verifiers, converters, bill scrapers, and ledger reconcilers.",
     description: "PITCSuite v2.8.97 is the comprehensive flagship all-in-one productivity suite engineered specifically for PESCO commercial staff, revenue officers, and computer operators. Combines CP-139, CP-136, CP-52, CP-22T posting checkers, bill scrapers, and converters inside a single high-speed dashboard.",
     features: [
@@ -99,8 +96,6 @@ const PESCO_TOOLS = [
     filename: "BillScrapper.exe",
     updated: "October 2026",
     icon: "file-spreadsheet",
-    githubReleaseUrl: "https://github.com/naqasht128/BillScrapper/releases/download/v1.4.2/BillScrapper.exe",
-    githubRepoUrl: "https://github.com/naqasht128/BillScrapper/releases",
     summary: "Scrape Billing information into Excel. Extracts consumer bills, tariff breakdowns, current arrears, due dates, and paid amounts directly into clean spreadsheets.",
     description: "Bill Scrapper is a dedicated high-speed utility that queries PESCO online billing servers using consumer reference numbers, parses billing metadata (units consumed, cost of electricity, taxes, FCA, TV fee, arrears), and exports them directly into formatted Microsoft Excel workbooks.",
     features: [
@@ -183,7 +178,7 @@ const PESCO_TOOLS = [
         {
           step: 1,
           title: "Development in Progress",
-          desc: "This software is currently in active coding. Click 'Contact / Request Software' to register your interest with Naqash."
+          desc: "This software is currently in active coding. Click 'Contact / Request Software' to register your interest with Tahir Naqash."
         }
       ],
       tips: [
@@ -430,7 +425,7 @@ const PESCO_TOOLS = [
       overview: "Reconcile CP-136 monthly collection totals to ensure clean audit compliance.",
       prerequisites: ["Windows 10/11", "Bank scroll extracts"],
       steps: [
-        { step: 1, title: "Acquire Executable", desc: "Contact Naqash for the standalone build." },
+        { step: 1, title: "Acquire Executable", desc: "Contact Tahir Naqash for the standalone build." },
         { step: 2, title: "Execute Audit", desc: "Click reconcile and review mismatch registers." }
       ],
       tips: ["Match by transaction date and scroll ID."]
