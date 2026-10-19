@@ -9,7 +9,8 @@ const DEVELOPER_PROFILE = {
   role: "Lead Systems & Automation Engineer",
   email: "naqasht128@gmail.com",
   cell: "+92 (300) 000-0000",
-  whatsapp: "+92 300 0000000",
+  whatsappNumber: "923000000000", // Format for wa.me link without '+' or spaces
+  whatsappFormatted: "+92 (300) 000-0000",
   github: "https://github.com/naqasht128",
   location: "Peshawar, Khyber Pakhtunkhwa, Pakistan",
   mission: "Eliminating manual billing errors, automating CP posting reconciliations, and engineering zero-friction desktop utilities for PESCO sub-divisions."
@@ -17,16 +18,17 @@ const DEVELOPER_PROFILE = {
 
 const PESCO_TOOLS = [
   // =========================================================================
-  // 1. FLAGSHIP ALL-IN-ONE WORKSTATION
+  // 1. PITCSuite (PUBLIC DOWNLOADABLE - HAS REPO)
   // =========================================================================
   {
     id: "pitc-suite",
     name: "PITCSuite",
     title: "PITCSuite - All-In-One Enterprise Workstation",
     category: "flagship",
-    badge: "Flagship Suite",
+    badge: "Public Download",
     isFlagship: true,
-    status: "ready", // 'ready' or 'in-development'
+    status: "ready", // 'ready' (downloadable), 'on-request' (contact for exe), 'in-development'
+    isPublicDownload: true,
     version: "v2.8.97",
     size: "68.4 MB",
     filename: "PitcSuite.exe",
@@ -35,7 +37,7 @@ const PESCO_TOOLS = [
     githubReleaseUrl: "https://github.com/naqasht128/PitcSuite/releases/download/v2.8.97/PitcSuite.exe",
     githubRepoUrl: "https://github.com/naqasht128/PitcSuite/releases",
     summary: "A complete unified workstation package having all the tools in one unified desktop suite. Includes CP posting verifiers, converters, bill scrapers, and ledger reconcilers.",
-    description: "PITCSuite v2.8.97 is the comprehensive flagship all-in-one productivity suite engineered specifically for PESCO commercial staff, revenue officers, and computer operators. Instead of opening separate individual tools, PITCSuite combines CP-139, CP-136, CP-52, CP-22T posting checkers, bill scrapers, and converters inside a single high-speed dashboard.",
+    description: "PITCSuite v2.8.97 is the comprehensive flagship all-in-one productivity suite engineered specifically for PESCO commercial staff, revenue officers, and computer operators. Combines CP-139, CP-136, CP-52, CP-22T posting checkers, bill scrapers, and converters inside a single high-speed dashboard.",
     features: [
       "All-in-one launcher bundling all 14+ PESCO tools into a single desktop interface",
       "One-click batch verification for CP-139, CP-136, CP-52, and CP-22T",
@@ -81,16 +83,17 @@ const PESCO_TOOLS = [
   },
 
   // =========================================================================
-  // 2. BILL SCRAPPER (AVAILABLE FOR DOWNLOAD)
+  // 2. BILL SCRAPPER (PUBLIC DOWNLOADABLE - HAS REPO)
   // =========================================================================
   {
     id: "bill-scrapper",
     name: "Bill Scrapper",
     title: "Bill Scrapper - Scrape Billing Information into Excel",
     category: "extractors",
-    badge: "Available Now",
+    badge: "Public Download",
     isFlagship: false,
     status: "ready",
+    isPublicDownload: true,
     version: "v1.4.2",
     size: "40.5 MB",
     filename: "BillScrapper.exe",
@@ -145,7 +148,7 @@ const PESCO_TOOLS = [
   },
 
   // =========================================================================
-  // 3. E-BILLS DOWNLOADER (IN DEVELOPMENT)
+  // 3. E-BILLS DOWNLOADER (IN DEVELOPMENT - CONTACT / PRE-ORDER)
   // =========================================================================
   {
     id: "e-bills-downloader",
@@ -155,13 +158,12 @@ const PESCO_TOOLS = [
     badge: "In Development",
     isFlagship: false,
     status: "in-development",
+    isPublicDownload: false,
     version: "v1.0.0 (In Development)",
     size: "Estimated 35 MB",
     filename: "EBillsDownloader.exe",
     updated: "Coming Soon",
     icon: "file-down",
-    githubReleaseUrl: "",
-    githubRepoUrl: "https://github.com/naqasht128",
     summary: "Downloads the E-Bills into PDF. High-speed bulk engine to automatically fetch consumer duplicate electricity bills and save them as individual or collated PDF files.",
     description: "E-Bills Downloader is currently in active development. When completed, it will allow sub-divisions and customer service centers to feed lists of consumer reference numbers, automatically retrieve official high-resolution E-Bills from PITC servers, and archive or print them as crisp PDF files.",
     features: [
@@ -181,7 +183,7 @@ const PESCO_TOOLS = [
         {
           step: 1,
           title: "Development in Progress",
-          desc: "This software is currently in active coding. Click 'Notify Me' on the downloads page to receive an alert when v1.0 is released."
+          desc: "This software is currently in active coding. Click 'Contact / Request Software' to register your interest with Naqash."
         }
       ],
       tips: [
@@ -201,13 +203,12 @@ const PESCO_TOOLS = [
     badge: "In Development",
     isFlagship: false,
     status: "in-development",
+    isPublicDownload: false,
     version: "v1.1.0 (In Development)",
     size: "Estimated 50 MB",
     filename: "CP 52 Posting into PDF.exe",
     updated: "Coming Soon",
     icon: "file-text",
-    githubReleaseUrl: "",
-    githubRepoUrl: "https://github.com/naqasht128",
     summary: "Converts CP-52 posting records and defaulter disconnection schedules directly into formatted, printable PDF rosters.",
     description: "CP 52 Posting into PDF transforms raw CP-52 posting data files into official, standardized PDF audit rosters. It automatically groups defaulters by feeder and line superintendent sections, calculating outstanding balances and interest.",
     features: [
@@ -241,13 +242,12 @@ const PESCO_TOOLS = [
     badge: "In Development",
     isFlagship: false,
     status: "in-development",
+    isPublicDownload: false,
     version: "v1.0.0 (In Development)",
     size: "Estimated 45 MB",
     filename: "TariffRecoveryAnalyzer.exe",
     updated: "Coming Soon",
     icon: "calculator",
-    githubReleaseUrl: "",
-    githubRepoUrl: "https://github.com/naqasht128",
     summary: "Analyzes commercial consumer tariffs, flags incorrect tariff categorizations, and projects recovery strategies for chronic defaulters.",
     description: "A specialized data analytics tool designed to inspect consumer billing ledgers for tariff anomalies (e.g. commercial premises billed on domestic tariffs) and profile long-standing arrears to assist sub-divisional recovery teams.",
     features: [
@@ -259,7 +259,7 @@ const PESCO_TOOLS = [
     tutorial: {
       overview: "Provides commercial officers with actionable audit insights on tariff discrepancies and high-value defaulters.",
       prerequisites: ["Windows 10/11"],
-      steps: [{ step: 1, title: "In Active Development", desc: "Slated for Q4 release." }],
+      steps: [{ step: 1, title: "In Active Development", desc: "Slated for upcoming release." }],
       tips: ["Customized for PESCO tariff schedule."]
     }
   },
@@ -275,13 +275,12 @@ const PESCO_TOOLS = [
     badge: "In Development",
     isFlagship: false,
     status: "in-development",
+    isPublicDownload: false,
     version: "v1.0.0 (In Development)",
     size: "Estimated 38 MB",
     filename: "FeederLoadMonitor.exe",
     updated: "Coming Soon",
     icon: "activity",
-    githubReleaseUrl: "",
-    githubRepoUrl: "https://github.com/naqasht128",
     summary: "Monitors 11kV feeder loads, detects over-stressed distribution transformers, and logs peak amp hours from grid telemetry logs.",
     description: "Designed for SDOs and line staff to monitor 11kV feeder load profiles, calculate technical line losses, and balance phase distribution across distribution transformers.",
     features: [
@@ -309,13 +308,12 @@ const PESCO_TOOLS = [
     badge: "In Development",
     isFlagship: false,
     status: "in-development",
+    isPublicDownload: false,
     version: "v1.0.0 (In Development)",
     size: "Estimated 42 MB",
     filename: "AMRMeterSync.exe",
     updated: "Coming Soon",
     icon: "radio",
-    githubReleaseUrl: "",
-    githubRepoUrl: "https://github.com/naqasht128",
     summary: "Synchronizes automated meter reading (AMR) telemetry data directly from smart GSM meters into billing databases.",
     description: "AMR Meter Data Sync fetches time-of-use (TOU) interval data, maximum demand indicator (MDI) peaks, and power factor logs from industrial and commercial consumer smart meters.",
     features: [
@@ -343,13 +341,12 @@ const PESCO_TOOLS = [
     badge: "In Development",
     isFlagship: false,
     status: "in-development",
+    isPublicDownload: false,
     version: "v1.0.0 (In Development)",
     size: "Estimated 30 MB",
     filename: "BatchCustomerImporter.exe",
     updated: "Coming Soon",
     icon: "users",
-    githubReleaseUrl: "",
-    githubRepoUrl: "https://github.com/naqasht128",
     summary: "Facilitates rapid bulk importing and validation of new connection customer records and meter replacements into Cosmos & PITC systems.",
     description: "Eliminates tedious manual typing of new service connections, tariff changes, and meter change orders (MCOs) by validating Excel sheets and uploading batches securely.",
     features: [
@@ -367,23 +364,22 @@ const PESCO_TOOLS = [
   },
 
   // =========================================================================
-  // 9. CP-139 POSTING CHECKER (READY)
+  // 9. CP-139 POSTING CHECKER (ON REQUEST / DIRECT PURCHASE)
   // =========================================================================
   {
     id: "cp139-checker",
     name: "CP139PostingChecker",
     title: "CP-139 Revenue & Payment Posting Checker",
     category: "posting",
-    badge: "Available Now",
+    badge: "Contact to Acquire",
     isFlagship: false,
-    status: "ready",
+    status: "on-request",
+    isPublicDownload: false,
     version: "v2.1.2",
     size: "71.4 MB",
     filename: "CP139PostingChecker.exe",
     updated: "October 2026",
     icon: "check-circle",
-    githubReleaseUrl: "https://github.com/naqasht128/PitcSuite/releases",
-    githubRepoUrl: "https://github.com/naqasht128/PitcSuite/releases",
     summary: "Verifies CP-139 payment postings, detects missing bank scrolls, flags unposted consumer credits, and validates bank reconciliations.",
     description: "CP139PostingChecker automates the verification of CP-139 daily collection and payment scrolls against commercial bank statements and billing systems.",
     features: [
@@ -396,7 +392,7 @@ const PESCO_TOOLS = [
       overview: "Verify CP-139 bank scrolls against PITC records to ensure every collected rupee is credited to consumer accounts without discrepancy.",
       prerequisites: ["Windows 7 / 8 / 10 / 11", "Bank scroll text/dat files", "Billing ledger copy"],
       steps: [
-        { step: 1, title: "Launch Executable", desc: "Open `CP139PostingChecker.exe`." },
+        { step: 1, title: "Acquire & Launch Executable", desc: "Contact developer to receive licensed `CP139PostingChecker.exe`." },
         { step: 2, title: "Select Bank Scroll & Ledger", desc: "Load the bank collection file and ledger dump." },
         { step: 3, title: "Analyze Discrepancies", desc: "Review matched versus unposted receipts." },
         { step: 4, title: "Export Findings", desc: "Save discrepancy summary to Excel." }
@@ -406,23 +402,22 @@ const PESCO_TOOLS = [
   },
 
   // =========================================================================
-  // 10. CP-136 POSTING CHECKER (READY)
+  // 10. CP-136 POSTING CHECKER (ON REQUEST / DIRECT PURCHASE)
   // =========================================================================
   {
     id: "cp136-checker",
     name: "CP136_Posting_Checker",
     title: "CP-136 Bank Collection & Scroll Reconciler",
     category: "posting",
-    badge: "Available Now",
+    badge: "Contact to Acquire",
     isFlagship: false,
-    status: "ready",
+    status: "on-request",
+    isPublicDownload: false,
     version: "v2.0.4",
     size: "92.2 MB",
     filename: "CP136_Posting_Checker.exe",
     updated: "October 2026",
     icon: "file-check",
-    githubReleaseUrl: "https://github.com/naqasht128/PitcSuite/releases",
-    githubRepoUrl: "https://github.com/naqasht128/PitcSuite/releases",
     summary: "Reconciles CP-136 summary scrolls against branch-level bank deposit vouchers and general ledger accounts.",
     description: "CP-136 reconciles monthly collection totals reported by sub-divisions against credit entries confirmed by commercial bank main branches.",
     features: [
@@ -435,7 +430,7 @@ const PESCO_TOOLS = [
       overview: "Reconcile CP-136 monthly collection totals to ensure clean audit compliance.",
       prerequisites: ["Windows 10/11", "Bank scroll extracts"],
       steps: [
-        { step: 1, title: "Load CP-136 Summary", desc: "Open `CP136_Posting_Checker.exe` and import files." },
+        { step: 1, title: "Acquire Executable", desc: "Contact Naqash for the standalone build." },
         { step: 2, title: "Execute Audit", desc: "Click reconcile and review mismatch registers." }
       ],
       tips: ["Match by transaction date and scroll ID."]
@@ -443,23 +438,22 @@ const PESCO_TOOLS = [
   },
 
   // =========================================================================
-  // 11. FEEDER CODE RANGING (READY)
+  // 11. FEEDER CODE RANGING (ON REQUEST / DIRECT PURCHASE)
   // =========================================================================
   {
     id: "feeder-code-ranging",
     name: "FeederCodeRanging",
     title: "Feeder Code Ranging & Sub-Division Organizer",
     category: "converters",
-    badge: "Available Now",
+    badge: "Contact to Acquire",
     isFlagship: false,
-    status: "ready",
+    status: "on-request",
+    isPublicDownload: false,
     version: "v1.8.4",
     size: "43.2 MB",
     filename: "FeederCodeRanging.exe",
     updated: "October 2026",
     icon: "git-fork",
-    githubReleaseUrl: "https://github.com/naqasht128/PitcSuite/releases",
-    githubRepoUrl: "https://github.com/naqasht128/PitcSuite/releases",
     summary: "Segments consumer records and billing scrolls by 11kV feeder codes, sub-divisions, and geographic boundaries.",
     description: "FeederCodeRanging parses large unsegmented billing files and groups records by feeder numbers, line routes, and sub-divisions.",
     features: [
@@ -472,7 +466,7 @@ const PESCO_TOOLS = [
       overview: "Split bulk billing files into isolated feeder rosters in seconds.",
       prerequisites: ["Windows 10/11"],
       steps: [
-        { step: 1, title: "Load Master Roster", desc: "Open `FeederCodeRanging.exe` and select your file." },
+        { step: 1, title: "Acquire Executable", desc: "Request executable from developer." },
         { step: 2, title: "Partition by Code", desc: "Select target feeder and click export." }
       ],
       tips: ["Useful for preparing lineman route rosters."]
@@ -480,23 +474,22 @@ const PESCO_TOOLS = [
   },
 
   // =========================================================================
-  // 12. FCODE BULK PDF TO EXCEL CONVERTER (READY)
+  // 12. FCODE BULK PDF TO EXCEL CONVERTER (ON REQUEST / DIRECT PURCHASE)
   // =========================================================================
   {
     id: "pdf-to-excel",
     name: "FCodeBulkPDFtoExcelConvert",
     title: "Feeder Code Bulk PDF to Excel Converter",
     category: "converters",
-    badge: "Available Now",
+    badge: "Contact to Acquire",
     isFlagship: false,
-    status: "ready",
+    status: "on-request",
+    isPublicDownload: false,
     version: "v3.0.1",
     size: "37.3 MB",
     filename: "FCodeBulkPDFtoExcelConvert.exe",
     updated: "October 2026",
     icon: "file-type-2",
-    githubReleaseUrl: "https://github.com/naqasht128/PitcSuite/releases",
-    githubRepoUrl: "https://github.com/naqasht128/PitcSuite/releases",
     summary: "Extracts tabular data from locked PESCO PDF billing ledgers and converts them into editable, formula-ready Excel files.",
     description: "FCodeBulkPDFtoExcelConvert parses tabular PESCO PDF billing reports, accurately preserving consumer reference numbers, meter numbers, units, and arrears.",
     features: [
@@ -509,31 +502,30 @@ const PESCO_TOOLS = [
       overview: "Convert locked PDF reports into dynamic Excel sheets without retyping.",
       prerequisites: ["Windows 10/11", "PESCO PDF Reports"],
       steps: [
-        { step: 1, title: "Select PDF Folder", desc: "Launch tool and pick input directory." },
-        { step: 2, title: "Convert to Excel", desc: "Click convert and get your structured XLSX files." }
+        { step: 1, title: "Acquire Tool", desc: "Contact developer for licensed executable." },
+        { step: 2, title: "Convert to Excel", desc: "Select PDFs and export to structured XLSX." }
       ],
       tips: ["Batch mode handles thousands of pages effortlessly."]
     }
   },
 
   // =========================================================================
-  // 13. CONVERT CP21C (READY)
+  // 13. CONVERT CP21C (ON REQUEST / DIRECT PURCHASE)
   // =========================================================================
   {
     id: "convert-cp21c",
     name: "ConvertCP21c",
     title: "CP-21c Billing Ledger & Revenue Transformer",
     category: "converters",
-    badge: "Available Now",
+    badge: "Contact to Acquire",
     isFlagship: false,
-    status: "ready",
+    status: "on-request",
+    isPublicDownload: false,
     version: "v1.6.0",
     size: "62.1 MB",
     filename: "ConvertCP21c.exe",
     updated: "October 2026",
     icon: "file-output",
-    githubReleaseUrl: "https://github.com/naqasht128/PitcSuite/releases",
-    githubRepoUrl: "https://github.com/naqasht128/PitcSuite/releases",
     summary: "Converts legacy CP-21c billing ledger reports into structured modern database and Excel formats.",
     description: "ConvertCP21c parses CP-21c revenue statements, isolating assessment, realization, adjustments, and closing arrears into audit-ready tables.",
     features: [
@@ -546,7 +538,7 @@ const PESCO_TOOLS = [
       overview: "Transform fixed-width CP-21c statements into clean Excel pivot tables.",
       prerequisites: ["Windows 10/11"],
       steps: [
-        { step: 1, title: "Load CP-21c Dump", desc: "Select the CP-21c file." },
+        { step: 1, title: "Acquire Executable", desc: "Contact developer." },
         { step: 2, title: "Run Conversion", desc: "Export formatted financial schedules." }
       ],
       tips: ["Use for monthly revenue closing audits."]
@@ -554,23 +546,22 @@ const PESCO_TOOLS = [
   },
 
   // =========================================================================
-  // 14. 88L PAYMENT EXTRACT (READY)
+  // 14. 88L PAYMENT EXTRACT (ON REQUEST / DIRECT PURCHASE)
   // =========================================================================
   {
     id: "88l-extract",
     name: "88LPaymentExtract",
     title: "Form 88-L Revenue & Payment Scroll Extractor",
     category: "extractors",
-    badge: "Available Now",
+    badge: "Contact to Acquire",
     isFlagship: false,
-    status: "ready",
+    status: "on-request",
+    isPublicDownload: false,
     version: "v1.9.0",
     size: "68.6 MB",
     filename: "88LPaymentExtract.exe",
     updated: "October 2026",
     icon: "receipt",
-    githubReleaseUrl: "https://github.com/naqasht128/PitcSuite/releases",
-    githubRepoUrl: "https://github.com/naqasht128/PitcSuite/releases",
     summary: "Extracts consumer payment records from Form 88-L archives and bank deposit summaries with date filtering.",
     description: "Extracts individual consumer payment entries from Form 88-L revenue archives. Allows commercial officers to filter by payment date, bank code, or sub-division.",
     features: [
@@ -583,7 +574,7 @@ const PESCO_TOOLS = [
       overview: "Trace payments and verify Form 88-L revenue entries easily.",
       prerequisites: ["Windows 10/11"],
       steps: [
-        { step: 1, title: "Open 88LPaymentExtract", desc: "Load the Form 88-L text or dat file." },
+        { step: 1, title: "Acquire Tool", desc: "Contact developer." },
         { step: 2, title: "Extract Payments", desc: "Set filters and export to Excel." }
       ],
       tips: ["Helpful for locating miscredited consumer payments."]
@@ -591,23 +582,22 @@ const PESCO_TOOLS = [
   },
 
   // =========================================================================
-  // 15. PDF MERGER (READY)
+  // 15. PDF MERGER (ON REQUEST / DIRECT PURCHASE)
   // =========================================================================
   {
     id: "pdf-merger",
     name: "PDFMerger",
     title: "High-Speed Bulk PDF Document Merger",
     category: "converters",
-    badge: "Available Now",
+    badge: "Contact to Acquire",
     isFlagship: false,
-    status: "ready",
+    status: "on-request",
+    isPublicDownload: false,
     version: "v2.0.0",
     size: "72.4 MB",
     filename: "PDFMerger.exe",
     updated: "October 2026",
     icon: "file-symlink",
-    githubReleaseUrl: "https://github.com/naqasht128/PitcSuite/releases",
-    githubRepoUrl: "https://github.com/naqasht128/PitcSuite/releases",
     summary: "Combines thousands of separate PDF bills, scrolls, or reports into single collated, indexed PDF documents.",
     description: "A lightning-fast offline PDF merger that stitches thousands of PDF bills or scroll vouchers together with custom page ordering and bookmarks.",
     features: [
@@ -620,7 +610,7 @@ const PESCO_TOOLS = [
       overview: "Merge individual consumer bills or audit scrolls into one tidy file for printing or archiving.",
       prerequisites: ["Windows 10/11"],
       steps: [
-        { step: 1, title: "Add PDF Files", desc: "Drag and drop PDFs into the window." },
+        { step: 1, title: "Acquire Tool", desc: "Contact developer." },
         { step: 2, title: "Merge & Save", desc: "Click 'Merge PDFs' and save the combined file." }
       ],
       tips: ["Sort by filename to maintain correct reference number order."]
@@ -628,23 +618,22 @@ const PESCO_TOOLS = [
   },
 
   // =========================================================================
-  // 16. CP-22T ADJUSTMENT CHECKER (READY)
+  // 16. CP-22T ADJUSTMENT CHECKER (ON REQUEST / DIRECT PURCHASE)
   // =========================================================================
   {
     id: "cp22t-checker",
     name: "CP22T_Posting_Checker",
     title: "CP-22T Tariff Adjustment & Sanction Verifier",
     category: "posting",
-    badge: "Available Now",
+    badge: "Contact to Acquire",
     isFlagship: false,
-    status: "ready",
+    status: "on-request",
+    isPublicDownload: false,
     version: "v1.7.3",
     size: "58.1 MB",
     filename: "CP22T_Posting_Checker.exe",
     updated: "October 2026",
     icon: "sliders-horizontal",
-    githubReleaseUrl: "https://github.com/naqasht128/PitcSuite/releases",
-    githubRepoUrl: "https://github.com/naqasht128/PitcSuite/releases",
     summary: "Audits CP-22T tariff adjustments, installment sanctions, and credit/debit memos to prevent unauthorized ledger tampering.",
     description: "CP-22T Posting Checker verifies commercial tariff adjustments, installment sanctions, and manual debit/credit memos against authorized sanction rosters.",
     features: [
@@ -657,7 +646,7 @@ const PESCO_TOOLS = [
       overview: "Audit CP-22T adjustment entries before closing monthly accounts.",
       prerequisites: ["Windows 10/11"],
       steps: [
-        { step: 1, title: "Load Adjustment Journal", desc: "Open tool and select CP-22T journal." },
+        { step: 1, title: "Acquire Tool", desc: "Contact developer." },
         { step: 2, title: "Cross-Check Sanctions", desc: "Verify approved versus posted credits." }
       ],
       tips: ["Always review FCA adjustments highlighted in orange."]
@@ -665,23 +654,22 @@ const PESCO_TOOLS = [
   },
 
   // =========================================================================
-  // 17. GOVT ASSESSMENT REALIZATION (READY)
+  // 17. GOVT ASSESSMENT REALIZATION (ON REQUEST / DIRECT PURCHASE)
   // =========================================================================
   {
     id: "govt-assessment",
     name: "GovtAssessmentRealization",
     title: "Government Assessment & Arrears Realization Tracker",
     category: "posting",
-    badge: "Available Now",
+    badge: "Contact to Acquire",
     isFlagship: false,
-    status: "ready",
+    status: "on-request",
+    isPublicDownload: false,
     version: "v1.5.0",
     size: "93.1 MB",
     filename: "GovtAssessmentRealization.exe",
     updated: "October 2026",
     icon: "landmark",
-    githubReleaseUrl: "https://github.com/naqasht128/PitcSuite/releases",
-    githubRepoUrl: "https://github.com/naqasht128/PitcSuite/releases",
     summary: "Audits and tracks billing assessments vs actual realizations for Provincial & Federal Government departments and at-source deductions.",
     description: "Audits monthly billing assessments and arrears recovery against Federal and Provincial Government connections (Police, Health, Education, TMAs). Reconciles at-source treasury deductions.",
     features: [
@@ -694,7 +682,7 @@ const PESCO_TOOLS = [
       overview: "Audit government electricity bill assessments and track at-source recoveries.",
       prerequisites: ["Windows 10/11"],
       steps: [
-        { step: 1, title: "Import Govt Master", desc: "Load government connections file." },
+        { step: 1, title: "Acquire Tool", desc: "Contact developer." },
         { step: 2, title: "Run Realization Audit", desc: "Correlate assessed billing with credited funds." }
       ],
       tips: ["Filter by Provincial vs Federal departments."]
@@ -705,7 +693,8 @@ const PESCO_TOOLS = [
 // Master Categories & Statuses
 const TOOL_CATEGORIES = [
   { id: "all", name: "All Softwares", count: PESCO_TOOLS.length },
-  { id: "ready", name: "Available for Download", count: PESCO_TOOLS.filter(t => t.status === "ready").length },
+  { id: "downloadable", name: "Direct Download (Free)", count: PESCO_TOOLS.filter(t => t.isPublicDownload).length },
+  { id: "on-request", name: "Available on Request", count: PESCO_TOOLS.filter(t => t.status === "on-request").length },
   { id: "in-development", name: "In Development", count: PESCO_TOOLS.filter(t => t.status === "in-development").length },
   { id: "flagship", name: "Flagship Suite", count: PESCO_TOOLS.filter(t => t.category === "flagship").length },
   { id: "posting", name: "Posting Checkers", count: PESCO_TOOLS.filter(t => t.category === "posting").length },

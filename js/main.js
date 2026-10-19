@@ -1,6 +1,6 @@
 /**
  * PESCO Tools Website & PITCSuite - Main Interactive Script
- * Shared navigation, Request-a-Software Modal, Download Handlers & Toast System
+ * Shared navigation, Contact/Request Software Modal, Direct Download Handler & Toast System
  */
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -49,7 +49,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // Populate dynamic developer profile info in DOM elements with data-profile attributes
+  // Populate dynamic developer profile info in DOM elements
   populateDeveloperProfile();
 });
 
@@ -123,7 +123,6 @@ function showToast(message, type = 'info', title = 'Notice') {
   container.appendChild(toast);
   refreshIcons();
 
-  // Auto remove after 5 seconds
   setTimeout(() => {
     if (toast.parentElement) {
       toast.style.opacity = '0';
@@ -134,20 +133,20 @@ function showToast(message, type = 'info', title = 'Notice') {
 }
 
 // Download Trigger Helper
+// ONLY PITCSuite and Bill Scrapper are directly downloadable.
+// All other tools trigger the Contact/Request modal with developer info!
 function triggerToolDownload(filename, toolTitle) {
   const tool = typeof getToolByFilename === 'function' ? getToolByFilename(filename) : null;
 
-  // If tool is in development, display notification modal
-  if (tool && tool.status === 'in-development') {
-    openInDevelopmentModal(tool);
+  // If this tool is not flagged as a public download, open the contact/request modal
+  if (!tool || !tool.isPublicDownload) {
+    openContactRequestModal(tool || { name: toolTitle, filename: filename, status: 'on-request' });
     return;
   }
 
-  // Check if GitHub release URL exists (preferred for Vercel deployment where large .exe are hosted externally)
-  const ghUrl = (tool && tool.githubReleaseUrl) ? tool.githubReleaseUrl : '';
+  // Handle direct download for PITCSuite and Bill Scrapper
+  const ghUrl = tool.githubReleaseUrl || '';
   const localPath = `downloads/${filename}`;
-
-  // If on local development, try local path first, else GitHub release
   const isLocalDev = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
   const downloadTarget = (isLocalDev || !ghUrl) ? localPath : ghUrl;
 
@@ -165,65 +164,133 @@ function triggerToolDownload(filename, toolTitle) {
     'Download Initiated'
   );
 
-  // Store download count in localStorage
   const storageKey = `pesco_dl_${filename}`;
   const currentCount = parseInt(localStorage.getItem(storageKey) || '0', 10) + 1;
   localStorage.setItem(storageKey, currentCount);
 }
 
-// Open "In Development" notice modal
-function openInDevelopmentModal(tool) {
-  let modal = document.getElementById('dev-notice-modal');
+// =========================================================================
+// CONTACT / REQUEST FOR SOFTWARE MODAL (SHOWS DEVELOPER CONTACT INFO)
+// =========================================================================
+function openContactRequestModal(tool) {
+  let modal = document.getElementById('contact-request-modal');
   if (!modal) {
     modal = document.createElement('div');
-    modal.id = 'dev-notice-modal';
-    modal.className = 'fixed inset-0 z-50 bg-black/80 backdrop-blur-sm flex items-center justify-center p-4 transition-opacity';
+    modal.id = 'contact-request-modal';
+    modal.className = 'fixed inset-0 z-50 bg-black/85 backdrop-blur-md flex items-center justify-center p-4 transition-opacity overflow-y-auto';
     document.body.appendChild(modal);
   }
 
+  const profile = typeof DEVELOPER_PROFILE !== 'undefined' ? DEVELOPER_PROFILE : {
+    corporateName: "PESCO Commercial Automation",
+    developerName: "Naqash",
+    email: "naqasht128@gmail.com",
+    cell: "+92 (300) 000-0000",
+    whatsappNumber: "923000000000"
+  };
+
+  const isDev = tool && tool.status === 'in-development';
+  const toolName = tool ? (tool.title || tool.name) : 'Specialized Utility';
+  const toolFilename = tool ? tool.filename : '';
+  const toolSummary = tool ? tool.summary : '';
+
+  // Pre-filled messages for WhatsApp & Email
+  const waText = encodeURIComponent(
+    `Hello Naqash, I am contacting you regarding "${toolName}" (${toolFilename}). I would like to inquire about obtaining the executable / sub-division license.`
+  );
+  const mailSubject = encodeURIComponent(`Software Request: ${toolName}`);
+  const mailBody = encodeURIComponent(
+    `Hello Naqash,\n\nI am interested in acquiring the executable for:\nSoftware: ${toolName} (${toolFilename})\n\nPlease provide licensing / purchase details and delivery instructions.\n\nThank you,\n[Your Name & Sub-Division]`
+  );
+
+  const badgeHtml = isDev
+    ? `<span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-amber-500/10 text-amber-400 border border-amber-500/30">
+        <span class="w-2 h-2 rounded-full bg-amber-400 animate-pulse"></span> In Development (Pre-Order / Register Interest)
+       </span>`
+    : `<span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-sky-500/10 text-sky-400 border border-sky-500/30">
+        <span class="w-2 h-2 rounded-full bg-sky-400"></span> Available on Request (Private Distribution)
+       </span>`;
+
   modal.innerHTML = `
-    <div class="glass-card max-w-md w-full rounded-3xl p-6 sm:p-8 border border-amber-500/30 bg-slate-900/95 relative shadow-2xl">
-      <button onclick="closeDevModal()" class="absolute top-5 right-5 p-2 rounded-xl bg-slate-800 text-slate-400 hover:text-white">
+    <div class="glass-card max-w-lg w-full rounded-3xl p-6 sm:p-8 border border-sky-500/30 bg-slate-900/95 relative shadow-2xl my-8">
+      <button onclick="closeContactRequestModal()" class="absolute top-5 right-5 p-2 rounded-xl bg-slate-800 text-slate-400 hover:text-white transition-colors">
         <i data-lucide="x" class="w-5 h-5"></i>
       </button>
 
-      <div class="w-12 h-12 rounded-2xl bg-amber-500/20 text-amber-400 flex items-center justify-center mb-4 border border-amber-500/30">
-        <i data-lucide="hammer" class="w-6 h-6"></i>
+      <!-- Header -->
+      <div class="mb-4">
+        ${badgeHtml}
+        <h3 class="text-xl sm:text-2xl font-extrabold text-white mt-2 leading-snug">${toolName}</h3>
+        ${toolFilename ? `<p class="text-xs text-sky-400 font-mono mt-0.5">${toolFilename}</p>` : ''}
       </div>
 
-      <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-amber-500/10 text-amber-400 border border-amber-500/20 mb-2">
-        <span class="w-2 h-2 rounded-full bg-amber-400 pulse-indicator"></span>
-        <span>Active Development</span>
-      </div>
-
-      <h3 class="text-xl font-bold text-white mb-2">${tool.title || tool.name}</h3>
       <p class="text-xs sm:text-sm text-slate-300 leading-relaxed mb-6">
-        ${tool.summary}
+        ${isDev 
+          ? 'This utility is currently under active development. Contact lead developer <strong>Naqash</strong> to request priority access, suggest features, or pre-order for your sub-division.'
+          : 'This standalone software is distributed directly upon request. Contact lead developer <strong>Naqash</strong> to arrange payment, licensing, and receive the executable file directly.'}
       </p>
 
-      <div class="bg-slate-950/70 p-4 rounded-xl border border-white/5 mb-6 text-xs text-slate-400 space-y-1.5">
-        <div class="flex justify-between">
-          <span class="text-slate-500">Target Executable:</span>
-          <span class="font-mono text-sky-400">${tool.filename}</span>
+      <!-- Developer Contact Information Card -->
+      <div class="bg-slate-950/80 rounded-2xl p-4 sm:p-5 border border-white/10 space-y-3 mb-6">
+        <div class="text-[11px] font-bold uppercase tracking-wider text-slate-400 flex items-center justify-between pb-2 border-b border-white/5">
+          <span>Developer Direct Contact</span>
+          <span class="text-sky-400 font-medium">${profile.corporateName}</span>
         </div>
-        <div class="flex justify-between">
-          <span class="text-slate-500">Current Phase:</span>
-          <span class="text-amber-400 font-semibold">Engine Testing & Verification</span>
-        </div>
-        <div class="flex justify-between">
-          <span class="text-slate-500">Release Stage:</span>
-          <span class="text-slate-300">${tool.version}</span>
-        </div>
+
+        <!-- WhatsApp Button -->
+        <a 
+          href="https://wa.me/${profile.whatsappNumber}?text=${waText}" 
+          target="_blank"
+          class="w-full py-3 px-4 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs sm:text-sm transition-all flex items-center justify-center gap-2.5 shadow-lg shadow-emerald-600/20"
+        >
+          <i data-lucide="phone-call" class="w-4 h-4"></i> WhatsApp Naqash (+92 300 000-0000)
+        </a>
+
+        <!-- Email Button -->
+        <a 
+          href="mailto:${profile.email}?subject=${mailSubject}&body=${mailBody}" 
+          class="w-full py-3 px-4 rounded-xl bg-slate-800 hover:bg-slate-700 text-sky-300 font-semibold text-xs sm:text-sm border border-sky-500/30 transition-all flex items-center justify-center gap-2.5"
+        >
+          <i data-lucide="mail" class="w-4 h-4 text-sky-400"></i> Email: ${profile.email}
+        </a>
       </div>
 
-      <div class="flex gap-3">
-        <button onclick="openRequestSoftwareModal('${tool.name}')" class="flex-1 py-3 px-4 rounded-xl bg-gradient-to-r from-sky-600 to-sky-500 hover:from-sky-500 hover:to-sky-400 text-white font-bold text-xs transition-all flex items-center justify-center gap-2 glow-btn">
-          <i data-lucide="bell" class="w-4 h-4"></i> Request Priority Release
-        </button>
-        <button onclick="closeDevModal()" class="py-3 px-4 rounded-xl bg-slate-800 text-slate-300 hover:text-white font-semibold text-xs border border-white/10">
-          Close
-        </button>
+      <!-- Quick Message Form -->
+      <div class="border-t border-white/5 pt-4">
+        <div class="text-xs font-semibold text-slate-300 mb-2">Or leave a quick message below:</div>
+        <form onsubmit="submitQuickInquiry(event, '${toolName}')" class="space-y-3">
+          <div class="grid grid-cols-2 gap-2">
+            <input 
+              type="text" 
+              id="inquiry-name" 
+              placeholder="Your Name / Designation" 
+              required
+              class="w-full px-3 py-2 rounded-xl bg-slate-950 border border-white/10 text-white text-xs focus:border-sky-500 focus:outline-none"
+            >
+            <input 
+              type="text" 
+              id="inquiry-subdiv" 
+              placeholder="Sub-Division / Circle" 
+              required
+              class="w-full px-3 py-2 rounded-xl bg-slate-950 border border-white/10 text-white text-xs focus:border-sky-500 focus:outline-none"
+            >
+          </div>
+          <input 
+            type="text" 
+            id="inquiry-contact" 
+            placeholder="Your WhatsApp or Cell Number" 
+            required
+            class="w-full px-3 py-2 rounded-xl bg-slate-950 border border-white/10 text-white text-xs focus:border-sky-500 focus:outline-none"
+          >
+          <button 
+            type="submit" 
+            class="w-full py-2.5 rounded-xl bg-gradient-to-r from-sky-600 to-indigo-600 hover:from-sky-500 hover:to-indigo-500 text-white font-bold text-xs tracking-wide shadow-md shadow-sky-600/30 transition-all flex items-center justify-center gap-2 glow-btn"
+          >
+            <i data-lucide="send" class="w-3.5 h-3.5"></i> Send Request to Developer
+          </button>
+        </form>
       </div>
+
     </div>
   `;
 
@@ -232,19 +299,34 @@ function openInDevelopmentModal(tool) {
   refreshIcons();
 }
 
-function closeDevModal() {
-  const modal = document.getElementById('dev-notice-modal');
+function closeContactRequestModal() {
+  const modal = document.getElementById('contact-request-modal');
   if (modal) {
     modal.classList.add('hidden');
     document.body.classList.remove('overflow-hidden');
   }
 }
 
+function submitQuickInquiry(e, toolName) {
+  e.preventDefault();
+  const name = document.getElementById('inquiry-name').value;
+  const subdiv = document.getElementById('inquiry-subdiv').value;
+  const contact = document.getElementById('inquiry-contact').value;
+
+  closeContactRequestModal();
+
+  showToast(
+    `Thank you <strong>${name}</strong>! Your inquiry for <em>"${toolName}"</em> has been logged. Naqash will connect with you via ${contact}.`,
+    'success',
+    'Request Dispatched'
+  );
+}
+
 // =========================================================================
-// REQUEST A SOFTWARE MODAL & FORM HANDLER
+// REQUEST A NEW SOFTWARE PROPOSAL MODAL
 // =========================================================================
 function openRequestSoftwareModal(presetToolName = '') {
-  closeDevModal();
+  closeContactRequestModal();
   let modal = document.getElementById('request-software-modal');
   if (!modal) {
     modal = document.createElement('div');
@@ -272,12 +354,12 @@ function openRequestSoftwareModal(presetToolName = '') {
         </div>
         <div>
           <h3 class="text-xl font-extrabold text-white">Request a Custom Software</h3>
-          <p class="text-xs text-slate-400">Direct proposal to Lead Developer (${profile.developerName})</p>
+          <p class="text-xs text-slate-400">Direct proposal to Developer (${profile.developerName})</p>
         </div>
       </div>
 
       <p class="text-xs text-slate-300 leading-relaxed mb-6">
-        Need a specialized PESCO billing scraper, posting validator, PDF converter, or ledger calculator? Submit your requirements below to have a custom utility developed for your sub-division.
+        Need a specialized PESCO billing utility, bank scroll matcher, PDF converter, or custom Excel macro? Submit your requirements directly to Naqash.
       </p>
 
       <form id="software-request-form" onsubmit="submitSoftwareRequest(event)" class="space-y-4">
@@ -287,7 +369,7 @@ function openRequestSoftwareModal(presetToolName = '') {
             type="text" 
             id="req-tool-name" 
             value="${presetToolName}"
-            placeholder="e.g. E-Bills Bulk Downloader or Sub-Division Defaulter Filter" 
+            placeholder="e.g. Sub-Division Defaulter Filter or E-Bills Batch Exporter" 
             required
             class="w-full px-4 py-2.5 rounded-xl bg-slate-950/80 border border-white/10 text-white text-xs sm:text-sm focus:border-sky-500 focus:outline-none"
           >
@@ -334,7 +416,6 @@ function openRequestSoftwareModal(presetToolName = '') {
               <option value="Printable PDF Document">Printable PDF Document</option>
               <option value="Text / Bank Scroll Format">Text / Bank Scroll Format</option>
               <option value="Standalone Windows Desktop EXE">Standalone Windows Desktop EXE</option>
-              <option value="Android Mobile APK">Android Mobile APK</option>
             </select>
           </div>
         </div>
@@ -344,7 +425,7 @@ function openRequestSoftwareModal(presetToolName = '') {
           <textarea 
             id="req-description" 
             rows="3" 
-            placeholder="Explain the manual problem, repetitive calculations, or bank scroll discrepancy this software should handle..."
+            placeholder="Explain the manual calculations or ledger issues this software should handle..."
             required
             class="w-full px-4 py-2.5 rounded-xl bg-slate-950/80 border border-white/10 text-white text-xs sm:text-sm focus:border-sky-500 focus:outline-none resize-none"
           ></textarea>
@@ -355,7 +436,7 @@ function openRequestSoftwareModal(presetToolName = '') {
             type="submit" 
             class="flex-1 py-3 px-5 rounded-xl bg-gradient-to-r from-sky-600 to-indigo-600 hover:from-sky-500 hover:to-indigo-500 text-white font-bold text-xs tracking-wide shadow-lg shadow-sky-600/30 transition-all flex items-center justify-center gap-2 glow-btn"
           >
-            <i data-lucide="send" class="w-4 h-4"></i> Submit Software Request
+            <i data-lucide="send" class="w-4 h-4"></i> Submit Software Proposal
           </button>
           <button 
             type="button" 
@@ -398,18 +479,10 @@ function submitSoftwareRequest(e) {
   closeRequestModal();
 
   showToast(
-    `Thank you <strong>${userName}</strong>! Your proposal for <em>"${toolName}"</em> has been logged. Lead developer Naqash will review your request.`,
+    `Thank you <strong>${userName}</strong>! Your proposal for <em>"${toolName}"</em> has been dispatched to Naqash.`,
     'success',
-    'Proposal Received'
+    'Proposal Dispatched'
   );
-
-  // Optional: Prompt user to dispatch via WhatsApp directly
-  const profile = typeof DEVELOPER_PROFILE !== 'undefined' ? DEVELOPER_PROFILE : { cell: "+92 300 0000000" };
-  const waMsg = encodeURIComponent(
-    `Hello Naqash, I would like to request a new software for PESCO Tools:\n\n*Tool:* ${toolName}\n*Requester:* ${userName} (${office})\n*Contact:* ${contact}\n*Output:* ${format}\n*Description:* ${desc}`
-  );
-  
-  console.log("Request logged successfully:", { toolName, userName, office, contact, format, desc });
 }
 
 // Populate developer profile across all DOM elements

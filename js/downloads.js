@@ -1,6 +1,6 @@
 /**
  * PESCO Tools Website - Downloads Page Dynamic Logic
- * Handles real-time search, status filtering, category tabs, and download cards
+ * Handles real-time search, status filtering, category tabs, and download/request cards
  */
 
 let activeCategory = 'all';
@@ -29,7 +29,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // Check URL query parameters (e.g. ?category=ready or ?search=bill)
+  // Check URL query parameters (e.g. ?category=downloadable or ?search=bill)
   const params = new URLSearchParams(window.location.search);
   if (params.has('category')) {
     activeCategory = params.get('category');
@@ -75,7 +75,7 @@ function updateActivePill() {
   });
 }
 
-// Render Download Cards
+// Render Download / Request Cards
 function renderDownloads() {
   const container = document.getElementById('downloads-grid');
   const countBadge = document.getElementById('results-count');
@@ -84,8 +84,10 @@ function renderDownloads() {
   // Filter tools
   let filtered = PESCO_TOOLS.filter(tool => {
     let matchesCat = true;
-    if (activeCategory === 'ready') {
-      matchesCat = tool.status === 'ready';
+    if (activeCategory === 'downloadable') {
+      matchesCat = tool.isPublicDownload === true;
+    } else if (activeCategory === 'on-request') {
+      matchesCat = tool.status === 'on-request';
     } else if (activeCategory === 'in-development') {
       matchesCat = tool.status === 'in-development';
     } else if (activeCategory !== 'all') {
@@ -107,7 +109,13 @@ function renderDownloads() {
   } else if (sortBy === 'size') {
     filtered.sort((a, b) => parseFloat(b.size) - parseFloat(a.size));
   } else if (sortBy === 'status') {
-    filtered.sort((a, b) => (a.status === 'ready' ? -1 : 1));
+    filtered.sort((a, b) => {
+      if (a.isPublicDownload && !b.isPublicDownload) return -1;
+      if (!a.isPublicDownload && b.isPublicDownload) return 1;
+      if (a.status === 'on-request' && b.status === 'in-development') return -1;
+      if (a.status === 'in-development' && b.status === 'on-request') return 1;
+      return 0;
+    });
   }
 
   if (countBadge) {
@@ -139,36 +147,52 @@ function renderDownloads() {
   }
 
   container.innerHTML = filtered.map(tool => {
-    const isReady = tool.status === 'ready';
-    const isExe = tool.filename.endsWith('.exe');
-    const isApk = tool.filename.endsWith('.apk');
+    const isPublic = tool.isPublicDownload === true;
+    const isDev = tool.status === 'in-development';
 
-    // Status styling
-    const statusPill = isReady 
-      ? `<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md text-[11px] font-semibold bg-emerald-500/10 text-emerald-400 border border-emerald-500/30">
-          <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 pulse-indicator"></span> Available for Download
-        </span>`
-      : `<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md text-[11px] font-semibold bg-amber-500/10 text-amber-400 border border-amber-500/30">
-          <span class="w-1.5 h-1.5 rounded-full bg-amber-400 animate-pulse"></span> In Development
-        </span>`;
+    // Status Badge
+    let statusPill = '';
+    let actionButton = '';
+
+    if (isPublic) {
+      statusPill = `<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md text-[11px] font-semibold bg-emerald-500/10 text-emerald-400 border border-emerald-500/30">
+        <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 pulse-indicator"></span> Direct Download
+      </span>`;
+
+      actionButton = `<button 
+        onclick="triggerToolDownload('${tool.filename}', '${tool.title}')"
+        class="w-full py-2.5 px-3 rounded-xl bg-gradient-to-r from-sky-600 to-sky-500 hover:from-sky-500 hover:to-sky-400 text-white font-semibold text-xs transition-all shadow-md shadow-sky-600/20 flex items-center justify-center gap-2 glow-btn"
+      >
+        <i data-lucide="download" class="w-4 h-4"></i> Download EXE
+      </button>`;
+    } else if (isDev) {
+      statusPill = `<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md text-[11px] font-semibold bg-amber-500/10 text-amber-400 border border-amber-500/30">
+        <span class="w-1.5 h-1.5 rounded-full bg-amber-400 animate-pulse"></span> In Development
+      </span>`;
+
+      actionButton = `<button 
+        onclick="openContactRequestModal(getToolById('${tool.id}'))"
+        class="w-full py-2.5 px-3 rounded-xl bg-amber-500/20 hover:bg-amber-500/30 text-amber-300 border border-amber-500/30 font-semibold text-xs transition-all flex items-center justify-center gap-1.5"
+      >
+        <i data-lucide="clock" class="w-4 h-4 text-amber-400"></i> Contact / Pre-Order
+      </button>`;
+    } else {
+      // Available on request / private distribution
+      statusPill = `<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md text-[11px] font-semibold bg-sky-500/10 text-sky-400 border border-sky-500/30">
+        <span class="w-1.5 h-1.5 rounded-full bg-sky-400"></span> Available on Request
+      </span>`;
+
+      actionButton = `<button 
+        onclick="openContactRequestModal(getToolById('${tool.id}'))"
+        class="w-full py-2.5 px-3 rounded-xl bg-slate-800 hover:bg-slate-700 text-sky-300 hover:text-white border border-sky-500/30 font-semibold text-xs transition-all flex items-center justify-center gap-1.5 shadow-sm"
+      >
+        <i data-lucide="phone-call" class="w-4 h-4 text-sky-400"></i> Contact / Request Tool
+      </button>`;
+    }
 
     const cardBorder = tool.isFlagship 
       ? 'border-sky-500/40 bg-gradient-to-b from-sky-950/20 to-slate-900/80 shadow-lg shadow-sky-500/5' 
-      : (isReady ? 'border-white/10 hover:border-sky-500/30' : 'border-amber-500/20 bg-slate-900/60');
-
-    const downloadButton = isReady 
-      ? `<button 
-          onclick="triggerToolDownload('${tool.filename}', '${tool.title}')"
-          class="w-full py-2.5 px-3 rounded-xl bg-gradient-to-r from-sky-600 to-sky-500 hover:from-sky-500 hover:to-sky-400 text-white font-semibold text-xs transition-all shadow-md shadow-sky-600/20 flex items-center justify-center gap-2 glow-btn"
-        >
-          <i data-lucide="download" class="w-4 h-4"></i> Download EXE
-        </button>`
-      : `<button 
-          onclick="openInDevelopmentModal(getToolById('${tool.id}'))"
-          class="w-full py-2.5 px-3 rounded-xl bg-amber-500/20 hover:bg-amber-500/30 text-amber-300 border border-amber-500/30 font-semibold text-xs transition-all flex items-center justify-center gap-2"
-        >
-          <i data-lucide="hammer" class="w-4 h-4 text-amber-400"></i> In Development
-        </button>`;
+      : (isPublic ? 'border-emerald-500/30 bg-slate-900/80' : (isDev ? 'border-amber-500/20 bg-slate-900/60' : 'border-white/10 bg-slate-900/70'));
 
     return `
       <div class="glass-card rounded-2xl p-6 flex flex-col justify-between relative group ${cardBorder}">
@@ -184,7 +208,7 @@ function renderDownloads() {
 
           <!-- Icon & Title -->
           <div class="flex items-start gap-3.5 mb-4">
-            <div class="w-12 h-12 rounded-xl ${tool.isFlagship ? 'bg-sky-600/30 text-sky-300 border border-sky-400/30' : (isReady ? 'bg-slate-800 text-sky-400 border border-white/5' : 'bg-slate-800 text-amber-400 border border-amber-500/20')} flex items-center justify-center flex-shrink-0 group-hover:scale-105 transition-transform duration-300">
+            <div class="w-12 h-12 rounded-xl ${tool.isFlagship ? 'bg-sky-600/30 text-sky-300 border border-sky-400/30' : (isPublic ? 'bg-emerald-600/20 text-emerald-400 border border-emerald-500/30' : (isDev ? 'bg-slate-800 text-amber-400 border border-amber-500/20' : 'bg-slate-800 text-sky-400 border border-white/5'))} flex items-center justify-center flex-shrink-0 group-hover:scale-105 transition-transform duration-300">
               <i data-lucide="${tool.icon}" class="w-6 h-6"></i>
             </div>
             <div>
@@ -225,12 +249,12 @@ function renderDownloads() {
           </div>
 
           <div class="grid grid-cols-2 gap-2">
-            ${downloadButton}
+            ${actionButton}
             <a 
               href="tutorials.html?tool=${tool.id}"
               class="w-full py-2.5 px-3 rounded-xl bg-slate-800/80 hover:bg-slate-700/80 text-slate-200 border border-white/10 font-semibold text-xs transition-all flex items-center justify-center gap-1.5 hover:text-white"
             >
-              <i data-lucide="book-open" class="w-4 h-4 text-sky-400"></i> Tutorial
+              <i data-lucide="book-open" class="w-4 h-4 text-sky-400"></i> Details
             </a>
           </div>
         </div>
