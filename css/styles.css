@@ -1,5 +1,5 @@
 /* ==========================================================================
-   PESCO Tools Suite - Master Stylesheet & Fluent Animations
+   PESCO Tools Suite - Master Stylesheet & Fluent Dark Aesthetic
    ========================================================================== */
 
 @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap');
@@ -7,12 +7,12 @@
 :root {
   --font-main: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
   --font-mono: 'JetBrains Mono', monospace;
-  --bg-primary: #0a0f1d;
-  --bg-secondary: #111827;
-  --bg-card: rgba(17, 24, 39, 0.75);
-  --bg-card-hover: rgba(30, 41, 59, 0.85);
-  --border-subtle: rgba(255, 255, 255, 0.08);
-  --border-hover: rgba(56, 189, 248, 0.35);
+  --bg-primary: #060913;
+  --bg-secondary: #0b1120;
+  --bg-card: rgba(11, 17, 32, 0.85);
+  --bg-card-hover: rgba(18, 28, 51, 0.9);
+  --border-subtle: rgba(56, 189, 248, 0.12);
+  --border-hover: rgba(56, 189, 248, 0.38);
   --primary: #0284c7;
   --primary-glow: rgba(14, 165, 233, 0.35);
   --emerald-glow: rgba(16, 185, 129, 0.35);
@@ -24,15 +24,14 @@
   box-sizing: border-box;
 }
 
-body {
+html, body {
+  background-color: #060913 !important;
+  color: var(--text-main) !important;
   font-family: var(--font-main);
-  background-color: var(--bg-primary);
-  color: var(--text-main);
   overflow-x: hidden;
   line-height: 1.6;
   scroll-behavior: smooth;
-  selection-background-color: #0284c7;
-  selection-color: #ffffff;
+  min-height: 100vh;
 }
 
 /* Custom Scrollbar */
@@ -41,48 +40,51 @@ body {
   height: 8px;
 }
 ::-webkit-scrollbar-track {
-  background: #0b0f19;
+  background: #060913;
 }
 ::-webkit-scrollbar-thumb {
   background: #1e293b;
   border-radius: 9999px;
-  border: 2px solid #0b0f19;
+  border: 2px solid #060913;
 }
 ::-webkit-scrollbar-thumb:hover {
   background: #0284c7;
 }
 
-/* Background Animated Gradient Mesh */
+/* Background Animated Gradient Mesh (Guaranteed Dark Theme) */
 .bg-mesh-gradient {
-  background: 
-    radial-gradient(at 0% 0%, rgba(14, 165, 233, 0.15) 0px, transparent 50%),
-    radial-gradient(at 100% 0%, rgba(99, 102, 241, 0.12) 0px, transparent 50%),
-    radial-gradient(at 50% 50%, rgba(16, 185, 129, 0.08) 0px, transparent 60%),
-    radial-gradient(at 100% 100%, rgba(14, 165, 233, 0.1) 0px, transparent 50%),
-    radial-gradient(at 0% 100%, rgba(139, 92, 246, 0.08) 0px, transparent 50%);
+  background-color: #060913 !important;
+  background-image: 
+    radial-gradient(ellipse 90% 60% at 50% -10%, rgba(14, 165, 233, 0.18), transparent 70%),
+    radial-gradient(ellipse 60% 40% at 95% 20%, rgba(99, 102, 241, 0.14), transparent 60%),
+    radial-gradient(ellipse 70% 50% at 5% 65%, rgba(14, 165, 233, 0.12), transparent 60%),
+    radial-gradient(ellipse 80% 50% at 50% 100%, rgba(15, 23, 42, 0.95), transparent 70%) !important;
+  background-attachment: fixed;
 }
 
+/* Tech Grid Pattern on Hero & Sections */
 .bg-grid-pattern {
+  background-color: transparent !important;
   background-size: 40px 40px;
   background-image: 
-    linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+    linear-gradient(to right, rgba(56, 189, 248, 0.04) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(56, 189, 248, 0.04) 1px, transparent 1px);
 }
 
 /* Glassmorphism Classes */
 .glass-panel {
-  background: rgba(15, 23, 42, 0.7);
+  background: rgba(11, 17, 32, 0.8);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
   border: 1px solid var(--border-subtle);
-  box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.6);
 }
 
 .glass-nav {
-  background: rgba(10, 15, 29, 0.82);
+  background: rgba(6, 9, 19, 0.88);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
 }
 
 .glass-card {
@@ -97,26 +99,26 @@ body {
   background: var(--bg-card-hover);
   border-color: var(--border-hover);
   transform: translateY(-4px);
-  box-shadow: 0 20px 30px -10px rgba(2, 132, 199, 0.15);
+  box-shadow: 0 20px 35px -10px rgba(2, 132, 199, 0.2);
 }
 
 .glass-card-flagship {
-  background: linear-gradient(135deg, rgba(30, 41, 59, 0.8) 0%, rgba(15, 23, 42, 0.9) 100%);
-  border: 1px solid rgba(56, 189, 248, 0.3);
-  box-shadow: 0 0 35px -5px rgba(14, 165, 233, 0.2);
+  background: linear-gradient(135deg, rgba(14, 23, 42, 0.9) 0%, rgba(8, 14, 27, 0.95) 100%);
+  border: 1px solid rgba(56, 189, 248, 0.35);
+  box-shadow: 0 0 40px -5px rgba(14, 165, 233, 0.25);
 }
 
 .glass-input {
-  background: rgba(15, 23, 42, 0.6);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(8, 14, 27, 0.85);
+  border: 1px solid rgba(255, 255, 255, 0.12);
   color: #fff;
   transition: all 0.2s ease;
 }
 .glass-input:focus {
   outline: none;
   border-color: #38bdf8;
-  box-shadow: 0 0 0 3px rgba(56, 189, 248, 0.2);
-  background: rgba(15, 23, 42, 0.85);
+  box-shadow: 0 0 0 3px rgba(56, 189, 248, 0.25);
+  background: rgba(11, 18, 36, 0.95);
 }
 
 /* Glowing text and buttons */
@@ -125,7 +127,7 @@ body {
 }
 
 .hero-text-dark {
-  color: #0f172a !important;
+  color: #ffffff !important;
   font-weight: 800;
   letter-spacing: -0.02em;
 }
@@ -217,11 +219,11 @@ body {
   pointer-events: auto;
   min-width: 320px;
   max-width: 420px;
-  background: rgba(15, 23, 42, 0.95);
-  backdrop-filter: blur(12px);
-  border: 1px solid rgba(56, 189, 248, 0.3);
-  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.6);
-  border-radius: 12px;
+  background: rgba(11, 17, 32, 0.98);
+  backdrop-filter: blur(14px);
+  border: 1px solid rgba(56, 189, 248, 0.35);
+  box-shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.8);
+  border-radius: 14px;
   padding: 14px 18px;
   display: flex;
   align-items: center;
@@ -244,19 +246,19 @@ body {
   background: linear-gradient(135deg, #0284c7 0%, #0369a1 100%);
   color: #ffffff;
   border-color: #38bdf8;
-  box-shadow: 0 4px 15px -3px rgba(14, 165, 233, 0.4);
+  box-shadow: 0 4px 15px -3px rgba(14, 165, 233, 0.5);
 }
 
 /* Modal styles */
 .modal-backdrop {
-  background-color: rgba(3, 7, 18, 0.8);
+  background-color: rgba(3, 7, 18, 0.85);
   backdrop-filter: blur(8px);
 }
 
 /* Code block highlight */
 .code-container {
   font-family: var(--font-mono);
-  background: #090d16;
+  background: #080c17;
   border: 1px solid rgba(255, 255, 255, 0.08);
   border-radius: 8px;
   padding: 12px 16px;
