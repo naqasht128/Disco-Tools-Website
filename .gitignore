@@ -1,0 +1,7 @@
+# Git ignore
+downloads/*.exe
+downloads/*.apk
+.vercel
+node_modules/
+__pycache__/
+*.pyc

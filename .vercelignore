@@ -1,0 +1,11 @@
+# Vercel Ignore File
+# Keeps deployment payload under 2 MB to comply with Vercel's 100 MB hobby limit.
+# Executables are served via GitHub Releases or external CDN links.
+
+downloads/*.exe
+downloads/*.apk
+*.bat
+*.py
+.git
+.gitignore
+README.txt

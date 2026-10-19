@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact & Technical Support - PESCO Tools</title>
+  <meta name="description" content="Reach out to the PESCO Tools and PITCSuite developer (Naqash) for support, custom software requests, or bank scroll format updates.">
+  
+  <!-- Tailwind CSS via CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              50: '#f0f9ff',
+              100: '#e0f2fe',
+              500: '#0ea5e9',
+              600: '#0284c7',
+              700: '#0369a1',
+              900: '#0c4a6e',
+            }
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body class="bg-mesh-gradient min-h-screen text-slate-100 flex flex-col justify-between selection:bg-sky-500 selection:text-white">
+
+  <!-- ================= TOP NAVIGATION ================= -->
+  <header class="sticky top-0 z-40 glass-nav transition-all duration-300">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+      
+      <!-- Brand Logo -->
+      <a href="index.html" class="flex items-center gap-3.5 group">
+        <div class="w-11 h-11 rounded-xl bg-gradient-to-br from-sky-500 via-blue-600 to-indigo-700 flex items-center justify-center shadow-lg shadow-sky-500/20 group-hover:scale-105 transition-transform">
+          <i data-lucide="zap" class="w-6 h-6 text-white"></i>
+        </div>
+        <div>
+          <div class="font-extrabold text-lg sm:text-xl tracking-tight text-white flex items-center gap-2">
+            <span>PESCO</span>
+            <span class="text-xs font-semibold px-2 py-0.5 rounded-full bg-sky-500/20 text-sky-400 border border-sky-500/30">TOOLS</span>
+          </div>
+          <p class="text-[11px] text-slate-400 font-medium tracking-wide">PITCSuite & Utility Hub</p>
+        </div>
+      </a>
+
+      <!-- Desktop Navigation Links -->
+      <nav class="hidden lg:flex items-center gap-1 bg-slate-900/60 p-1.5 rounded-2xl border border-white/5">
+        <a href="index.html" class="nav-link px-3.5 py-2 rounded-xl text-xs font-semibold uppercase tracking-wider text-slate-300 hover:text-white hover:bg-slate-800/80 transition-all flex items-center gap-1.5">
+          <i data-lucide="home" class="w-3.5 h-3.5"></i> Home
+        </a>
+        <a href="downloads.html" class="nav-link px-3.5 py-2 rounded-xl text-xs font-semibold uppercase tracking-wider text-slate-300 hover:text-white hover:bg-slate-800/80 transition-all flex items-center gap-1.5">
+          <i data-lucide="download" class="w-3.5 h-3.5"></i> Downloads
+        </a>
+        <a href="tutorials.html" class="nav-link px-3.5 py-2 rounded-xl text-xs font-semibold uppercase tracking-wider text-slate-300 hover:text-white hover:bg-slate-800/80 transition-all flex items-center gap-1.5">
+          <i data-lucide="book-open" class="w-3.5 h-3.5"></i> Tutorials
+        </a>
+        <a href="index.html#about" class="nav-link px-3.5 py-2 rounded-xl text-xs font-semibold uppercase tracking-wider text-slate-300 hover:text-white hover:bg-slate-800/80 transition-all flex items-center gap-1.5">
+          <i data-lucide="user" class="w-3.5 h-3.5"></i> About
+        </a>
+        <a href="contact.html" class="nav-link px-3.5 py-2 rounded-xl text-xs font-semibold uppercase tracking-wider text-slate-300 hover:text-white hover:bg-slate-800/80 transition-all flex items-center gap-1.5">
+          <i data-lucide="mail" class="w-3.5 h-3.5"></i> Contact
+        </a>
+      </nav>
+
+      <!-- Action Button & Mobile Hamburger -->
+      <div class="flex items-center gap-2.5">
+        <button 
+          onclick="openRequestSoftwareModal()"
+          class="hidden sm:inline-flex items-center gap-2 px-3.5 py-2.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-sky-400 hover:text-white font-semibold text-xs tracking-wide border border-sky-500/30 transition-all"
+        >
+          <i data-lucide="sparkles" class="w-4 h-4 text-sky-400"></i> Request Software
+        </button>
+
+        <a href="downloads.html" class="hidden sm:inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-gradient-to-r from-sky-600 to-sky-500 hover:from-sky-500 hover:to-sky-400 text-white font-semibold text-xs tracking-wide shadow-md shadow-sky-600/30 transition-all glow-btn">
+          <i data-lucide="download" class="w-4 h-4"></i> Download Tools
+        </a>
+
+        <button id="mobile-menu-btn" class="lg:hidden p-2 rounded-xl bg-slate-800 text-slate-300 hover:text-white hover:bg-slate-700 transition-colors">
+          <i data-lucide="menu" class="w-6 h-6"></i>
+        </button>
+      </div>
+
+    </div>
+  </header>
+
+  <!-- Mobile Drawer Menu -->
+  <div id="mobile-menu-drawer" class="fixed inset-0 z-50 bg-black/85 backdrop-blur-md hidden flex flex-col justify-between p-6">
+    <div>
+      <div class="flex items-center justify-between pb-6 border-b border-white/10">
+        <div class="flex items-center gap-3">
+          <div class="w-10 h-10 rounded-xl bg-sky-600 flex items-center justify-center text-white">
+            <i data-lucide="zap" class="w-5 h-5"></i>
+          </div>
+          <span class="font-bold text-white text-lg">PESCO Tools</span>
+        </div>
+        <button id="mobile-menu-close" class="p-2 rounded-xl bg-slate-800 text-slate-400 hover:text-white">
+          <i data-lucide="x" class="w-6 h-6"></i>
+        </button>
+      </div>
+
+      <nav class="mt-8 space-y-3">
+        <a href="index.html" class="block p-3.5 rounded-xl bg-slate-800/60 font-semibold text-white flex items-center gap-3">
+          <i data-lucide="home" class="w-5 h-5 text-sky-400"></i> Home Overview
+        </a>
+        <a href="downloads.html" class="block p-3.5 rounded-xl bg-slate-800/60 font-semibold text-white flex items-center gap-3">
+          <i data-lucide="download" class="w-5 h-5 text-sky-400"></i> Downloads Repository
+        </a>
+        <a href="tutorials.html" class="block p-3.5 rounded-xl bg-slate-800/60 font-semibold text-white flex items-center gap-3">
+          <i data-lucide="book-open" class="w-5 h-5 text-sky-400"></i> Usage Tutorials
+        </a>
+        <a href="index.html#about" class="block p-3.5 rounded-xl bg-slate-800/60 font-semibold text-white flex items-center gap-3">
+          <i data-lucide="user" class="w-5 h-5 text-sky-400"></i> About Developer
+        </a>
+        <a href="contact.html" class="block p-3.5 rounded-xl bg-slate-800/60 font-semibold text-white flex items-center gap-3">
+          <i data-lucide="mail" class="w-5 h-5 text-sky-400"></i> Contact & Support
+        </a>
+        <button onclick="document.getElementById('mobile-menu-drawer').classList.add('hidden'); openRequestSoftwareModal();" class="w-full text-left p-3.5 rounded-xl bg-sky-950/60 border border-sky-500/30 font-semibold text-sky-300 flex items-center gap-3">
+          <i data-lucide="sparkles" class="w-5 h-5 text-sky-400"></i> Request Custom Software
+        </button>
+      </nav>
+    </div>
+
+    <div class="pt-6 border-t border-white/10">
+      <a href="downloads.html" class="w-full py-3 rounded-xl bg-sky-600 hover:bg-sky-500 font-bold text-center block text-white">
+        Explore All Downloads
+      </a>
+      <p class="text-xs text-slate-500 text-center mt-3">&copy; 2026 PESCO Tools</p>
+    </div>
+  </div>
+
+  <!-- ================= CONTACT HERO & SUPPORT DISPATCH ================= -->
+  <main class="flex-1 py-12">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
+      
+      <!-- Section Header -->
+      <div class="text-center max-w-3xl mx-auto">
+        <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-sky-500/10 text-sky-300 border border-sky-500/20 text-xs font-semibold mb-3">
+          <i data-lucide="headphones" class="w-3.5 h-3.5"></i> Technical Support & Direct Developer Contact
+        </div>
+        <h1 class="text-3xl sm:text-5xl font-extrabold text-white tracking-tight">
+          Contact Developer & Support
+        </h1>
+        <p class="mt-3 text-xs sm:text-sm text-slate-300 leading-relaxed">
+          Need technical assistance with a tool, bank scroll format variance, or custom sub-divisional software development? Reach out directly to Lead Developer <strong>Naqash</strong>.
+        </p>
+      </div>
+
+      <!-- Main Layout Grid -->
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+        
+        <!-- Support Dispatch Form -->
+        <div class="lg:col-span-7 glass-card rounded-3xl p-6 sm:p-8 border border-white/10">
+          
+          <div class="mb-6 pb-4 border-b border-white/10">
+            <h3 class="text-xl font-bold text-white flex items-center gap-2">
+              <i data-lucide="send" class="w-5 h-5 text-sky-400"></i> Submit Inquiry or Request
+            </h3>
+            <p class="text-xs text-slate-400 mt-1">
+              Fill in your details below and we will get back to you promptly.
+            </p>
+          </div>
+
+          <form id="pesco-contact-form" class="space-y-4">
+            
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div>
+                <label for="contact-name" class="block text-xs font-semibold text-slate-300 mb-1.5">
+                  Full Name & Designation *
+                </label>
+                <input 
+                  type="text" 
+                  id="contact-name" 
+                  placeholder="e.g. M. Irfan (Commercial Assistant)" 
+                  required
+                  class="w-full px-4 py-3 rounded-xl glass-input text-xs sm:text-sm"
+                >
+              </div>
+
+              <div>
+                <label for="contact-subdivision" class="block text-xs font-semibold text-slate-300 mb-1.5">
+                  Sub-Division / Office *
+                </label>
+                <input 
+                  type="text" 
+                  id="contact-subdivision" 
+                  placeholder="e.g. City Sub-Division, Peshawar" 
+                  required
+                  class="w-full px-4 py-3 rounded-xl glass-input text-xs sm:text-sm"
+                >
+              </div>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div>
+                <label for="contact-phone-email" class="block text-xs font-semibold text-slate-300 mb-1.5">
+                  WhatsApp No. or Email *
+                </label>
+                <input 
+                  type="text" 
+                  id="contact-phone-email" 
+                  placeholder="e.g. 0300-1234567 or user@gmail.com" 
+                  required
+                  class="w-full px-4 py-3 rounded-xl glass-input text-xs sm:text-sm"
+                >
+              </div>
+
+              <div>
+                <label for="contact-tool" class="block text-xs font-semibold text-slate-300 mb-1.5">
+                  Related Software
+                </label>
+                <select id="contact-tool" class="w-full px-4 py-3 rounded-xl glass-input text-xs sm:text-sm bg-slate-900 text-slate-200">
+                  <option value="PITCSuite (v2.8.97)">PITCSuite (v2.8.97)</option>
+                  <option value="Bill Scrapper">Bill Scrapper</option>
+                  <option value="E-Bills Downloader (In Dev)">E-Bills Downloader (In Dev)</option>
+                  <option value="CP139PostingChecker">CP139PostingChecker</option>
+                  <option value="CP136_Posting_Checker">CP136_Posting_Checker</option>
+                  <option value="FeederCodeRanging">FeederCodeRanging</option>
+                  <option value="FCodeBulkPDFtoExcelConvert">FCodeBulkPDFtoExcelConvert</option>
+                  <option value="CP-52 Posting into PDF">CP-52 Posting into PDF</option>
+                  <option value="New Software Proposal">New Software Proposal</option>
+                  <option value="General Support">General Support</option>
+                </select>
+              </div>
+            </div>
+
+            <div>
+              <label for="contact-message" class="block text-xs font-semibold text-slate-300 mb-1.5">
+                Issue Description or Feature Request *
+              </label>
+              <textarea 
+                id="contact-message" 
+                rows="4" 
+                placeholder="Describe your error message, bank scroll format variance, or software you would like developed..."
+                required
+                class="w-full px-4 py-3 rounded-xl glass-input text-xs sm:text-sm resize-none"
+              ></textarea>
+            </div>
+
+            <button 
+              type="submit" 
+              id="contact-submit-btn"
+              class="w-full py-3.5 px-6 rounded-xl bg-gradient-to-r from-sky-600 to-sky-500 hover:from-sky-500 hover:to-sky-400 text-white font-bold text-xs sm:text-sm tracking-wide shadow-lg shadow-sky-600/30 transition-all flex items-center justify-center gap-2 glow-btn"
+            >
+              <i data-lucide="send" class="w-4 h-4"></i> Dispatch Inquiry to Developer
+            </button>
+
+            <p class="text-[11px] text-slate-500 text-center">
+              Direct inbox of <strong>Naqash</strong> (naqasht128@gmail.com).
+            </p>
+          </form>
+
+        </div>
+
+        <!-- Direct Contact Channels & Corporate Card -->
+        <div class="lg:col-span-5 space-y-6">
+          
+          <div class="glass-card rounded-3xl p-6 sm:p-8 border border-white/5 space-y-6 bg-slate-900/90 shadow-2xl">
+            <h3 class="text-base sm:text-lg font-bold text-white flex items-center gap-2.5 pb-4 border-b border-white/10">
+              <i data-lucide="radio" class="w-5 h-5 text-emerald-400"></i> Developer & Corporate Profile
+            </h3>
+
+            <!-- Developer Identity -->
+            <div class="flex items-start gap-4">
+              <div class="w-10 h-10 rounded-xl bg-sky-500/20 text-sky-400 flex items-center justify-center flex-shrink-0">
+                <i data-lucide="user-check" class="w-5 h-5"></i>
+              </div>
+              <div>
+                <h4 class="text-sm font-bold text-white">Naqash</h4>
+                <p class="text-xs text-slate-400 mt-0.5">Lead Software & Automation Engineer</p>
+                <div class="mt-1 text-xs font-mono text-sky-400 font-semibold">PESCO Commercial Automation</div>
+              </div>
+            </div>
+
+            <!-- WhatsApp -->
+            <div class="flex items-start gap-4">
+              <div class="w-10 h-10 rounded-xl bg-emerald-500/20 text-emerald-400 flex items-center justify-center flex-shrink-0">
+                <i data-lucide="phone-call" class="w-5 h-5"></i>
+              </div>
+              <div>
+                <h4 class="text-sm font-bold text-white">Cell & WhatsApp Support</h4>
+                <p class="text-xs text-slate-400 mt-0.5">Quick assistance for urgent billing week issues</p>
+                <a href="tel:+923000000000" class="mt-2 block text-xs font-mono text-emerald-400 font-semibold hover:underline">+92 (300) 000-0000</a>
+              </div>
+            </div>
+
+            <!-- Email -->
+            <div class="flex items-start gap-4">
+              <div class="w-10 h-10 rounded-xl bg-sky-500/20 text-sky-400 flex items-center justify-center flex-shrink-0">
+                <i data-lucide="mail" class="w-5 h-5"></i>
+              </div>
+              <div>
+                <h4 class="text-sm font-bold text-white">Official Developer Email</h4>
+                <p class="text-xs text-slate-400 mt-0.5">Send sample logs, scroll files, or feature specs</p>
+                <a href="mailto:naqasht128@gmail.com" class="mt-2 block text-xs font-mono text-sky-400 font-semibold hover:underline">naqasht128@gmail.com</a>
+              </div>
+            </div>
+
+            <!-- GitHub -->
+            <div class="flex items-start gap-4">
+              <div class="w-10 h-10 rounded-xl bg-indigo-500/20 text-indigo-400 flex items-center justify-center flex-shrink-0">
+                <i data-lucide="github" class="w-5 h-5"></i>
+              </div>
+              <div>
+                <h4 class="text-sm font-bold text-white">GitHub Releases</h4>
+                <p class="text-xs text-slate-400 mt-0.5">Open source code, binaries, and version history</p>
+                <a href="https://github.com/naqasht128" target="_blank" class="mt-2 block text-xs font-mono text-indigo-300 hover:underline">github.com/naqasht128</a>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- Working Hours Card -->
+          <div class="glass-card rounded-3xl p-6 border border-white/5">
+            <div class="flex items-center justify-between text-xs text-slate-300">
+              <span class="flex items-center gap-2 font-semibold">
+                <i data-lucide="clock" class="w-4 h-4 text-sky-400"></i> Active Hours:
+              </span>
+              <span class="text-emerald-400 font-medium">Mon - Sat (8:00 AM - 5:00 PM)</span>
+            </div>
+            <div class="mt-3 pt-3 border-t border-white/5 text-[11px] text-slate-400">
+              * Active on-call support during commercial billing closure windows.
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+  </main>
+
+  <!-- ================= FOOTER ================= -->
+  <footer class="border-t border-white/5 bg-slate-950/80 py-12 text-slate-400 text-xs">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8 pb-8 border-b border-white/5">
+        
+        <div class="md:col-span-2">
+          <div class="flex items-center gap-3 mb-3">
+            <div class="w-8 h-8 rounded-lg bg-sky-600 flex items-center justify-center text-white">
+              <i data-lucide="zap" class="w-4 h-4"></i>
+            </div>
+            <span class="font-bold text-base text-white">PESCO Tools & PITCSuite Portal</span>
+          </div>
+          <p class="text-slate-400 text-xs max-w-sm leading-relaxed">
+            Lead Developer: <strong>Naqash</strong> | PESCO Commercial Automation Systems.
+          </p>
+          <div class="mt-2 text-xs text-sky-400 font-mono">naqasht128@gmail.com</div>
+        </div>
+
+        <div>
+          <h4 class="text-xs font-bold text-white uppercase tracking-wider mb-3">Quick Navigation</h4>
+          <ul class="space-y-2">
+            <li><a href="index.html" class="hover:text-white transition-colors">Home Overview</a></li>
+            <li><a href="downloads.html" class="hover:text-white transition-colors">Downloads Repository</a></li>
+            <li><a href="tutorials.html" class="hover:text-white transition-colors">Usage Tutorials</a></li>
+            <li><a href="index.html#about" class="hover:text-white transition-colors">About Developer</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="text-xs font-bold text-white uppercase tracking-wider mb-3">Custom Development</h4>
+          <ul class="space-y-2">
+            <li><button onclick="openRequestSoftwareModal()" class="text-sky-400 hover:text-white">Request Software Proposal</button></li>
+            <li><a href="mailto:naqasht128@gmail.com" class="hover:text-white">Direct Email</a></li>
+          </ul>
+        </div>
+
+      </div>
+
+      <div class="flex flex-col sm:flex-row items-center justify-between gap-4 text-[11px] text-slate-500">
+        <div>&copy; 2026 PESCO Tools Portal. Developed by Naqash. All Rights Reserved.</div>
+        <div class="flex items-center gap-4">
+          <a href="contact.html" class="hover:text-slate-400">Support</a>
+          <span>&bull;</span>
+          <button onclick="openRequestSoftwareModal()" class="hover:text-sky-400">Request Software</button>
+        </div>
+      </div>
+
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="js/tools-data.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/contact.js"></script>
+</body>
+</html>

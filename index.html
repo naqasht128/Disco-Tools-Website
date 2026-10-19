@@ -1,0 +1,650 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PESCO Tools & PITCSuite - Commercial & Billing Automation Portal</title>
+  <meta name="description" content="Official distribution portal for PESCO revenue tools, CP posting checkers, PDF to Excel converters, Bill Scrapper, and the all-in-one PITCSuite.">
+  
+  <!-- Tailwind CSS via CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              50: '#f0f9ff',
+              100: '#e0f2fe',
+              500: '#0ea5e9',
+              600: '#0284c7',
+              700: '#0369a1',
+              900: '#0c4a6e',
+            }
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body class="bg-mesh-gradient min-h-screen text-slate-100 flex flex-col justify-between selection:bg-sky-500 selection:text-white">
+
+  <!-- ================= TOP NAVIGATION ================= -->
+  <header class="sticky top-0 z-40 glass-nav transition-all duration-300">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+      
+      <!-- Brand Logo -->
+      <a href="index.html" class="flex items-center gap-3.5 group">
+        <div class="w-11 h-11 rounded-xl bg-gradient-to-br from-sky-500 via-blue-600 to-indigo-700 flex items-center justify-center shadow-lg shadow-sky-500/20 group-hover:scale-105 transition-transform">
+          <i data-lucide="zap" class="w-6 h-6 text-white"></i>
+        </div>
+        <div>
+          <div class="font-extrabold text-lg sm:text-xl tracking-tight text-white flex items-center gap-2">
+            <span>PESCO</span>
+            <span class="text-xs font-semibold px-2 py-0.5 rounded-full bg-sky-500/20 text-sky-400 border border-sky-500/30">TOOLS</span>
+          </div>
+          <p class="text-[11px] text-slate-400 font-medium tracking-wide">PITCSuite & Utility Hub</p>
+        </div>
+      </a>
+
+      <!-- Desktop Navigation Links -->
+      <nav class="hidden lg:flex items-center gap-1 bg-slate-900/60 p-1.5 rounded-2xl border border-white/5">
+        <a href="index.html" class="nav-link px-3.5 py-2 rounded-xl text-xs font-semibold uppercase tracking-wider text-slate-300 hover:text-white hover:bg-slate-800/80 transition-all flex items-center gap-1.5">
+          <i data-lucide="home" class="w-3.5 h-3.5"></i> Home
+        </a>
+        <a href="downloads.html" class="nav-link px-3.5 py-2 rounded-xl text-xs font-semibold uppercase tracking-wider text-slate-300 hover:text-white hover:bg-slate-800/80 transition-all flex items-center gap-1.5">
+          <i data-lucide="download" class="w-3.5 h-3.5"></i> Downloads
+        </a>
+        <a href="tutorials.html" class="nav-link px-3.5 py-2 rounded-xl text-xs font-semibold uppercase tracking-wider text-slate-300 hover:text-white hover:bg-slate-800/80 transition-all flex items-center gap-1.5">
+          <i data-lucide="book-open" class="w-3.5 h-3.5"></i> Tutorials
+        </a>
+        <a href="#about" class="nav-link px-3.5 py-2 rounded-xl text-xs font-semibold uppercase tracking-wider text-slate-300 hover:text-white hover:bg-slate-800/80 transition-all flex items-center gap-1.5">
+          <i data-lucide="user" class="w-3.5 h-3.5"></i> About
+        </a>
+        <a href="contact.html" class="nav-link px-3.5 py-2 rounded-xl text-xs font-semibold uppercase tracking-wider text-slate-300 hover:text-white hover:bg-slate-800/80 transition-all flex items-center gap-1.5">
+          <i data-lucide="mail" class="w-3.5 h-3.5"></i> Contact
+        </a>
+      </nav>
+
+      <!-- Action Buttons -->
+      <div class="flex items-center gap-2.5">
+        <button 
+          onclick="openRequestSoftwareModal()"
+          class="hidden sm:inline-flex items-center gap-2 px-3.5 py-2.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-sky-400 hover:text-white font-semibold text-xs tracking-wide border border-sky-500/30 transition-all"
+        >
+          <i data-lucide="sparkles" class="w-4 h-4 text-sky-400"></i> Request Software
+        </button>
+
+        <button 
+          onclick="triggerToolDownload('PitcSuite.exe', 'PITCSuite')"
+          class="hidden sm:inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-gradient-to-r from-sky-600 to-sky-500 hover:from-sky-500 hover:to-sky-400 text-white font-semibold text-xs tracking-wide shadow-md shadow-sky-600/30 transition-all glow-btn"
+        >
+          <i data-lucide="layers" class="w-4 h-4"></i> Get PITCSuite v2.8.97
+        </button>
+
+        <button id="mobile-menu-btn" class="lg:hidden p-2 rounded-xl bg-slate-800 text-slate-300 hover:text-white hover:bg-slate-700 transition-colors">
+          <i data-lucide="menu" class="w-6 h-6"></i>
+        </button>
+      </div>
+
+    </div>
+  </header>
+
+  <!-- Mobile Drawer Menu -->
+  <div id="mobile-menu-drawer" class="fixed inset-0 z-50 bg-black/85 backdrop-blur-md hidden flex flex-col justify-between p-6">
+    <div>
+      <div class="flex items-center justify-between pb-6 border-b border-white/10">
+        <div class="flex items-center gap-3">
+          <div class="w-10 h-10 rounded-xl bg-sky-600 flex items-center justify-center text-white">
+            <i data-lucide="zap" class="w-5 h-5"></i>
+          </div>
+          <span class="font-bold text-white text-lg">PESCO Tools</span>
+        </div>
+        <button id="mobile-menu-close" class="p-2 rounded-xl bg-slate-800 text-slate-400 hover:text-white">
+          <i data-lucide="x" class="w-6 h-6"></i>
+        </button>
+      </div>
+
+      <nav class="mt-8 space-y-3">
+        <a href="index.html" class="block p-3.5 rounded-xl bg-slate-800/60 font-semibold text-white flex items-center gap-3">
+          <i data-lucide="home" class="w-5 h-5 text-sky-400"></i> Home
+        </a>
+        <a href="downloads.html" class="block p-3.5 rounded-xl bg-slate-800/60 font-semibold text-white flex items-center gap-3">
+          <i data-lucide="download" class="w-5 h-5 text-sky-400"></i> Downloads Repository
+        </a>
+        <a href="tutorials.html" class="block p-3.5 rounded-xl bg-slate-800/60 font-semibold text-white flex items-center gap-3">
+          <i data-lucide="book-open" class="w-5 h-5 text-sky-400"></i> Tutorials
+        </a>
+        <a href="#about" onclick="document.getElementById('mobile-menu-drawer').classList.add('hidden')" class="block p-3.5 rounded-xl bg-slate-800/60 font-semibold text-white flex items-center gap-3">
+          <i data-lucide="user" class="w-5 h-5 text-sky-400"></i> About Developer
+        </a>
+        <a href="contact.html" class="block p-3.5 rounded-xl bg-slate-800/60 font-semibold text-white flex items-center gap-3">
+          <i data-lucide="mail" class="w-5 h-5 text-sky-400"></i> Contact & Support
+        </a>
+        <button onclick="document.getElementById('mobile-menu-drawer').classList.add('hidden'); openRequestSoftwareModal();" class="w-full text-left p-3.5 rounded-xl bg-sky-950/60 border border-sky-500/30 font-semibold text-sky-300 flex items-center gap-3">
+          <i data-lucide="sparkles" class="w-5 h-5 text-sky-400"></i> Request Custom Software
+        </button>
+      </nav>
+    </div>
+
+    <div class="pt-6 border-t border-white/10">
+      <button onclick="triggerToolDownload('PitcSuite.exe', 'PITCSuite')" class="w-full py-3 rounded-xl bg-sky-600 hover:bg-sky-500 font-bold text-center block text-white shadow-lg shadow-sky-600/30">
+        Download PITCSuite v2.8.97
+      </button>
+      <p class="text-xs text-slate-500 text-center mt-3">&copy; 2026 PESCO Commercial Automation</p>
+    </div>
+  </div>
+
+  <!-- ================= HERO SECTION ================= -->
+  <main class="flex-1">
+    <section class="relative pt-12 pb-16 sm:pt-20 sm:pb-24 overflow-hidden bg-grid-pattern">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
+        
+        <!-- Live Status Pill -->
+        <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-slate-900/90 border border-sky-500/30 text-sky-300 text-xs font-semibold mb-6 shadow-sm">
+          <span class="w-2 h-2 rounded-full bg-emerald-400 pulse-indicator"></span>
+          <span>PITCSuite v2.8.97 Available for Instant Download</span>
+        </div>
+
+        <!-- Headline -->
+        <h1 class="text-4xl sm:text-6xl lg:text-7xl font-extrabold tracking-tight text-white max-w-5xl mx-auto leading-tight">
+          PESCO Tools & <span class="bg-gradient-to-r from-sky-400 via-blue-500 to-indigo-500 bg-clip-text text-transparent">PITCSuite</span> Automation Portal
+        </h1>
+
+        <!-- Subheading -->
+        <p class="mt-6 text-sm sm:text-lg text-slate-300 max-w-3xl mx-auto font-medium leading-relaxed">
+          High-performance desktop utilities designed for PESCO Sub-Divisions, Commercial Assistants, and Revenue staff. Download the complete <strong>PITCSuite</strong> or grab standalone tools like <strong>Bill Scrapper</strong>.
+        </p>
+
+        <!-- CTA Action Buttons -->
+        <div class="mt-8 flex flex-col sm:flex-row items-center justify-center gap-4">
+          <button 
+            onclick="triggerToolDownload('PitcSuite.exe', 'PITCSuite')"
+            class="w-full sm:w-auto px-8 py-4 rounded-2xl bg-gradient-to-r from-sky-500 via-blue-600 to-indigo-600 hover:from-sky-400 hover:to-indigo-500 text-white font-bold text-sm tracking-wide shadow-xl shadow-sky-600/30 hover:shadow-sky-500/50 transition-all flex items-center justify-center gap-3 glow-btn"
+          >
+            <i data-lucide="download" class="w-5 h-5"></i> Download PITCSuite v2.8.97 (.EXE)
+          </button>
+          
+          <a href="downloads.html" class="w-full sm:w-auto px-8 py-4 rounded-2xl bg-slate-900/80 hover:bg-slate-800 text-white font-bold text-sm tracking-wide border border-white/10 hover:border-sky-500/40 transition-all flex items-center justify-center gap-2.5">
+            <i data-lucide="grid" class="w-5 h-5 text-sky-400"></i> Browse All Tools Repository
+          </a>
+
+          <button 
+            onclick="openRequestSoftwareModal()"
+            class="w-full sm:w-auto px-6 py-4 rounded-2xl bg-slate-800/80 hover:bg-slate-700 text-sky-300 font-bold text-sm tracking-wide border border-sky-500/30 transition-all flex items-center justify-center gap-2"
+          >
+            <i data-lucide="sparkles" class="w-5 h-5 text-sky-400"></i> Request a Software
+          </button>
+        </div>
+
+        <!-- Quick Stats Matrix -->
+        <div class="mt-14 grid grid-cols-2 md:grid-cols-4 gap-4 max-w-4xl mx-auto">
+          <div class="glass-panel p-5 rounded-2xl border border-white/5">
+            <div class="text-2xl sm:text-3xl font-extrabold text-sky-400 font-mono">v2.8.97</div>
+            <div class="text-[11px] text-slate-400 mt-1 uppercase tracking-wider font-semibold">Latest PITCSuite</div>
+          </div>
+          <div class="glass-panel p-5 rounded-2xl border border-white/5">
+            <div class="text-2xl sm:text-3xl font-extrabold text-emerald-400 font-mono">100%</div>
+            <div class="text-[11px] text-slate-400 mt-1 uppercase tracking-wider font-semibold">Offline Verified</div>
+          </div>
+          <div class="glass-panel p-5 rounded-2xl border border-white/5">
+            <div class="text-2xl sm:text-3xl font-extrabold text-indigo-400 font-mono">17+</div>
+            <div class="text-[11px] text-slate-400 mt-1 uppercase tracking-wider font-semibold">Tools Cataloged</div>
+          </div>
+          <div class="glass-panel p-5 rounded-2xl border border-white/5">
+            <div class="text-2xl sm:text-3xl font-extrabold text-purple-400 font-mono">0 Err</div>
+            <div class="text-[11px] text-slate-400 mt-1 uppercase tracking-wider font-semibold">Audit Reconciliation</div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ================= FLAGSHIP SPOTLIGHT: PITC SUITE ================= -->
+    <section class="py-12 relative">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <div class="glass-card-flagship rounded-3xl p-8 sm:p-12 relative overflow-hidden shine-box border border-sky-500/30">
+          
+          <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center relative z-10">
+            
+            <div class="lg:col-span-7">
+              <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-sky-500/20 text-sky-300 border border-sky-400/30 text-xs font-bold mb-4">
+                <i data-lucide="crown" class="w-4 h-4 text-amber-400"></i> FLAGSHIP ALL-IN-ONE PACKAGE
+              </div>
+              <h2 class="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">
+                PITCSuite v2.8.97 Enterprise Workstation
+              </h2>
+              <p class="mt-4 text-slate-300 text-sm sm:text-base leading-relaxed">
+                Why juggle multiple separate utilities? <strong>PITCSuite</strong> bundles every essential PESCO commercial tool into one unified application — CP-139, CP-136, CP-52, CP-22T posting checkers, bill scrapers, and ledger reconcilers.
+              </p>
+
+              <div class="mt-6 grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs sm:text-sm text-slate-300">
+                <div class="flex items-center gap-2 bg-slate-900/60 p-2.5 rounded-xl border border-white/5">
+                  <i data-lucide="check" class="w-4 h-4 text-emerald-400"></i> Complete Package with All Tools
+                </div>
+                <div class="flex items-center gap-2 bg-slate-900/60 p-2.5 rounded-xl border border-white/5">
+                  <i data-lucide="check" class="w-4 h-4 text-emerald-400"></i> Direct Download (.EXE)
+                </div>
+                <div class="flex items-center gap-2 bg-slate-900/60 p-2.5 rounded-xl border border-white/5">
+                  <i data-lucide="check" class="w-4 h-4 text-emerald-400"></i> Fast Multi-Threaded Engine
+                </div>
+                <div class="flex items-center gap-2 bg-slate-900/60 p-2.5 rounded-xl border border-white/5">
+                  <i data-lucide="check" class="w-4 h-4 text-emerald-400"></i> Zero DLL Dependencies
+                </div>
+              </div>
+
+              <div class="mt-8 flex flex-wrap items-center gap-4">
+                <button 
+                  onclick="triggerToolDownload('PitcSuite.exe', 'PITCSuite')"
+                  class="px-7 py-3.5 rounded-xl bg-gradient-to-r from-sky-500 to-blue-600 hover:from-sky-400 hover:to-blue-500 text-white font-bold text-sm shadow-lg shadow-sky-500/25 flex items-center gap-2.5 glow-btn"
+                >
+                  <i data-lucide="download" class="w-4 h-4"></i> Download PitcSuite.exe (v2.8.97)
+                </button>
+                <a 
+                  href="https://github.com/naqasht128/PitcSuite/releases" 
+                  target="_blank"
+                  class="px-5 py-3.5 rounded-xl bg-slate-800/90 hover:bg-slate-700/90 text-slate-200 border border-white/10 font-semibold text-xs flex items-center gap-2 hover:text-white"
+                >
+                  <i data-lucide="github" class="w-4 h-4 text-sky-400"></i> GitHub Releases
+                </a>
+                <a 
+                  href="tutorials.html?tool=pitc-suite" 
+                  class="px-5 py-3.5 rounded-xl bg-slate-800/60 hover:bg-slate-700 text-slate-300 font-semibold text-xs flex items-center gap-2"
+                >
+                  <i data-lucide="help-circle" class="w-4 h-4 text-slate-400"></i> Tutorial
+                </a>
+              </div>
+            </div>
+
+            <!-- Visual Preview Terminal -->
+            <div class="lg:col-span-5">
+              <div class="bg-slate-950/80 rounded-2xl border border-sky-500/30 p-5 shadow-2xl relative">
+                <div class="flex items-center justify-between pb-3 border-b border-white/10 text-xs text-slate-400">
+                  <div class="flex items-center gap-2">
+                    <span class="w-3 h-3 rounded-full bg-rose-500/80"></span>
+                    <span class="w-3 h-3 rounded-full bg-amber-500/80"></span>
+                    <span class="w-3 h-3 rounded-full bg-emerald-500/80"></span>
+                  </div>
+                  <span class="font-mono text-[11px] text-sky-400">PitcSuite_v2.8.97.exe</span>
+                </div>
+
+                <div class="mt-4 space-y-2.5 font-mono text-[11px]">
+                  <div class="p-2.5 rounded-lg bg-slate-900 border border-white/5 text-slate-300 flex justify-between">
+                    <span class="text-sky-400">[SUITE] All Modules Loaded</span>
+                    <span class="text-emerald-400">READY</span>
+                  </div>
+                  <div class="p-2.5 rounded-lg bg-slate-900 border border-white/5 text-slate-300 flex justify-between">
+                    <span class="text-sky-400">[MODULE] Bill Scrapper Engine</span>
+                    <span class="text-emerald-400">v1.4.2 Active</span>
+                  </div>
+                  <div class="p-2.5 rounded-lg bg-slate-900 border border-white/5 text-slate-300 flex justify-between">
+                    <span class="text-sky-400">[MODULE] E-Bills Downloader</span>
+                    <span class="text-amber-400">In Development</span>
+                  </div>
+                  <div class="p-2.5 rounded-lg bg-slate-900 border border-white/5 text-slate-300 flex justify-between">
+                    <span class="text-sky-400">[MODULE] CP-139 / CP-136 Check</span>
+                    <span class="text-emerald-400">100% Offline</span>
+                  </div>
+                </div>
+
+                <div class="mt-4 pt-3 border-t border-white/10 flex items-center justify-between text-[11px] text-slate-400">
+                  <span>Architecture: Windows 64-bit</span>
+                  <span class="text-emerald-400 font-semibold">SHA-256 Verified</span>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ================= CORE SOFTWARES SHOWCASE ================= -->
+    <section class="py-16">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <div class="flex flex-col md:flex-row md:items-end justify-between mb-10">
+          <div>
+            <span class="text-xs font-semibold uppercase tracking-widest text-sky-400">Software Catalogue</span>
+            <h2 class="text-2xl sm:text-3xl font-extrabold text-white mt-1">Featured Tools & Downloads</h2>
+            <p class="text-slate-400 text-xs sm:text-sm mt-1">Available tools are ready for instant download; future tools are actively being developed.</p>
+          </div>
+          <div class="mt-4 md:mt-0 flex items-center gap-3">
+            <a href="downloads.html?category=ready" class="text-xs font-semibold text-emerald-400 hover:text-emerald-300 flex items-center gap-1">
+              <span class="w-2 h-2 rounded-full bg-emerald-400"></span> Available Tools
+            </a>
+            <span class="text-slate-600">&bull;</span>
+            <a href="downloads.html?category=in-development" class="text-xs font-semibold text-amber-400 hover:text-amber-300 flex items-center gap-1">
+              <span class="w-2 h-2 rounded-full bg-amber-400"></span> In Development
+            </a>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+          
+          <!-- Tool 1: PITCSuite -->
+          <div class="glass-card rounded-2xl p-6 border border-sky-500/30 flex flex-col justify-between bg-gradient-to-b from-sky-950/20 to-slate-900/80">
+            <div>
+              <div class="flex items-center justify-between mb-4">
+                <span class="px-2.5 py-1 rounded-md text-[11px] font-semibold bg-emerald-500/10 text-emerald-400 border border-emerald-500/30 flex items-center gap-1.5">
+                  <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 pulse-indicator"></span> Available for Download
+                </span>
+                <span class="text-xs font-mono text-sky-400">v2.8.97</span>
+              </div>
+              <div class="flex items-start gap-3.5 mb-3">
+                <div class="w-12 h-12 rounded-xl bg-sky-600/30 text-sky-300 border border-sky-400/30 flex items-center justify-center flex-shrink-0">
+                  <i data-lucide="layers" class="w-6 h-6"></i>
+                </div>
+                <div>
+                  <h3 class="text-lg font-bold text-white">PITCSuite</h3>
+                  <p class="text-xs text-slate-400 font-mono">PitcSuite.exe</p>
+                </div>
+              </div>
+              <p class="text-xs sm:text-sm text-slate-300 leading-relaxed mb-4">
+                A complete package having all the tools in one unified workstation. Unites posting verifiers, converters, and scrapers.
+              </p>
+            </div>
+            <div class="pt-4 border-t border-white/5">
+              <button onclick="triggerToolDownload('PitcSuite.exe', 'PITCSuite')" class="w-full py-2.5 rounded-xl bg-sky-600 hover:bg-sky-500 text-white font-bold text-xs flex items-center justify-center gap-2 glow-btn">
+                <i data-lucide="download" class="w-4 h-4"></i> Download PITCSuite (68.4 MB)
+              </button>
+            </div>
+          </div>
+
+          <!-- Tool 2: Bill Scrapper -->
+          <div class="glass-card rounded-2xl p-6 border border-white/10 flex flex-col justify-between">
+            <div>
+              <div class="flex items-center justify-between mb-4">
+                <span class="px-2.5 py-1 rounded-md text-[11px] font-semibold bg-emerald-500/10 text-emerald-400 border border-emerald-500/30 flex items-center gap-1.5">
+                  <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 pulse-indicator"></span> Available for Download
+                </span>
+                <span class="text-xs font-mono text-slate-400">v1.4.2</span>
+              </div>
+              <div class="flex items-start gap-3.5 mb-3">
+                <div class="w-12 h-12 rounded-xl bg-slate-800 text-sky-400 border border-white/5 flex items-center justify-center flex-shrink-0">
+                  <i data-lucide="file-spreadsheet" class="w-6 h-6"></i>
+                </div>
+                <div>
+                  <h3 class="text-lg font-bold text-white">Bill Scrapper</h3>
+                  <p class="text-xs text-slate-400 font-mono">BillScrapper.exe</p>
+                </div>
+              </div>
+              <p class="text-xs sm:text-sm text-slate-300 leading-relaxed mb-4">
+                Scrape Billing information into Excel. Extracts consumer bills, arrears, taxes, and payment data directly into formatted spreadsheets.
+              </p>
+            </div>
+            <div class="pt-4 border-t border-white/5">
+              <button onclick="triggerToolDownload('BillScrapper.exe', 'Bill Scrapper')" class="w-full py-2.5 rounded-xl bg-sky-600 hover:bg-sky-500 text-white font-bold text-xs flex items-center justify-center gap-2 glow-btn">
+                <i data-lucide="download" class="w-4 h-4"></i> Download Bill Scrapper (40.5 MB)
+              </button>
+            </div>
+          </div>
+
+          <!-- Tool 3: E-Bills Downloader -->
+          <div class="glass-card rounded-2xl p-6 border border-amber-500/20 bg-slate-900/60 flex flex-col justify-between">
+            <div>
+              <div class="flex items-center justify-between mb-4">
+                <span class="px-2.5 py-1 rounded-md text-[11px] font-semibold bg-amber-500/10 text-amber-400 border border-amber-500/30 flex items-center gap-1.5">
+                  <span class="w-1.5 h-1.5 rounded-full bg-amber-400 animate-pulse"></span> In Development
+                </span>
+                <span class="text-xs font-mono text-slate-400">v1.0.0</span>
+              </div>
+              <div class="flex items-start gap-3.5 mb-3">
+                <div class="w-12 h-12 rounded-xl bg-slate-800 text-amber-400 border border-amber-500/20 flex items-center justify-center flex-shrink-0">
+                  <i data-lucide="file-down" class="w-6 h-6"></i>
+                </div>
+                <div>
+                  <h3 class="text-lg font-bold text-white">E-Bills Downloader</h3>
+                  <p class="text-xs text-slate-400 font-mono">EBillsDownloader.exe</p>
+                </div>
+              </div>
+              <p class="text-xs sm:text-sm text-slate-300 leading-relaxed mb-4">
+                Downloads the E-Bills into PDF. High-speed bulk downloader that retrieves consumer duplicate bills and renders them as PDF files.
+              </p>
+            </div>
+            <div class="pt-4 border-t border-white/5">
+              <button onclick="openInDevelopmentModal(getToolById('e-bills-downloader'))" class="w-full py-2.5 rounded-xl bg-amber-500/20 hover:bg-amber-500/30 text-amber-300 border border-amber-500/30 font-semibold text-xs flex items-center justify-center gap-2">
+                <i data-lucide="hammer" class="w-4 h-4 text-amber-400"></i> In Development (Notify Me)
+              </button>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Banner for other upcoming tools -->
+        <div class="mt-8 glass-panel rounded-2xl p-6 border border-white/5 flex flex-col sm:flex-row items-center justify-between gap-4">
+          <div class="flex items-center gap-4">
+            <div class="w-10 h-10 rounded-xl bg-indigo-500/20 text-indigo-400 flex items-center justify-center flex-shrink-0">
+              <i data-lucide="code" class="w-5 h-5"></i>
+            </div>
+            <div>
+              <h4 class="text-sm font-bold text-white">More Tools Coming in Separate Executables</h4>
+              <p class="text-xs text-slate-400 mt-0.5">CP-52 Posting into PDF, Tariff Recovery Analyzer, Feeder Load Monitor, and AMR Meter Sync are currently in the development pipeline.</p>
+            </div>
+          </div>
+          <a href="downloads.html" class="px-5 py-2.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-sky-400 font-semibold text-xs border border-white/10 whitespace-nowrap">
+            View All 17 Tools &rarr;
+          </a>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ================= REQUEST A SOFTWARE PROMOTION ================= -->
+    <section class="py-12 bg-slate-900/30 border-y border-white/5">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="glass-card rounded-3xl p-8 sm:p-10 border border-sky-500/30 bg-gradient-to-r from-slate-900 via-sky-950/30 to-indigo-950/20">
+          <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+            <div class="lg:col-span-8">
+              <span class="px-3 py-1 rounded-full text-xs font-bold bg-sky-500/20 text-sky-300 border border-sky-500/30 inline-flex items-center gap-1.5 mb-3">
+                <i data-lucide="sparkles" class="w-3.5 h-3.5 text-sky-400"></i> CUSTOM UTILITY DEVELOPMENT
+              </span>
+              <h2 class="text-2xl sm:text-3xl font-extrabold text-white">Have an idea for a PESCO software? Request it here!</h2>
+              <p class="text-slate-300 text-xs sm:text-sm mt-3 leading-relaxed max-w-2xl">
+                Do you or your sub-division spend hours on repetitive Excel typing, unposted bank scroll reconciliations, or manual PDF copying? Tell us what you need, and we will build a dedicated, standalone utility for your team.
+              </p>
+            </div>
+            <div class="lg:col-span-4 flex justify-start lg:justify-end">
+              <button 
+                onclick="openRequestSoftwareModal()"
+                class="px-8 py-4 rounded-2xl bg-gradient-to-r from-sky-500 to-indigo-600 hover:from-sky-400 hover:to-indigo-500 text-white font-bold text-sm shadow-xl shadow-sky-600/30 flex items-center gap-2 glow-btn"
+              >
+                <i data-lucide="send" class="w-4 h-4"></i> Propose a New Software
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= ABOUT SECTION ================= -->
+    <section id="about" class="py-20 relative">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <div class="text-center max-w-2xl mx-auto mb-12">
+          <span class="text-xs font-semibold uppercase tracking-widest text-sky-400">Corporate & Developer Profile</span>
+          <h2 class="text-3xl font-extrabold text-white mt-1">About PESCO Tools & Development</h2>
+          <p class="text-slate-400 text-xs sm:text-sm mt-2">
+            Dedicated software engineering aimed at modernizing power distribution workflows and eliminating administrative backlog.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+          
+          <!-- Developer Profile Card -->
+          <div class="lg:col-span-5">
+            <div class="glass-card rounded-3xl p-8 border border-white/10 relative overflow-hidden bg-slate-900/90 shadow-2xl">
+              <div class="w-20 h-20 rounded-2xl bg-gradient-to-br from-sky-500 to-indigo-600 flex items-center justify-center text-white text-3xl font-extrabold shadow-xl shadow-sky-500/20 mb-6">
+                N
+              </div>
+
+              <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/10 text-emerald-400 border border-emerald-500/30 text-xs font-semibold mb-3">
+                <span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span> Lead Systems & Automation Engineer
+              </div>
+
+              <h3 class="text-2xl font-extrabold text-white">Naqash</h3>
+              <p class="text-xs text-sky-400 font-mono mt-0.5">PESCO Commercial Automation & IT Systems</p>
+
+              <div class="mt-6 space-y-3 text-xs text-slate-300">
+                <div class="flex items-center gap-3 p-3 rounded-xl bg-slate-950/60 border border-white/5">
+                  <i data-lucide="building-2" class="w-4 h-4 text-sky-400"></i>
+                  <div>
+                    <div class="text-[10px] text-slate-500 uppercase font-semibold">Corporate Identity</div>
+                    <div class="font-bold text-white">PESCO Commercial Systems & PITC Operations</div>
+                  </div>
+                </div>
+
+                <div class="flex items-center gap-3 p-3 rounded-xl bg-slate-950/60 border border-white/5">
+                  <i data-lucide="mail" class="w-4 h-4 text-sky-400"></i>
+                  <div>
+                    <div class="text-[10px] text-slate-500 uppercase font-semibold">Official Email</div>
+                    <a href="mailto:naqasht128@gmail.com" class="font-bold text-white hover:text-sky-400 transition-colors">naqasht128@gmail.com</a>
+                  </div>
+                </div>
+
+                <div class="flex items-center gap-3 p-3 rounded-xl bg-slate-950/60 border border-white/5">
+                  <i data-lucide="phone" class="w-4 h-4 text-emerald-400"></i>
+                  <div>
+                    <div class="text-[10px] text-slate-500 uppercase font-semibold">Cell / WhatsApp Desk</div>
+                    <a href="tel:+923000000000" class="font-bold text-emerald-400 hover:text-emerald-300 transition-colors">+92 (300) 000-0000</a>
+                  </div>
+                </div>
+
+                <div class="flex items-center gap-3 p-3 rounded-xl bg-slate-950/60 border border-white/5">
+                  <i data-lucide="github" class="w-4 h-4 text-indigo-400"></i>
+                  <div>
+                    <div class="text-[10px] text-slate-500 uppercase font-semibold">GitHub Source Repository</div>
+                    <a href="https://github.com/naqasht128" target="_blank" class="font-bold text-white hover:text-sky-400 transition-colors">github.com/naqasht128</a>
+                  </div>
+                </div>
+              </div>
+
+              <div class="mt-6 flex gap-3">
+                <a href="mailto:naqasht128@gmail.com" class="flex-1 py-3 px-4 rounded-xl bg-sky-600 hover:bg-sky-500 text-white font-bold text-xs text-center transition-all glow-btn">
+                  Email Naqash
+                </a>
+                <a href="contact.html" class="py-3 px-4 rounded-xl bg-slate-800 text-slate-300 hover:text-white font-semibold text-xs border border-white/10 text-center">
+                  Support Desk
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Mission & Architecture Details -->
+          <div class="lg:col-span-7 space-y-6">
+            <div class="glass-card rounded-3xl p-8 border border-white/5">
+              <h3 class="text-xl font-bold text-white mb-3 flex items-center gap-2">
+                <i data-lucide="shield-check" class="w-5 h-5 text-sky-400"></i> Our Engineering Mission
+              </h3>
+              <p class="text-slate-300 text-xs sm:text-sm leading-relaxed">
+                Electricity billing operations at PESCO sub-divisions handle millions of transactions across Khyber Pakhtunkhwa. Yet commercial assistants and computer operators frequently encounter mismatched bank collection scrolls, unposted consumer vouchers, and manual conversion hurdles.
+              </p>
+              <p class="text-slate-300 text-xs sm:text-sm leading-relaxed mt-3">
+                <strong>PESCO Tools</strong> was engineered to solve these exact operational friction points. By automating CP-139 and CP-136 posting checks, converting locked PDF ledgers to formula-ready Excel files, and providing bulk scrapers, we turn days of tedious audits into a 30-second automated run.
+              </p>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div class="glass-card p-5 rounded-2xl border border-white/5">
+                <div class="w-9 h-9 rounded-xl bg-emerald-500/20 text-emerald-400 flex items-center justify-center mb-3">
+                  <i data-lucide="check-circle-2" class="w-5 h-5"></i>
+                </div>
+                <h4 class="text-sm font-bold text-white">Audit Reconciled</h4>
+                <p class="text-[11px] text-slate-400 mt-1">Zero math errors or transposed digits in financial submissions.</p>
+              </div>
+
+              <div class="glass-card p-5 rounded-2xl border border-white/5">
+                <div class="w-9 h-9 rounded-xl bg-sky-500/20 text-sky-400 flex items-center justify-center mb-3">
+                  <i data-lucide="wifi-off" class="w-5 h-5"></i>
+                </div>
+                <h4 class="text-sm font-bold text-white">100% Offline Safe</h4>
+                <p class="text-[11px] text-slate-400 mt-1">Standalone executables run locally without cloud dependencies.</p>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ================= FOOTER ================= -->
+  <footer class="border-t border-white/5 bg-slate-950/80 py-12 text-slate-400 text-xs">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8 pb-8 border-b border-white/5">
+        
+        <div class="md:col-span-2">
+          <div class="flex items-center gap-3 mb-3">
+            <div class="w-8 h-8 rounded-lg bg-sky-600 flex items-center justify-center text-white">
+              <i data-lucide="zap" class="w-4 h-4"></i>
+            </div>
+            <span class="font-bold text-base text-white">PESCO Tools & PITCSuite Portal</span>
+          </div>
+          <p class="text-slate-400 text-xs max-w-sm leading-relaxed">
+            Lead Developer: <strong>Naqash</strong> | PESCO Commercial Automation Systems.
+            Engineered for sub-divisions, commercial sections, and computer centers across Khyber Pakhtunkhwa.
+          </p>
+          <div class="mt-3 text-xs text-sky-400 font-mono">
+            Contact: naqasht128@gmail.com
+          </div>
+        </div>
+
+        <div>
+          <h4 class="text-xs font-bold text-white uppercase tracking-wider mb-3">Quick Navigation</h4>
+          <ul class="space-y-2">
+            <li><a href="index.html" class="hover:text-white transition-colors">Home Overview</a></li>
+            <li><a href="downloads.html" class="hover:text-white transition-colors">Downloads Repository</a></li>
+            <li><a href="tutorials.html" class="hover:text-white transition-colors">Usage Tutorials</a></li>
+            <li><a href="#about" class="hover:text-white transition-colors">About Developer</a></li>
+            <li><a href="contact.html" class="hover:text-white transition-colors">Contact Support</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="text-xs font-bold text-white uppercase tracking-wider mb-3">Featured Softwares</h4>
+          <ul class="space-y-2">
+            <li><a href="downloads.html?search=pitcsuite" class="hover:text-white transition-colors">PITCSuite (v2.8.97)</a></li>
+            <li><a href="downloads.html?search=bill" class="hover:text-white transition-colors">Bill Scrapper (Available)</a></li>
+            <li><a href="downloads.html?search=e-bills" class="hover:text-white transition-colors">E-Bills Downloader (In Dev)</a></li>
+            <li><button onclick="openRequestSoftwareModal()" class="text-sky-400 hover:text-sky-300 transition-colors text-left">Request New Tool &rarr;</button></li>
+          </ul>
+        </div>
+
+      </div>
+
+      <div class="flex flex-col sm:flex-row items-center justify-between gap-4 text-[11px] text-slate-500">
+        <div>&copy; 2026 PESCO Tools Portal. Developed by Naqash (naqasht128). All Rights Reserved.</div>
+        <div class="flex items-center gap-4">
+          <a href="contact.html" class="hover:text-slate-400">Support</a>
+          <span>&bull;</span>
+          <button onclick="openRequestSoftwareModal()" class="hover:text-sky-400">Request Software</button>
+          <span>&bull;</span>
+          <a href="downloads.html" class="hover:text-slate-400">Downloads</a>
+        </div>
+      </div>
+
+    </div>
+  </footer>
+
+  <!-- Back to Top Floating Button -->
+  <button id="back-to-top" class="fixed bottom-6 right-6 p-3 rounded-full bg-sky-600 hover:bg-sky-500 text-white shadow-xl shadow-sky-600/30 transition-all opacity-0 pointer-events-none z-30">
+    <i data-lucide="arrow-up" class="w-5 h-5"></i>
+  </button>
+
+  <!-- Scripts -->
+  <script src="js/tools-data.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>
