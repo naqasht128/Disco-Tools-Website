@@ -31,8 +31,9 @@ const PESCO_TOOLS = [
     version: "v2.8.97",
     size: "144.8 MB",
     filename: "PITCSuite_Setup.exe",
-    downloadUrl: "https://pit-csuite.vercel.app/api/updates/download?asset_id=656535865",
-    updateApi: "https://pit-csuite.vercel.app/api/updates/latest",
+    downloadUrl: "https://github.com/naqasht128/PitcSuite/releases/latest/download/PITCSuite_Setup.exe",
+    githubReleaseUrl: "https://github.com/naqasht128/PitcSuite/releases/latest",
+    githubRepoUrl: "https://github.com/naqasht128/PitcSuite",
     updated: "October 2026",
     icon: "layers",
     summary: "A complete unified workstation package having all the tools in one unified desktop suite. Includes CP posting verifiers, converters, bill scrapers, and ledger reconcilers.",
@@ -96,8 +97,9 @@ const PESCO_TOOLS = [
     version: "v1.3.2",
     size: "22.1 MB",
     filename: "BillScrapper-Setup.exe",
-    downloadUrl: "https://bill-scrapper.vercel.app/api/updates/download?asset_id=656052606",
-    updateApi: "https://bill-scrapper.vercel.app/api/updates/latest",
+    downloadUrl: "https://github.com/naqasht128/BillScrapper/releases/latest/download/BillScrapper-Setup.exe",
+    githubReleaseUrl: "https://github.com/naqasht128/BillScrapper/releases/latest",
+    githubRepoUrl: "https://github.com/naqasht128/BillScrapper",
     updated: "October 2026",
     icon: "file-spreadsheet",
     summary: "Scrape Billing information into Excel. Extracts consumer bills, tariff breakdowns, current arrears, due dates, and paid amounts directly into clean spreadsheets.",
@@ -702,16 +704,36 @@ const TOOL_CATEGORIES = [
 ];
 
 function getToolById(id) {
+  if (!id) return null;
   return PESCO_TOOLS.find(t => t.id === id);
 }
 
 function getToolByFilename(filename) {
   if (!filename) return null;
-  const clean = filename.toLowerCase().replace(/[\s_\-\.]+/g, '');
+  const target = filename.toLowerCase().trim();
+
+  // 1. Direct ID, Name, or Filename exact match
+  let found = PESCO_TOOLS.find(t => 
+    (t.id && t.id.toLowerCase() === target) ||
+    (t.name && t.name.toLowerCase() === target) ||
+    (t.filename && t.filename.toLowerCase() === target)
+  );
+  if (found) return found;
+
+  // 2. High-priority keyword matching for main downloadable tools
+  if (target.includes('pitc')) {
+    return PESCO_TOOLS.find(t => t.id === 'pitc-suite');
+  }
+  if (target.includes('scrapper') || target.includes('scraper') || (target.includes('bill') && !target.includes('downloader') && !target.includes('e-bills'))) {
+    return PESCO_TOOLS.find(t => t.id === 'bill-scrapper');
+  }
+
+  // 3. Normalized stripped match
+  const clean = target.replace(/[\s_\-\.]+/g, '').replace(/exe$/i, '').replace(/setup$/i, '');
   return PESCO_TOOLS.find(t => {
-    const tFile = (t.filename || '').toLowerCase().replace(/[\s_\-\.]+/g, '');
+    const tFile = (t.filename || '').toLowerCase().replace(/[\s_\-\.]+/g, '').replace(/exe$/i, '').replace(/setup$/i, '');
     const tId = (t.id || '').toLowerCase().replace(/[\s_\-\.]+/g, '');
     const tName = (t.name || '').toLowerCase().replace(/[\s_\-\.]+/g, '');
-    return tFile.includes(clean) || clean.includes(tFile) || tId === clean || tName === clean;
+    return tFile === clean || tFile.includes(clean) || clean.includes(tFile) || tId === clean || tName === clean;
   });
 }

@@ -135,19 +135,25 @@ function showToast(message, type = 'info', title = 'Notice') {
 // Download Trigger Helper
 // ONLY PITCSuite and Bill Scrapper are directly downloadable.
 // All other tools trigger the Contact/Request modal with developer info!
-function triggerToolDownload(filename, toolTitle) {
-  const tool = typeof getToolByFilename === 'function' ? getToolByFilename(filename) : null;
+function triggerToolDownload(filenameOrId, toolTitle) {
+  let tool = null;
+  if (typeof getToolById === 'function') {
+    tool = getToolById(filenameOrId);
+  }
+  if (!tool && typeof getToolByFilename === 'function') {
+    tool = getToolByFilename(filenameOrId);
+  }
 
   // If this tool is not flagged as a public download, open the contact/request modal
   if (!tool || !tool.isPublicDownload) {
-    openContactRequestModal(tool || { name: toolTitle, filename: filename, status: 'on-request' });
+    openContactRequestModal(tool || { name: toolTitle, filename: filenameOrId, status: 'on-request' });
     return;
   }
 
   // Handle direct download for PITCSuite and Bill Scrapper
-  // Uses dedicated secure release distribution URLs hosted on Vercel backend
-  const downloadTarget = (tool && tool.downloadUrl) ? tool.downloadUrl : `downloads/${filename}`;
-  const targetFilename = (tool && tool.filename) ? tool.filename : filename;
+  // Directly downloads the latest executable setup installer from GitHub Releases
+  const downloadTarget = (tool && tool.downloadUrl) ? tool.downloadUrl : `downloads/${tool.filename || filenameOrId}`;
+  const targetFilename = (tool && tool.filename) ? tool.filename : filenameOrId;
 
   const link = document.createElement('a');
   link.href = downloadTarget;
@@ -159,12 +165,12 @@ function triggerToolDownload(filename, toolTitle) {
   document.body.removeChild(link);
 
   showToast(
-    `Starting download for <strong>${tool ? tool.name : targetFilename}</strong>.`,
+    `Starting download for <strong>${tool ? tool.name : targetFilename}</strong> from GitHub Releases.`,
     'success',
     'Download Initiated'
   );
 
-  const storageKey = `pesco_dl_${filename}`;
+  const storageKey = `pesco_dl_${targetFilename}`;
   const currentCount = parseInt(localStorage.getItem(storageKey) || '0', 10) + 1;
   localStorage.setItem(storageKey, currentCount);
 }

@@ -128,7 +128,7 @@ function renderTutorialContent(toolId) {
         <!-- Download Action Card in Tutorial Header -->
         <div class="flex-shrink-0 flex items-center">
           <button 
-            onclick="triggerToolDownload('${tool.filename}', '${tool.title}')"
+            onclick="triggerToolDownload('${tool.id}', '${tool.title}')"
             class="px-6 py-3 rounded-xl bg-gradient-to-r from-sky-600 to-sky-500 hover:from-sky-500 hover:to-sky-400 text-white font-bold text-sm shadow-lg shadow-sky-600/30 transition-all flex items-center justify-center gap-2 glow-btn"
           >
             <i data-lucide="download" class="w-4 h-4"></i> Download ${tool.filename}

@@ -160,7 +160,7 @@ function renderDownloads() {
       </span>`;
 
       actionButton = `<button 
-        onclick="triggerToolDownload('${tool.filename}', '${tool.title}')"
+        onclick="triggerToolDownload('${tool.id}', '${tool.title}')"
         class="w-full py-2.5 px-3 rounded-xl bg-gradient-to-r from-sky-600 to-sky-500 hover:from-sky-500 hover:to-sky-400 text-white font-semibold text-xs transition-all shadow-md shadow-sky-600/20 flex items-center justify-center gap-2 glow-btn"
       >
         <i data-lucide="download" class="w-4 h-4"></i> Download EXE
