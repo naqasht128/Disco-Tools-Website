@@ -613,11 +613,11 @@ function applyLiveBadgeUpdates(tool) {
 }
 
 /**
- * Global navigation to a tool's tutorial page
- * Supports both clean URLs (/tutorials?tool=id) and standard file paths (tutorials.html?tool=id)
+ * Global navigation to a tool's details & overview page
+ * Supports both clean URLs (/details?tool=id) and standard file paths (details.html?tool=id)
  * Safe against clicks on buttons, download triggers, or form elements
  */
-function navigateToTutorial(toolId, event) {
+function navigateToDetails(toolId, event) {
   if (event) {
     const target = event.target;
     if (target && target.closest('button, input, select, textarea, a[href^="http"], a[download]')) {
@@ -628,6 +628,11 @@ function navigateToTutorial(toolId, event) {
 
   const isFileProto = window.location.protocol === 'file:';
   const hasHtmlExt = window.location.pathname.endsWith('.html');
-  const targetPage = (isFileProto || hasHtmlExt) ? 'tutorials.html' : 'tutorials';
+  const targetPage = (isFileProto || hasHtmlExt) ? 'details.html' : 'details';
   window.location.href = `${targetPage}?tool=${encodeURIComponent(toolId)}`;
+}
+
+// Backwards compatibility alias
+function navigateToTutorial(toolId, event) {
+  return navigateToDetails(toolId, event);
 }

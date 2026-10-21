@@ -60,7 +60,7 @@ def main():
     print(f"  Serving Directory: {DIRECTORY}")
     print("  Compatible DISCOs: LESCO, GEPCO, FESCO, IESCO, MEPCO,")
     print("                     PESCO, HAZECO, SEPCO, HESCO, QESCO, TESCO")
-    print("  Clean URLs supported: /tutorials?tool=..., /downloads, etc.")
+    print("  Clean URLs supported: /details?tool=..., /downloads, etc.")
     print("  Press Ctrl+C in this window to stop the server.")
     print("=" * 68)
     

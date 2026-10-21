@@ -3,6 +3,10 @@
   "name": "disco-tools-website",
   "cleanUrls": true,
   "trailingSlash": false,
+  "redirects": [
+    { "source": "/tutorials", "destination": "/details", "permanent": true },
+    { "source": "/tutorials.html", "destination": "/details", "permanent": true }
+  ],
   "headers": [
     {
       "source": "/(.*)",

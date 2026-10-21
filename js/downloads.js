@@ -196,9 +196,9 @@ function renderDownloads() {
 
     return `
       <div 
-        onclick="navigateToTutorial('${tool.id}', event)"
+        onclick="navigateToDetails('${tool.id}', event)"
         class="glass-card rounded-2xl p-6 flex flex-col justify-between relative group ${cardBorder} cursor-pointer hover:shadow-xl transition-all duration-200"
-        title="Click to view tutorial &amp; documentation"
+        title="Click to view software details &amp; specifications"
       >
         
         <!-- Header Badges -->
@@ -256,7 +256,7 @@ function renderDownloads() {
           <div class="grid grid-cols-2 gap-2" onclick="event.stopPropagation()">
             ${actionButton}
             <a 
-              href="tutorials.html?tool=${tool.id}"
+              href="details.html?tool=${tool.id}"
               class="w-full py-2.5 px-3 rounded-xl bg-slate-800/80 hover:bg-slate-700/80 text-slate-200 border border-white/10 font-semibold text-xs transition-all flex items-center justify-center gap-1.5 hover:text-white"
             >
               <i data-lucide="book-open" class="w-4 h-4 text-sky-400"></i> Details
