@@ -235,139 +235,7 @@ const DISCO_TOOLS = [
   },
 
   // =========================================================================
-  // 5. CONSUMER TARIFF & DEFAULTER RECOVERY ANALYZER (IN DEVELOPMENT)
-  // =========================================================================
-  {
-    id: "tariff-recovery-analyzer",
-    name: "Tariff & Defaulter Recovery Analyzer",
-    title: "Consumer Tariff & Defaulter Recovery Analyzer",
-    category: "posting",
-    badge: "In Development",
-    isFlagship: false,
-    status: "in-development",
-    isPublicDownload: false,
-    version: "v1.0.0 (In Development)",
-    size: "Estimated 45 MB",
-    filename: "TariffRecoveryAnalyzer.exe",
-    updated: "Coming Soon",
-    icon: "calculator",
-    summary: "Analyzes commercial consumer tariffs, flags incorrect tariff categorizations, and projects recovery strategies for chronic defaulters.",
-    description: "A specialized data analytics tool designed to inspect consumer billing ledgers for tariff anomalies (e.g. commercial premises billed on domestic tariffs) and profile long-standing arrears to assist sub-divisional recovery teams.",
-    features: [
-      "Automatic tariff audit against NEPRA / DISCO authorized rates",
-      "Defaulter stratification (30-day, 60-day, 90-day, and 1-year+ chronic arrears)",
-      "Recovery projection models and installment scheduler",
-      "Export executive recovery dossiers with pie charts and summary tables"
-    ],
-    tutorial: {
-      overview: "Provides commercial officers with actionable audit insights on tariff discrepancies and high-value defaulters.",
-      prerequisites: ["Windows 10/11"],
-      steps: [{ step: 1, title: "In Active Development", desc: "Slated for upcoming release." }],
-      tips: ["Customized for all DISCO tariff schedules."]
-    }
-  },
-
-  // =========================================================================
-  // 6. FEEDER & SUBSTATION LOAD MONITOR (IN DEVELOPMENT)
-  // =========================================================================
-  {
-    id: "feeder-load-monitor",
-    name: "Feeder & Substation Load Monitor",
-    title: "Feeder & Substation Peak Load Monitor",
-    category: "utility",
-    badge: "In Development",
-    isFlagship: false,
-    status: "in-development",
-    isPublicDownload: false,
-    version: "v1.0.0 (In Development)",
-    size: "Estimated 38 MB",
-    filename: "FeederLoadMonitor.exe",
-    updated: "Coming Soon",
-    icon: "activity",
-    summary: "Monitors 11kV feeder loads, detects over-stressed distribution transformers, and logs peak amp hours from grid telemetry logs.",
-    description: "Designed for SDOs and line staff to monitor 11kV feeder load profiles, calculate technical line losses, and balance phase distribution across distribution transformers.",
-    features: [
-      "Visual feeder load profiling with hourly peak indicators",
-      "Automated AT&C loss calculations by comparing grid feed vs billed units",
-      "Transformer overloading alerts based on kVA rating vs recorded load",
-      "Daily and monthly load trend reports ready for Superintending Engineer reviews"
-    ],
-    tutorial: {
-      overview: "Bridges engineering telemetry with commercial billing units for accurate line loss monitoring.",
-      prerequisites: ["Windows 10/11"],
-      steps: [{ step: 1, title: "In Development", desc: "Engine and UI currently being assembled." }],
-      tips: ["Supports SCADA and manual telemetry log imports."]
-    }
-  },
-
-  // =========================================================================
-  // 7. AMR METER DATA & TELEMETRY SYNC (IN DEVELOPMENT)
-  // =========================================================================
-  {
-    id: "amr-meter-sync",
-    name: "AMR Meter Data Sync",
-    title: "AMR / AMI Automated Meter Reading Data Sync",
-    category: "utility",
-    badge: "In Development",
-    isFlagship: false,
-    status: "in-development",
-    isPublicDownload: false,
-    version: "v1.0.0 (In Development)",
-    size: "Estimated 42 MB",
-    filename: "AMRMeterSync.exe",
-    updated: "Coming Soon",
-    icon: "radio",
-    summary: "Synchronizes automated meter reading (AMR) telemetry data directly from smart GSM meters into billing databases.",
-    description: "AMR Meter Data Sync fetches time-of-use (TOU) interval data, maximum demand indicator (MDI) peaks, and power factor logs from industrial and commercial consumer smart meters.",
-    features: [
-      "Direct protocol communication with major smart meter manufacturers",
-      "Automated MDI reset and peak/off-peak consumption synchronization",
-      "Detects reverse power flow, tamper alarms, and neutral disturbance",
-      "Exports clean billing-ready registers directly to PITC format"
-    ],
-    tutorial: {
-      overview: "Automated retrieval tool for high-end industrial and commercial smart meter data.",
-      prerequisites: ["Windows 10/11"],
-      steps: [{ step: 1, title: "In Development", desc: "Hardware protocol testing underway." }],
-      tips: ["Includes DLMS / COSEM protocol support."]
-    }
-  },
-
-  // =========================================================================
-  // 8. BATCH CUSTOMER IMPORTER (IN DEVELOPMENT)
-  // =========================================================================
-  {
-    id: "batch-customer-importer",
-    name: "Batch Customer Importer",
-    title: "Batch Customer Data Importer (Cosmos / PITC)",
-    category: "utility",
-    badge: "In Development",
-    isFlagship: false,
-    status: "in-development",
-    isPublicDownload: false,
-    version: "v1.0.0 (In Development)",
-    size: "Estimated 30 MB",
-    filename: "BatchCustomerImporter.exe",
-    updated: "Coming Soon",
-    icon: "users",
-    summary: "Facilitates rapid bulk importing and validation of new connection customer records and meter replacements into Cosmos & PITC systems.",
-    description: "Eliminates tedious manual typing of new service connections, tariff changes, and meter change orders (MCOs) by validating Excel sheets and uploading batches securely.",
-    features: [
-      "Validates 14-digit reference number syntax and feeder code hierarchy",
-      "Sanitizes customer names, CNIC numbers, and premise addresses",
-      "Pre-checks meter serial numbers against duplicate registry",
-      "Automates batch upload with zero manual data entry errors"
-    ],
-    tutorial: {
-      overview: "Fast customer data ingestion engine for new connection clerks and computer operators.",
-      prerequisites: ["Windows 10/11"],
-      steps: [{ step: 1, title: "In Development", desc: "Excel template mapping completed." }],
-      tips: ["Reduces new connection entry time by over 80%."]
-    }
-  },
-
-  // =========================================================================
-  // 9. CP-139 POSTING CHECKER (ON REQUEST / DIRECT PURCHASE)
+  // 5. CP-139 POSTING CHECKER (ON REQUEST / DIRECT PURCHASE)
   // =========================================================================
   {
     id: "cp139-checker",
@@ -405,7 +273,7 @@ const DISCO_TOOLS = [
   },
 
   // =========================================================================
-  // 10. CP-136 POSTING CHECKER (ON REQUEST / DIRECT PURCHASE)
+  // 6. CP-136 POSTING CHECKER (ON REQUEST / DIRECT PURCHASE)
   // =========================================================================
   {
     id: "cp136-checker",
@@ -441,7 +309,7 @@ const DISCO_TOOLS = [
   },
 
   // =========================================================================
-  // 11. FEEDER CODE RANGING (ON REQUEST / DIRECT PURCHASE)
+  // 7. FEEDER CODE RANGING (ON REQUEST / DIRECT PURCHASE)
   // =========================================================================
   {
     id: "feeder-code-ranging",
@@ -477,7 +345,7 @@ const DISCO_TOOLS = [
   },
 
   // =========================================================================
-  // 12. FCODE BULK PDF TO EXCEL CONVERTER (ON REQUEST / DIRECT PURCHASE)
+  // 8. FCODE BULK PDF TO EXCEL CONVERTER (ON REQUEST / DIRECT PURCHASE)
   // =========================================================================
   {
     id: "pdf-to-excel",
@@ -513,7 +381,7 @@ const DISCO_TOOLS = [
   },
 
   // =========================================================================
-  // 13. CONVERT CP21C (ON REQUEST / DIRECT PURCHASE)
+  // 9. CONVERT CP21C (ON REQUEST / DIRECT PURCHASE)
   // =========================================================================
   {
     id: "convert-cp21c",
@@ -549,7 +417,7 @@ const DISCO_TOOLS = [
   },
 
   // =========================================================================
-  // 14. 88L PAYMENT EXTRACT (ON REQUEST / DIRECT PURCHASE)
+  // 10. 88L PAYMENT EXTRACT (ON REQUEST / DIRECT PURCHASE)
   // =========================================================================
   {
     id: "88l-extract",
@@ -585,7 +453,7 @@ const DISCO_TOOLS = [
   },
 
   // =========================================================================
-  // 15. PDF MERGER (ON REQUEST / DIRECT PURCHASE)
+  // 11. PDF MERGER (ON REQUEST / DIRECT PURCHASE)
   // =========================================================================
   {
     id: "pdf-merger",
@@ -621,7 +489,7 @@ const DISCO_TOOLS = [
   },
 
   // =========================================================================
-  // 16. CP-22T ADJUSTMENT CHECKER (ON REQUEST / DIRECT PURCHASE)
+  // 12. CP-22T ADJUSTMENT CHECKER (ON REQUEST / DIRECT PURCHASE)
   // =========================================================================
   {
     id: "cp22t-checker",
@@ -657,7 +525,7 @@ const DISCO_TOOLS = [
   },
 
   // =========================================================================
-  // 17. GOVT ASSESSMENT REALIZATION (ON REQUEST / DIRECT PURCHASE)
+  // 13. GOVT ASSESSMENT REALIZATION (ON REQUEST / DIRECT PURCHASE)
   // =========================================================================
   {
     id: "govt-assessment",
@@ -716,7 +584,7 @@ function getToolByFilename(filename) {
   if (!filename) return null;
   const target = filename.toLowerCase().trim();
 
-  // 1. Direct ID, Name, or Filename exact match
+  // 14. Direct ID, Name, or Filename exact match
   let found = DISCO_TOOLS.find(t => 
     (t.id && t.id.toLowerCase() === target) ||
     (t.name && t.name.toLowerCase() === target) ||
@@ -724,7 +592,7 @@ function getToolByFilename(filename) {
   );
   if (found) return found;
 
-  // 2. High-priority keyword matching for main downloadable tools
+  // 15. High-priority keyword matching for main downloadable tools
   if (target.includes('pitc')) {
     return DISCO_TOOLS.find(t => t.id === 'pitc-suite');
   }
@@ -732,7 +600,7 @@ function getToolByFilename(filename) {
     return DISCO_TOOLS.find(t => t.id === 'bill-scrapper');
   }
 
-  // 3. Normalized stripped match
+  // 16. Normalized stripped match
   const clean = target.replace(/[\s_\-\.]+/g, '').replace(/exe$/i, '').replace(/setup$/i, '');
   return DISCO_TOOLS.find(t => {
     const tFile = (t.filename || '').toLowerCase().replace(/[\s_\-\.]+/g, '').replace(/exe$/i, '').replace(/setup$/i, '');
