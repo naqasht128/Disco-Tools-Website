@@ -139,6 +139,10 @@ function showToast(message, type = 'info', title = 'Notice') {
 // ONLY PITCSuite and Bill Scrapper are directly downloadable.
 // All other tools trigger the Contact/Request modal with developer info!
 function triggerToolDownload(filenameOrId, toolTitle) {
+  // Track download event in Vercel Analytics
+  if (typeof window !== 'undefined' && window.va) {
+    try { window.va('event', { name: 'tool_download_' + (typeof filenameOrId === 'string' ? filenameOrId.replace(/[^a-zA-Z0-9_-]/g, '_') : 'unknown') }); } catch (e) {}
+  }
   let tool = null;
   if (typeof getToolById === 'function') {
     tool = getToolById(filenameOrId);
@@ -477,6 +481,10 @@ function closeRequestModal() {
 }
 
 function submitSoftwareRequest(e) {
+  // Track request event in Vercel Analytics
+  if (typeof window !== 'undefined' && window.va) {
+    try { window.va('event', { name: 'software_request' }); } catch (e) {}
+  }
   e.preventDefault();
   const toolName = document.getElementById('req-tool-name').value;
   const userName = document.getElementById('req-user-name').value;
