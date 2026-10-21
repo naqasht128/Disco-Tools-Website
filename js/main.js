@@ -611,3 +611,23 @@ function applyLiveBadgeUpdates(tool) {
     document.querySelectorAll('.bill-size-badge').forEach(el => { el.textContent = tool.size; });
   }
 }
+
+/**
+ * Global navigation to a tool's tutorial page
+ * Supports both clean URLs (/tutorials?tool=id) and standard file paths (tutorials.html?tool=id)
+ * Safe against clicks on buttons, download triggers, or form elements
+ */
+function navigateToTutorial(toolId, event) {
+  if (event) {
+    const target = event.target;
+    if (target && target.closest('button, input, select, textarea, a[href^="http"], a[download]')) {
+      return;
+    }
+  }
+  if (!toolId) return;
+
+  const isFileProto = window.location.protocol === 'file:';
+  const hasHtmlExt = window.location.pathname.endsWith('.html');
+  const targetPage = (isFileProto || hasHtmlExt) ? 'tutorials.html' : 'tutorials';
+  window.location.href = `${targetPage}?tool=${encodeURIComponent(toolId)}`;
+}

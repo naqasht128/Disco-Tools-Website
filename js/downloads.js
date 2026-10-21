@@ -195,7 +195,11 @@ function renderDownloads() {
       : (isPublic ? 'border-emerald-500/30 bg-slate-900/80' : (isDev ? 'border-amber-500/20 bg-slate-900/60' : 'border-white/10 bg-slate-900/70'));
 
     return `
-      <div class="glass-card rounded-2xl p-6 flex flex-col justify-between relative group ${cardBorder}">
+      <div 
+        onclick="navigateToTutorial('${tool.id}', event)"
+        class="glass-card rounded-2xl p-6 flex flex-col justify-between relative group ${cardBorder} cursor-pointer hover:shadow-xl transition-all duration-200"
+        title="Click to view tutorial &amp; documentation"
+      >
         
         <!-- Header Badges -->
         <div>
@@ -212,8 +216,9 @@ function renderDownloads() {
               <i data-lucide="${tool.icon}" class="w-6 h-6"></i>
             </div>
             <div>
-              <h3 class="text-base sm:text-lg font-bold text-white group-hover:text-sky-300 transition-colors leading-snug">
+              <h3 class="text-base sm:text-lg font-bold text-white group-hover:text-sky-300 transition-colors leading-snug flex items-center gap-1.5">
                 ${tool.name}
+                <i data-lucide="arrow-up-right" class="w-3.5 h-3.5 text-slate-400 opacity-60 group-hover:opacity-100 group-hover:text-sky-300 transition-all"></i>
               </h3>
               <p class="text-[11px] text-slate-400 font-mono mt-0.5 flex items-center gap-1.5">
                 <i data-lucide="file" class="w-3 h-3 text-slate-500"></i> ${tool.filename}
@@ -248,7 +253,7 @@ function renderDownloads() {
             </span>
           </div>
 
-          <div class="grid grid-cols-2 gap-2">
+          <div class="grid grid-cols-2 gap-2" onclick="event.stopPropagation()">
             ${actionButton}
             <a 
               href="tutorials.html?tool=${tool.id}"

@@ -19,6 +19,14 @@ class Handler(http.server.SimpleHTTPRequestHandler):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, directory=DIRECTORY, **kwargs)
 
+    def translate_path(self, path):
+        # Support clean URLs locally (e.g., /tutorials -> /tutorials.html, /downloads -> /downloads.html)
+        clean_path = path.split('?', 1)[0].split('#', 1)[0]
+        full_path = super().translate_path(clean_path)
+        if not os.path.exists(full_path) and os.path.exists(full_path + '.html'):
+            return full_path + '.html'
+        return super().translate_path(path)
+
     def end_headers(self):
         # Enable CORS and disable aggressive caching for local dev
         self.send_header('Cache-Control', 'no-cache, no-store, must-revalidate')
@@ -52,6 +60,7 @@ def main():
     print(f"  Serving Directory: {DIRECTORY}")
     print("  Compatible DISCOs: LESCO, GEPCO, FESCO, IESCO, MEPCO,")
     print("                     PESCO, HAZECO, SEPCO, HESCO, QESCO, TESCO")
+    print("  Clean URLs supported: /tutorials?tool=..., /downloads, etc.")
     print("  Press Ctrl+C in this window to stop the server.")
     print("=" * 68)
     
