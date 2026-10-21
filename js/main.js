@@ -9,6 +9,9 @@ document.addEventListener('DOMContentLoaded', () => {
     window.lucide.createIcons();
   }
 
+  // Automatically sync live GitHub release badges (Option B)
+  syncLiveGitHubReleases();
+
   // Mobile menu drawer
   const mobileMenuBtn = document.getElementById('mobile-menu-btn');
   const mobileMenuDrawer = document.getElementById('mobile-menu-drawer');
@@ -505,4 +508,106 @@ function populateDeveloperProfile() {
     el.textContent = DEVELOPER_PROFILE.cell;
     if (el.tagName === 'A') el.href = `tel:${DEVELOPER_PROFILE.cell.replace(/\s+/g, '')}`;
   });
+}
+
+
+// =========================================================================
+// LIVE GITHUB RELEASES AUTO-SYNC (OPTION B)
+// Automatically syncs the latest version tag, release date, and file size
+// from GitHub Releases API with seamless localStorage caching.
+// =========================================================================
+async function syncLiveGitHubReleases() {
+  const tools = (typeof DISCO_TOOLS !== 'undefined') ? DISCO_TOOLS : (typeof PESCO_TOOLS !== 'undefined' ? PESCO_TOOLS : []);
+  const toolsToSync = tools.filter(t => t.githubRepo);
+  if (!toolsToSync.length) return;
+
+  const CACHE_TTL_MS = 3600 * 1000; // 1-hour cache
+
+  for (const tool of toolsToSync) {
+    const cacheKey = `disco_live_release_${tool.id}`;
+    let releaseData = null;
+
+    try {
+      const stored = localStorage.getItem(cacheKey);
+      if (stored) {
+        const parsed = JSON.parse(stored);
+        if (Date.now() - parsed.timestamp < CACHE_TTL_MS) {
+          releaseData = parsed.data;
+        }
+      }
+    } catch (e) {}
+
+    if (!releaseData) {
+      try {
+        const res = await fetch(`https://api.github.com/repos/${tool.githubRepo}/releases/latest`, {
+          headers: { 'Accept': 'application/vnd.github.v3+json' }
+        });
+        if (res.ok) {
+          const json = await res.json();
+          const rawTag = json.tag_name || '';
+          const tag = rawTag.startsWith('v') ? rawTag : `v${rawTag}`;
+          
+          let sizeStr = tool.size;
+          let dlUrl = tool.downloadUrl;
+
+          if (json.assets && json.assets.length > 0) {
+            const setupAsset = json.assets.find(a => 
+              a.name.toLowerCase().endsWith('-setup.exe') || 
+              a.name.toLowerCase().endsWith('_setup.exe')
+            ) || json.assets.find(a => a.name.toLowerCase().endsWith('.exe')) || json.assets[0];
+
+            if (setupAsset) {
+              if (setupAsset.size) {
+                sizeStr = (setupAsset.size / (1024 * 1024)).toFixed(1) + ' MB';
+              }
+              if (setupAsset.browser_download_url) {
+                dlUrl = setupAsset.browser_download_url;
+              }
+            }
+          }
+
+          const published = json.published_at 
+            ? new Date(json.published_at).toLocaleDateString('en-US', { month: 'long', year: 'numeric' })
+            : tool.updated;
+
+          releaseData = {
+            version: tag,
+            size: sizeStr,
+            updated: published,
+            downloadUrl: dlUrl
+          };
+
+          try {
+            localStorage.setItem(cacheKey, JSON.stringify({ timestamp: Date.now(), data: releaseData }));
+          } catch (e) {}
+        }
+      } catch (err) {
+        // Fallback to static values if network unavailable or GitHub API rate limit
+      }
+    }
+
+    if (releaseData && releaseData.version) {
+      tool.version = releaseData.version;
+      if (releaseData.size) tool.size = releaseData.size;
+      if (releaseData.updated) tool.updated = releaseData.updated;
+      if (releaseData.downloadUrl) tool.downloadUrl = releaseData.downloadUrl;
+
+      applyLiveBadgeUpdates(tool);
+    }
+  }
+
+  // If downloads grid is rendered on current page, refresh with live data
+  if (typeof renderToolsGrid === 'function') {
+    renderToolsGrid();
+  }
+}
+
+function applyLiveBadgeUpdates(tool) {
+  if (tool.id === 'pitc-suite') {
+    document.querySelectorAll('.pitc-version-badge').forEach(el => { el.textContent = tool.version; });
+    document.querySelectorAll('.pitc-size-badge').forEach(el => { el.textContent = tool.size; });
+  } else if (tool.id === 'bill-scrapper') {
+    document.querySelectorAll('.bill-version-badge').forEach(el => { el.textContent = tool.version; });
+    document.querySelectorAll('.bill-size-badge').forEach(el => { el.textContent = tool.size; });
+  }
 }
