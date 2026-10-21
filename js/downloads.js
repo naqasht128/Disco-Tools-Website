@@ -156,8 +156,9 @@ function renderDownloads() {
     let actionButton = '';
 
     if (isPublic) {
+      const startingPrice = tool.id === 'pitc-suite' ? 'Starting from Rs. 600' : (tool.id === 'bill-scrapper' ? 'Starting from Rs. 300' : 'Direct Download');
       statusPill = `<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md text-[11px] font-semibold bg-emerald-500/10 text-emerald-400 border border-emerald-500/30">
-        <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 pulse-indicator"></span> Direct Download
+        <i data-lucide="tag" class="w-3 h-3 text-emerald-400"></i> ${startingPrice}
       </span>`;
 
       actionButton = `<button 

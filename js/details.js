@@ -107,8 +107,9 @@ function renderTutorialContent(toolId) {
       <div class="relative z-10 flex flex-col md:flex-row md:items-center justify-between gap-6">
         <div>
           <div class="flex flex-wrap items-center gap-2 mb-3">
-            <span class="px-3 py-1 rounded-full text-xs font-semibold bg-sky-500/20 text-sky-300 border border-sky-500/30">
-              ${tool.badge}
+            <span class="px-3 py-1 rounded-full text-xs font-semibold ${tool.id === 'pitc-suite' || tool.id === 'bill-scrapper' ? 'bg-emerald-500/20 text-emerald-300 border border-emerald-500/30' : 'bg-sky-500/20 text-sky-300 border border-sky-500/30'} flex items-center gap-1.5">
+              ${tool.id === 'pitc-suite' || tool.id === 'bill-scrapper' ? '<i data-lucide="tag" class="w-3.5 h-3.5 text-emerald-400"></i>' : ''}
+              ${tool.id === 'pitc-suite' ? 'Starting from Rs. 600' : (tool.id === 'bill-scrapper' ? 'Starting from Rs. 300' : tool.badge)}
             </span>
             ${(tool.id === 'pitc-suite' || tool.id === 'bill-scrapper') && tool.version ? `
             <span class="px-3 py-1 rounded-full text-xs font-mono bg-slate-800 text-slate-300 border border-white/5 ${tool.id === 'pitc-suite' ? 'pitc-version-badge' : 'bill-version-badge'}">
@@ -186,6 +187,67 @@ function renderTutorialContent(toolId) {
 
     </div>
 
+        <!-- Subscription & Pricing Plans (For PITCSuite and Bill Scrapper) -->
+    ${tool.pricingPlans && tool.pricingPlans.length > 0 ? `
+      <div class="glass-panel rounded-3xl p-6 sm:p-8 border border-emerald-500/30 bg-gradient-to-b from-emerald-950/20 via-slate-900/90 to-slate-900 mb-8 shadow-xl shadow-emerald-950/20">
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6 pb-5 border-b border-white/5">
+          <div>
+            <span class="text-xs font-semibold text-emerald-400 uppercase tracking-widest flex items-center gap-1.5">
+              <i data-lucide="tag" class="w-3.5 h-3.5"></i> Subscription &amp; Licensing Plans
+            </span>
+            <h2 class="text-xl sm:text-2xl font-bold text-white mt-1">
+              Choose Your License Plan
+            </h2>
+            <p class="text-slate-300 text-xs sm:text-sm mt-1">
+              Hardware-locked subscription keys for DISCO commercial staff with instant online/offline activation.
+            </p>
+          </div>
+          <div class="flex-shrink-0">
+            <a 
+              href="https://wa.me/923335022833?text=Hello%20Tahir%20Naqash%2C%20I%20want%20to%20order%20a%20license%20for%20${encodeURIComponent(tool.name)}" 
+              target="_blank"
+              rel="noopener"
+              class="px-4 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs flex items-center gap-2 transition-all shadow-md shadow-emerald-600/25"
+            >
+              <i data-lucide="message-circle" class="w-4 h-4"></i> WhatsApp Order Desk
+            </a>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+          ${tool.pricingPlans.map((plan, pIdx) => `
+            <div class="glass-card rounded-2xl p-5 border ${pIdx === tool.pricingPlans.length - 1 ? 'border-emerald-500/50 bg-emerald-950/20' : 'border-white/10 bg-slate-900/60'} flex flex-col justify-between relative hover:border-emerald-400/50 transition-all group">
+              ${pIdx === tool.pricingPlans.length - 1 ? `
+                <span class="absolute -top-2.5 right-4 px-2 py-0.5 rounded-full text-[10px] font-extrabold uppercase bg-emerald-500 text-slate-950 shadow-sm">
+                  Best Value
+                </span>
+              ` : ''}
+              <div>
+                <h4 class="text-sm font-bold text-white mb-1">${plan.name}</h4>
+                <div class="text-2xl font-extrabold text-emerald-400 font-mono mb-2">${plan.price}</div>
+                <div class="space-y-1.5 text-xs text-slate-300 mb-4 pt-2 border-t border-white/5">
+                  <div class="flex items-center gap-1.5">
+                    <i data-lucide="clock" class="w-3.5 h-3.5 text-slate-400"></i> ${plan.validity}
+                  </div>
+                  <div class="flex items-center gap-1.5">
+                    <i data-lucide="laptop" class="w-3.5 h-3.5 text-slate-400"></i> ${plan.devices}
+                  </div>
+                </div>
+              </div>
+              <a 
+                href="https://wa.me/923335022833?text=Hello%20Tahir%20Naqash%2C%20I%20want%20to%20order%20the%20${encodeURIComponent(tool.name)}%20${encodeURIComponent(plan.name)}%20(${encodeURIComponent(plan.price)})" 
+                target="_blank"
+                rel="noopener"
+                class="w-full py-2 px-3 rounded-xl bg-slate-800 hover:bg-emerald-600 text-slate-200 hover:text-white border border-white/10 hover:border-emerald-500 font-semibold text-xs flex items-center justify-center gap-1.5 transition-all text-center"
+              >
+                <i data-lucide="shopping-cart" class="w-3.5 h-3.5"></i> Order Plan
+              </a>
+            </div>
+          `).join('')}
+        </div>
+      </div>
+    ` : ''}
+
     <!-- Workflow & Functional Breakdown -->
     <div class="glass-card rounded-3xl p-6 sm:p-8 border border-white/10 mb-8">
       <div class="flex items-center justify-between mb-8 pb-4 border-b border-white/5">
@@ -225,20 +287,7 @@ function renderTutorialContent(toolId) {
       </div>
     </div>
 
-    <!-- Pro Tips & Troubleshooting -->
-    <div class="glass-panel rounded-3xl p-6 sm:p-8 border border-amber-500/20 bg-gradient-to-br from-amber-950/10 to-slate-900/70 mb-8">
-      <h3 class="text-lg font-bold text-amber-300 mb-4 flex items-center gap-2.5">
-        <i data-lucide="lightbulb" class="w-5 h-5 text-amber-400"></i> Pro Tips & Best Practices
-      </h3>
-      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-        ${tut.tips.map(tip => `
-          <div class="flex items-start gap-3 bg-slate-900/80 p-4 rounded-xl border border-amber-500/10">
-            <i data-lucide="sparkles" class="w-4 h-4 text-amber-400 flex-shrink-0 mt-0.5"></i>
-            <p class="text-xs sm:text-sm text-slate-200 leading-relaxed">${tip}</p>
-          </div>
-        `).join('')}
-      </div>
-    </div>
+
 
     <!-- Quick Navigation to Next / Prev Tool -->
     <div class="flex flex-col sm:flex-row items-center justify-between gap-4 pt-4 border-t border-white/5">
