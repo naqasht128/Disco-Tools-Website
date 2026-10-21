@@ -110,12 +110,14 @@ function renderTutorialContent(toolId) {
             <span class="px-3 py-1 rounded-full text-xs font-semibold bg-sky-500/20 text-sky-300 border border-sky-500/30">
               ${tool.badge}
             </span>
-            <span class="px-3 py-1 rounded-full text-xs font-mono bg-slate-800 text-slate-300 border border-white/5">
+            ${(tool.id === 'pitc-suite' || tool.id === 'bill-scrapper') && tool.version ? `
+            <span class="px-3 py-1 rounded-full text-xs font-mono bg-slate-800 text-slate-300 border border-white/5 ${tool.id === 'pitc-suite' ? 'pitc-version-badge' : 'bill-version-badge'}">
               ${tool.version}
-            </span>
+            </span>` : ''}
+            ${(tool.id === 'pitc-suite' || tool.id === 'bill-scrapper') && tool.size ? `
             <span class="text-xs text-slate-400 flex items-center gap-1">
-              <i data-lucide="hard-drive" class="w-3.5 h-3.5"></i> ${tool.size}
-            </span>
+              <i data-lucide="hard-drive" class="w-3.5 h-3.5"></i> <span class="${tool.id === 'pitc-suite' ? 'pitc-size-badge' : 'bill-size-badge'}">${tool.size}</span>
+            </span>` : ''}
           </div>
           <h1 class="text-2xl sm:text-3xl font-extrabold text-white tracking-tight mb-2">
             ${tool.title}
@@ -125,14 +127,21 @@ function renderTutorialContent(toolId) {
           </p>
         </div>
 
-        <!-- Download Action Card in Tutorial Header -->
+        <!-- Download or Request Action Card in Details Header -->
         <div class="flex-shrink-0 flex items-center">
+          ${tool.isPublicDownload ? `
           <button 
             onclick="triggerToolDownload('${tool.id}', '${tool.title}')"
             class="px-6 py-3 rounded-xl bg-gradient-to-r from-sky-600 to-sky-500 hover:from-sky-500 hover:to-sky-400 text-white font-bold text-sm shadow-lg shadow-sky-600/30 transition-all flex items-center justify-center gap-2 glow-btn"
           >
-            <i data-lucide="download" class="w-4 h-4"></i> Download ${tool.filename}
-          </button>
+            <i data-lucide="download" class="w-4 h-4"></i> Download ${tool.name}
+          </button>` : `
+          <button 
+            onclick="openContactRequestModal(getToolById('${tool.id}'))"
+            class="px-6 py-3 rounded-xl bg-slate-800 hover:bg-slate-700 text-sky-300 hover:text-white border border-sky-500/30 font-bold text-sm shadow-lg transition-all flex items-center justify-center gap-2"
+          >
+            <i data-lucide="phone-call" class="w-4 h-4 text-sky-400"></i> Contact / Request Tool
+          </button>`}
         </div>
       </div>
     </div>

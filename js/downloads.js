@@ -146,9 +146,10 @@ function renderDownloads() {
     return;
   }
 
-  container.innerHTML = filtered.map(tool => {
+    container.innerHTML = filtered.map(tool => {
     const isPublic = tool.isPublicDownload === true;
     const isDev = tool.status === 'in-development';
+    const showSpecs = tool.id === 'pitc-suite' || tool.id === 'bill-scrapper';
 
     // Status Badge
     let statusPill = '';
@@ -192,7 +193,38 @@ function renderDownloads() {
 
     const cardBorder = tool.isFlagship 
       ? 'border-sky-500/40 bg-gradient-to-b from-sky-950/20 to-slate-900/80 shadow-lg shadow-sky-500/5' 
-      : (isPublic ? 'border-emerald-500/30 bg-slate-900/80' : (isDev ? 'border-amber-500/20 bg-slate-900/60' : 'border-white/10 bg-slate-900/70'));
+      : (isPublic ? 'border-emerald-500/30 bg-slate-900/80' : 'border-white/10 bg-slate-900/70');
+
+    // Version badge only for PITCSuite and Bill Scrapper
+    const versionBadge = (showSpecs && tool.version) ? `
+      <span class="text-xs font-mono text-slate-400 bg-slate-950/60 px-2 py-0.5 rounded border border-white/5 ${tool.id === 'pitc-suite' ? 'pitc-version-badge' : (tool.id === 'bill-scrapper' ? 'bill-version-badge' : '')}">
+        ${tool.version}
+      </span>` : '';
+
+    // Filename (.exe) only for PITCSuite and Bill Scrapper
+    const filenameDisplay = (showSpecs && tool.filename) ? `
+      <p class="text-[11px] text-slate-400 font-mono mt-0.5 flex items-center gap-1.5">
+        <i data-lucide="file" class="w-3 h-3 text-slate-500"></i> ${tool.filename}
+      </p>` : '';
+
+    // Footer specs: size only for PITCSuite and Bill Scrapper
+    const footerSpecs = showSpecs ? `
+      <div class="flex items-center justify-between text-xs text-slate-400 mb-4 pb-3 border-b border-white/5 font-mono">
+        <span class="flex items-center gap-1.5">
+          <i data-lucide="hard-drive" class="w-3.5 h-3.5 text-slate-500"></i> <span class="${tool.id === 'pitc-suite' ? 'pitc-size-badge' : 'bill-size-badge'}">${tool.size}</span>
+        </span>
+        <span class="flex items-center gap-1.5">
+          <i data-lucide="calendar" class="w-3.5 h-3.5 text-slate-500"></i> ${tool.updated}
+        </span>
+      </div>` : `
+      <div class="flex items-center justify-between text-xs text-slate-400 mb-4 pb-3 border-b border-white/5">
+        <span class="flex items-center gap-1.5 text-slate-400">
+          <i data-lucide="shield" class="w-3.5 h-3.5 text-sky-400/70"></i> Commercial Tool
+        </span>
+        <span class="flex items-center gap-1.5 text-slate-500 font-mono text-[11px]">
+          <i data-lucide="calendar" class="w-3.5 h-3.5 text-slate-500"></i> ${tool.updated}
+        </span>
+      </div>`;
 
     return `
       <div 
@@ -205,14 +237,12 @@ function renderDownloads() {
         <div>
           <div class="flex items-center justify-between gap-2 mb-4">
             ${statusPill}
-            <span class="text-xs font-mono text-slate-400 bg-slate-950/60 px-2 py-0.5 rounded border border-white/5">
-              ${tool.version}
-            </span>
+            ${versionBadge}
           </div>
 
           <!-- Icon & Title -->
           <div class="flex items-start gap-3.5 mb-4">
-            <div class="w-12 h-12 rounded-xl ${tool.isFlagship ? 'bg-sky-600/30 text-sky-300 border border-sky-400/30' : (isPublic ? 'bg-emerald-600/20 text-emerald-400 border border-emerald-500/30' : (isDev ? 'bg-slate-800 text-amber-400 border border-amber-500/20' : 'bg-slate-800 text-sky-400 border border-white/5'))} flex items-center justify-center flex-shrink-0 group-hover:scale-105 transition-transform duration-300">
+            <div class="w-12 h-12 rounded-xl ${tool.isFlagship ? 'bg-sky-600/30 text-sky-300 border border-sky-400/30' : (isPublic ? 'bg-emerald-600/20 text-emerald-400 border border-emerald-500/30' : 'bg-slate-800 text-sky-400 border border-white/5')} flex items-center justify-center flex-shrink-0 group-hover:scale-105 transition-transform duration-300">
               <i data-lucide="${tool.icon}" class="w-6 h-6"></i>
             </div>
             <div>
@@ -220,9 +250,7 @@ function renderDownloads() {
                 ${tool.name}
                 <i data-lucide="arrow-up-right" class="w-3.5 h-3.5 text-slate-400 opacity-60 group-hover:opacity-100 group-hover:text-sky-300 transition-all"></i>
               </h3>
-              <p class="text-[11px] text-slate-400 font-mono mt-0.5 flex items-center gap-1.5">
-                <i data-lucide="file" class="w-3 h-3 text-slate-500"></i> ${tool.filename}
-              </p>
+              ${filenameDisplay}
             </div>
           </div>
 
@@ -244,14 +272,7 @@ function renderDownloads() {
 
         <!-- Footer Actions -->
         <div>
-          <div class="flex items-center justify-between text-xs text-slate-400 mb-4 pb-3 border-b border-white/5 font-mono">
-            <span class="flex items-center gap-1.5">
-              <i data-lucide="hard-drive" class="w-3.5 h-3.5 text-slate-500"></i> ${tool.size}
-            </span>
-            <span class="flex items-center gap-1.5">
-              <i data-lucide="calendar" class="w-3.5 h-3.5 text-slate-500"></i> ${tool.updated}
-            </span>
-          </div>
+          ${footerSpecs}
 
           <div class="grid grid-cols-2 gap-2" onclick="event.stopPropagation()">
             ${actionButton}
@@ -259,7 +280,7 @@ function renderDownloads() {
               href="details.html?tool=${tool.id}"
               class="w-full py-2.5 px-3 rounded-xl bg-slate-800/80 hover:bg-slate-700/80 text-slate-200 border border-white/10 font-semibold text-xs transition-all flex items-center justify-center gap-1.5 hover:text-white"
             >
-              <i data-lucide="book-open" class="w-4 h-4 text-sky-400"></i> Details
+              <i data-lucide="info" class="w-4 h-4 text-sky-400"></i> Details
             </a>
           </div>
         </div>
