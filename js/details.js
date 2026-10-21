@@ -32,6 +32,11 @@ function renderToolSidebar() {
   const container = document.getElementById('tools-sidebar-list');
   if (!container) return;
 
+  const countBadge = document.querySelector('aside span.font-mono');
+  if (countBadge) {
+    countBadge.textContent = `${DISCO_TOOLS.length} Tools`;
+  }
+
   container.innerHTML = DISCO_TOOLS.map(tool => {
     const isSelected = tool.id === selectedToolId;
     return `
@@ -73,27 +78,27 @@ function filterSidebarList(query) {
   });
 }
 
-// Select tutorial and render
+// Select tutorial/details and render
 function selectTutorial(toolId) {
+  if (selectedToolId === toolId) return;
   selectedToolId = toolId;
 
-  // Update URL without reloading
-  const newUrl = `${window.location.pathname}?tool=${toolId}`;
-  window.history.pushState({ path: newUrl }, '', newUrl);
-
+  // Update active state in sidebar
   renderToolSidebar();
+
+  // Render tutorial content
   renderTutorialContent(toolId);
 
-  // Scroll to tutorial top on mobile
+  // Scroll to content top on mobile
   if (window.innerWidth < 1024) {
     const mainContent = document.getElementById('tutorial-main-content');
     if (mainContent) {
-      mainContent.scrollIntoView({ behavior: 'smooth' });
+      mainContent.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
   }
 }
 
-// Render the main tutorial view for the selected tool
+// Render the main details view for the selected tool
 function renderTutorialContent(toolId) {
   const tool = getToolById(toolId);
   const container = document.getElementById('tutorial-main-content');
@@ -187,7 +192,7 @@ function renderTutorialContent(toolId) {
 
     </div>
 
-        <!-- Subscription & Pricing Plans (For PITCSuite and Bill Scrapper) -->
+    <!-- Subscription & Pricing Plans (For PITCSuite and Bill Scrapper) -->
     ${tool.pricingPlans && tool.pricingPlans.length > 0 ? `
       <div class="glass-panel rounded-3xl p-6 sm:p-8 border border-emerald-500/30 bg-gradient-to-b from-emerald-950/20 via-slate-900/90 to-slate-900 mb-8 shadow-xl shadow-emerald-950/20">
         <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6 pb-5 border-b border-white/5">
@@ -261,48 +266,54 @@ function renderTutorialContent(toolId) {
       </div>
 
       <div class="space-y-6">
-        ${tut.steps.map((st, idx) => `
-          <div class="relative pl-10 sm:pl-12 group">
-            <!-- Step Number Node -->
-            <div class="absolute left-0 top-0 w-7 h-7 sm:w-8 sm:h-8 rounded-xl bg-gradient-to-br from-sky-500 to-blue-600 text-white font-bold text-xs sm:text-sm flex items-center justify-center shadow-md shadow-sky-500/20 group-hover:scale-110 transition-transform">
-              ${st.step}
+        ${tut.steps.map(s => `
+          <div class="flex items-start gap-4 p-4 rounded-2xl bg-slate-900/50 border border-white/5 hover:border-sky-500/20 transition-all">
+            <div class="w-8 h-8 rounded-xl bg-sky-500/20 text-sky-400 border border-sky-500/30 flex items-center justify-center font-bold text-sm flex-shrink-0">
+              ${s.step}
             </div>
-
-            <!-- Connecting Line -->
-            ${idx !== tut.steps.length - 1 ? `
-              <div class="absolute left-3.5 sm:left-4 top-9 w-0.5 h-[calc(100%+8px)] bg-slate-800 group-hover:bg-sky-500/40 transition-colors"></div>
-            ` : ''}
-
-            <!-- Step Content Box -->
-            <div class="bg-slate-900/60 rounded-2xl p-5 border border-white/5 hover:border-sky-500/30 transition-all">
-              <h4 class="text-base font-bold text-white mb-2 flex items-center gap-2">
-                ${st.step === 1 ? 'Download & Launch' : st.title.replace(/\s+v\d+(\.\d+)*/i, '')}
-              </h4>
-              <p class="text-slate-300 text-sm leading-relaxed">
-                ${st.desc}
-              </p>
+            <div>
+              <h4 class="text-sm font-bold text-white mb-1">${s.title}</h4>
+              <p class="text-xs sm:text-sm text-slate-300 leading-relaxed">${s.desc}</p>
             </div>
           </div>
         `).join('')}
       </div>
+
+      ${tut.tips && tut.tips.length > 0 ? `
+        <div class="mt-8 pt-6 border-t border-white/5">
+          <h4 class="text-xs font-bold uppercase tracking-wider text-amber-400 mb-3 flex items-center gap-1.5">
+            <i data-lucide="lightbulb" class="w-3.5 h-3.5"></i> Operational Notes
+          </h4>
+          <ul class="space-y-2 text-xs sm:text-sm text-slate-300">
+            ${tut.tips.map(tip => `
+              <li class="flex items-start gap-2">
+                <i data-lucide="check" class="w-3.5 h-3.5 text-amber-400 flex-shrink-0 mt-0.5"></i>
+                <span>${tip}</span>
+              </li>
+            `).join('')}
+          </ul>
+        </div>
+      ` : ''}
     </div>
 
-
-
-    <!-- Quick Navigation to Next / Prev Tool -->
-    <div class="flex flex-col sm:flex-row items-center justify-between gap-4 pt-4 border-t border-white/5">
+    <!-- Navigation Footer -->
+    <div class="flex items-center justify-between pt-4 border-t border-white/10">
       <button 
         onclick="navigateTutorial(-1)"
-        class="w-full sm:w-auto px-5 py-2.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white text-xs font-semibold border border-white/5 flex items-center justify-center gap-2 transition-all"
+        class="px-4 py-2 rounded-xl bg-slate-800/80 hover:bg-slate-700 text-slate-300 hover:text-white text-xs font-semibold flex items-center gap-2 border border-white/5 transition-all"
       >
-        <i data-lucide="arrow-left" class="w-4 h-4"></i> Previous Tool
+        <i data-lucide="chevron-left" class="w-4 h-4"></i> Previous Software
       </button>
-      <span class="text-xs text-slate-500 font-mono">DISCO Technical Training Docs</span>
+
+      <span class="text-xs text-slate-500">
+        DISCO Sub-Divisional Operations &copy; 2026
+      </span>
+
       <button 
         onclick="navigateTutorial(1)"
-        class="w-full sm:w-auto px-5 py-2.5 rounded-xl bg-sky-600 hover:bg-sky-500 text-white text-xs font-semibold flex items-center justify-center gap-2 transition-all"
+        class="px-4 py-2 rounded-xl bg-slate-800/80 hover:bg-slate-700 text-slate-300 hover:text-white text-xs font-semibold flex items-center gap-2 border border-white/5 transition-all"
       >
-        Next Tool <i data-lucide="arrow-right" class="w-4 h-4"></i>
+        Next Software <i data-lucide="chevron-right" class="w-4 h-4"></i>
       </button>
     </div>
   `;
@@ -310,16 +321,23 @@ function renderTutorialContent(toolId) {
   refreshIcons();
 }
 
-// Navigate to next or previous tool in array
+// Next / Previous navigation
 function navigateTutorial(direction) {
   const currentIndex = DISCO_TOOLS.findIndex(t => t.id === selectedToolId);
+  if (currentIndex === -1) return;
+
   let newIndex = currentIndex + direction;
   if (newIndex < 0) newIndex = DISCO_TOOLS.length - 1;
   if (newIndex >= DISCO_TOOLS.length) newIndex = 0;
+
   selectTutorial(DISCO_TOOLS[newIndex].id);
 }
 
-// Aliases for compatibility
-function selectDetails(toolId) {
+// Public API
+window.selectTutorial = function(toolId) {
   selectTutorial(toolId);
-}
+};
+
+window.navigateTutorial = function(direction) {
+  navigateTutorial(direction);
+};
