@@ -40,12 +40,13 @@ const DISCO_TOOLS = [
     summary: "A complete unified workstation package having all the tools in one unified desktop suite. Includes CP posting verifiers, converters, bill scrapers, and ledger reconcilers.",
     description: "PITCSuite v2.8.97 is the comprehensive flagship all-in-one productivity suite engineered specifically for commercial staff, revenue officers, and computer operators across all Pakistan DISCOs (LESCO, GEPCO, FESCO, IESCO, MEPCO, PESCO, HAZECO, SEPCO, HESCO, QESCO, TESCO). Combines CP-139, CP-136, CP-52, CP-22T posting checkers, bill scrapers, and converters inside a single high-speed dashboard.",
     features: [
-      "All-in-one launcher bundling all 14+ DISCO tools into a single desktop interface with multi-DISCO switching",
-      "One-click batch verification for CP-139, CP-136, CP-52, and CP-22T",
-      "Built-in PDF extraction, Excel transformation, and bank scroll match engine",
-      "Real-time database connectivity and local offline caching mode",
-      "Live anomaly detection with instant discrepancy highlight alerts",
-      "Zero DLL dependencies - runs smoothly on Windows 10 & 11"
+      "Automatic PITC Report Downloader",
+      "E/Bill PDF Downloader",
+      "Bill Scrapper",
+      "Payment Extractor from 88L",
+      "CP-52 Posting to PDF",
+      "Multiple CPs Posting Checkers",
+      "Govt Reconciliation & PDF Tools"
     ],
     tutorial: {
       overview: "PITCSuite brings all DISCO commercial verification utilities together. Launch the suite, pick your sub-division, and run any module with instant reports.",
