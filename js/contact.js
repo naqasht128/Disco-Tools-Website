@@ -1,5 +1,5 @@
 /**
- * PESCO Tools Website - Contact & FAQ Logic
+ * DISCO Tools Website - Contact & FAQ Logic
  */
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -9,7 +9,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 // Setup Contact Form Validation & Simulated Submission
 function setupContactForm() {
-  const form = document.getElementById('pesco-contact-form');
+  const form = document.getElementById('disco-contact-form') || document.getElementById('pesco-contact-form');
   if (!form) return;
 
   form.addEventListener('submit', (e) => {
@@ -49,10 +49,10 @@ function setupContactForm() {
             </div>
             <h3 class="text-2xl font-bold text-white mb-2">Inquiry Dispatched Successfully</h3>
             <p class="text-slate-300 text-sm max-w-md mx-auto mb-6">
-              Thank you, <strong>${name}</strong> (${subDivision}). Your technical ticket regarding <strong>${tool || 'PESCO Tools'}</strong> has been registered. Our support team will reach out via WhatsApp/Email shortly.
+              Thank you, <strong>${name}</strong> (${subDivision}). Your technical ticket regarding <strong>${tool || 'DISCO Tools'}</strong> has been registered. Our support team will reach out via WhatsApp/Email shortly.
             </p>
             <div class="bg-slate-900/80 rounded-xl p-4 max-w-sm mx-auto font-mono text-xs text-sky-400 border border-white/5 mb-6">
-              Ticket Ref: #PES-${Math.floor(100000 + Math.random() * 900000)}
+              Ticket Ref: #DISCO-${Math.floor(100000 + Math.random() * 900000)}
             </div>
             <button onclick="window.location.reload()" class="px-6 py-2.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-white text-xs font-semibold border border-white/10 transition-colors">
               Submit Another Inquiry
@@ -62,7 +62,7 @@ function setupContactForm() {
         refreshIcons();
       }
 
-      showToast('Your message has been sent to the PESCO Tools Development Desk.', 'success', 'Ticket Dispatched');
+      showToast('Your message has been sent to the DISCO Tools Development Desk.', 'success', 'Ticket Dispatched');
     }, 1200);
   });
 }

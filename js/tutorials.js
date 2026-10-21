@@ -1,5 +1,5 @@
 /**
- * PESCO Tools Website - Tutorials Dynamic Logic
+ * DISCO Tools Website - Tutorials Dynamic Logic
  */
 
 let selectedToolId = 'pitc-suite';
@@ -32,7 +32,7 @@ function renderToolSidebar() {
   const container = document.getElementById('tools-sidebar-list');
   if (!container) return;
 
-  container.innerHTML = PESCO_TOOLS.map(tool => {
+  container.innerHTML = DISCO_TOOLS.map(tool => {
     const isSelected = tool.id === selectedToolId;
     return `
       <button 
@@ -171,7 +171,7 @@ function renderTutorialContent(toolId) {
           </ul>
         </div>
         <div class="mt-4 pt-4 border-t border-white/5 text-[11px] text-slate-400">
-          Compatible with PESCO / WAPDA standard office configurations.
+          Compatible with all DISCOs (LESCO, GEPCO, FESCO, IESCO, MEPCO, PESCO, HAZECO, SEPCO, HESCO, QESCO, TESCO) / WAPDA standard office configurations.
         </div>
       </div>
 
@@ -239,7 +239,7 @@ function renderTutorialContent(toolId) {
       >
         <i data-lucide="arrow-left" class="w-4 h-4"></i> Previous Tool
       </button>
-      <span class="text-xs text-slate-500 font-mono">PESCO Technical Training Docs</span>
+      <span class="text-xs text-slate-500 font-mono">DISCO Technical Training Docs</span>
       <button 
         onclick="navigateTutorial(1)"
         class="w-full sm:w-auto px-5 py-2.5 rounded-xl bg-sky-600 hover:bg-sky-500 text-white text-xs font-semibold flex items-center justify-center gap-2 transition-all"
@@ -254,11 +254,11 @@ function renderTutorialContent(toolId) {
 
 // Navigate to next or previous tool in array
 function navigateTutorial(direction) {
-  const currentIndex = PESCO_TOOLS.findIndex(t => t.id === selectedToolId);
+  const currentIndex = DISCO_TOOLS.findIndex(t => t.id === selectedToolId);
   let newIndex = currentIndex + direction;
-  if (newIndex < 0) newIndex = PESCO_TOOLS.length - 1;
-  if (newIndex >= PESCO_TOOLS.length) newIndex = 0;
-  selectTutorial(PESCO_TOOLS[newIndex].id);
+  if (newIndex < 0) newIndex = DISCO_TOOLS.length - 1;
+  if (newIndex >= DISCO_TOOLS.length) newIndex = 0;
+  selectTutorial(DISCO_TOOLS[newIndex].id);
 }
 
 

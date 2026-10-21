@@ -1,5 +1,5 @@
 /**
- * PESCO Tools Website - Downloads Page Dynamic Logic
+ * DISCO Tools Website - Downloads Page Dynamic Logic
  * Handles real-time search, status filtering, category tabs, and download/request cards
  */
 
@@ -82,7 +82,7 @@ function renderDownloads() {
   if (!container) return;
 
   // Filter tools
-  let filtered = PESCO_TOOLS.filter(tool => {
+  let filtered = DISCO_TOOLS.filter(tool => {
     let matchesCat = true;
     if (activeCategory === 'downloadable') {
       matchesCat = tool.isPublicDownload === true;

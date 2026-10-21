@@ -1,5 +1,5 @@
 /**
- * PESCO Tools Website & PITCSuite - Main Interactive Script
+ * DISCO Tools Website & PITCSuite - Main Interactive Script
  * Shared navigation, Contact/Request Software Modal, Direct Download Handler & Toast System
  */
 
@@ -170,7 +170,7 @@ function triggerToolDownload(filenameOrId, toolTitle) {
     'Download Initiated'
   );
 
-  const storageKey = `pesco_dl_${targetFilename}`;
+  const storageKey = `disco_dl_${targetFilename}`;
   const currentCount = parseInt(localStorage.getItem(storageKey) || '0', 10) + 1;
   localStorage.setItem(storageKey, currentCount);
 }
@@ -365,7 +365,7 @@ function openRequestSoftwareModal(presetToolName = '') {
       </div>
 
       <p class="text-xs text-slate-300 leading-relaxed mb-6">
-        Need a specialized PESCO billing utility, bank scroll matcher, PDF converter, or custom Excel macro? Submit your requirements directly to Tahir Naqash (TN Developers & Co.).
+        Need a specialized DISCO billing utility, bank scroll matcher, PDF converter, or custom Excel macro? Compatible across all DISCOs (LESCO, GEPCO, FESCO, IESCO, MEPCO, PESCO, HAZECO, SEPCO, HESCO, QESCO, TESCO). Submit your requirements directly to Tahir Naqash (TN Developers & Co.).
       </p>
 
       <form id="software-request-form" onsubmit="submitSoftwareRequest(event)" class="space-y-4">

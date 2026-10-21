@@ -1,6 +1,6 @@
-# ⚡ PESCO Tools & PITCSuite Enterprise Web Portal
+# ⚡ DISCO Tools & PITCSuite Enterprise Web Portal
 
-A high-performance, responsive web application and software distribution hub built for PESCO (Peshawar Electric Supply Company) sub-divisions, commercial sections, and computer centers.
+A high-performance, responsive web application and software distribution hub built for all Pakistan Electricity Distribution Companies (DISCOs): LESCO, GEPCO, FESCO, IESCO, MEPCO, PESCO, HAZECO, SEPCO, HESCO, QESCO, and TESCO. Users can simply select their DISCO or configure endpoints inside each tool.
 
 Designed with modern glassmorphism aesthetics, fluent animations, live tool search, category filters, and step-by-step tutorials for all **14 specialized tools** plus the flagship **PITCSuite (v2.8.91)**.
 
@@ -36,7 +36,7 @@ Designed with modern glassmorphism aesthetics, fluent animations, live tool sear
 ## 📁 Project Structure
 
 ```text
-d:\Projects\PESCOToolsWebsite\
+d:\Projects\DISCO Tools Website\
 ├── index.html                   # Home Page (Overview & Highlights)
 ├── downloads.html               # Downloads Repository
 ├── tutorials.html               # Step-by-Step Usage Guides & SOPs
@@ -59,7 +59,7 @@ d:\Projects\PESCOToolsWebsite\
     ├── FCodeBulkPDFtoExcelConvert.exe # Feeder PDF to Excel Converter
     ├── CP136_Posting_Checker.exe# CP-136 Bank Scroll Reconciler
     ├── ConvertCP21c.exe         # CP-21c Billing Ledger Converter
-    ├── BillScrapper.exe         # PESCO Duplicate Bill Scraper
+    ├── BillScrapper.exe         # All-DISCO Duplicate Bill Scraper
     ├── 88LPaymentExtract.exe    # Form 88-L Payment Extractor
     ├── TransformerFetch.exe     # PMT Load & Spec Fetcher
     ├── CP-52_Posting_Checker.exe# CP-52 Defaulter Posting Verifier
@@ -90,7 +90,7 @@ python run_server.py
 ## 📤 How to Upload & Replace Tool Executables
 
 To provide your actual compiled `.exe` and `.apk` files to users:
-1. Open the folder: `d:\Projects\PESCOToolsWebsite\downloads\`
+1. Open the folder: `d:\Projects\DISCO Tools Website\downloads\`
 2. Copy your compiled `.exe` or `.apk` files directly into this folder.
 3. Keep the exact filenames as listed above (e.g. `PitcSuite.exe`, `CP139PostingChecker.exe`, etc.).
 4. When users click **Download** on any page, the browser will download that file directly from the `downloads/` directory!
@@ -100,5 +100,5 @@ To provide your actual compiled `.exe` and `.apk` files to users:
 ## 🌐 Deploying to the Web or Intranet
 
 This website is completely static (HTML5, Tailwind CSS, JavaScript) and requires **no complex Node.js build steps or database configuration**:
-- **PESCO Local Sub-Division Intranet**: Drop the entire folder into IIS or Apache / XAMPP `htdocs`.
+- **DISCO Local Sub-Division Intranet**: Drop the entire folder into IIS or Apache / XAMPP `htdocs`.
 - **Cloud Hosting**: Compatible with GitHub Pages, Vercel, Netlify, Cloudflare Pages, or cPanel hosting.

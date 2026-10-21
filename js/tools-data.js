@@ -1,5 +1,5 @@
 /**
- * PESCO Tools Website & PITCSuite - Master Tools Data Registry
+ * DISCO Tools Website & PITCSuite - Master Tools Data Registry
  * Corporate & Developer Metadata, Software Catalog, Download Targets, and Tutorials
  */
 
@@ -12,10 +12,10 @@ const DEVELOPER_PROFILE = {
   whatsappNumber: "923339962474",
   whatsappFormatted: "0333-9962474",
   location: "Peshawar, Khyber Pakhtunkhwa, Pakistan",
-  mission: "Eliminating manual billing errors, automating CP posting reconciliations, and engineering zero-friction desktop utilities for PESCO sub-divisions."
+  mission: "Eliminating manual billing errors, automating CP posting reconciliations, and engineering zero-friction desktop utilities for all Pakistan DISCOs (LESCO, GEPCO, FESCO, IESCO, MEPCO, PESCO, HAZECO, SEPCO, HESCO, QESCO, TESCO)."
 };
 
-const PESCO_TOOLS = [
+const DISCO_TOOLS = [
   // =========================================================================
   // 1. PITCSuite (PUBLIC DOWNLOADABLE - HAS REPO)
   // =========================================================================
@@ -37,9 +37,9 @@ const PESCO_TOOLS = [
     updated: "October 2026",
     icon: "layers",
     summary: "A complete unified workstation package having all the tools in one unified desktop suite. Includes CP posting verifiers, converters, bill scrapers, and ledger reconcilers.",
-    description: "PITCSuite v2.8.97 is the comprehensive flagship all-in-one productivity suite engineered specifically for PESCO commercial staff, revenue officers, and computer operators. Combines CP-139, CP-136, CP-52, CP-22T posting checkers, bill scrapers, and converters inside a single high-speed dashboard.",
+    description: "PITCSuite v2.8.97 is the comprehensive flagship all-in-one productivity suite engineered specifically for commercial staff, revenue officers, and computer operators across all Pakistan DISCOs (LESCO, GEPCO, FESCO, IESCO, MEPCO, PESCO, HAZECO, SEPCO, HESCO, QESCO, TESCO). Combines CP-139, CP-136, CP-52, CP-22T posting checkers, bill scrapers, and converters inside a single high-speed dashboard.",
     features: [
-      "All-in-one launcher bundling all 14+ PESCO tools into a single desktop interface",
+      "All-in-one launcher bundling all 14+ DISCO tools into a single desktop interface with multi-DISCO switching",
       "One-click batch verification for CP-139, CP-136, CP-52, and CP-22T",
       "Built-in PDF extraction, Excel transformation, and bank scroll match engine",
       "Real-time database connectivity and local offline caching mode",
@@ -47,7 +47,7 @@ const PESCO_TOOLS = [
       "Zero DLL dependencies - runs smoothly on Windows 10 & 11"
     ],
     tutorial: {
-      overview: "PITCSuite brings all PESCO commercial verification utilities together. Launch the suite, pick your sub-division, and run any module with instant reports.",
+      overview: "PITCSuite brings all DISCO commercial verification utilities together. Launch the suite, pick your sub-division, and run any module with instant reports.",
       prerequisites: [
         "Windows 10 or Windows 11 (64-bit recommended)",
         "Microsoft Excel or LibreOffice (for viewing generated audit spreadsheets)",
@@ -103,7 +103,7 @@ const PESCO_TOOLS = [
     updated: "October 2026",
     icon: "file-spreadsheet",
     summary: "Scrape Billing information into Excel. Extracts consumer bills, tariff breakdowns, current arrears, due dates, and paid amounts directly into clean spreadsheets.",
-    description: "Bill Scrapper is a dedicated high-speed utility that queries PESCO online billing servers using consumer reference numbers, parses billing metadata (units consumed, cost of electricity, taxes, FCA, TV fee, arrears), and exports them directly into formatted Microsoft Excel workbooks.",
+    description: "Bill Scrapper is a dedicated high-speed utility that queries online billing servers across all Pakistan DISCOs (LESCO, GEPCO, FESCO, IESCO, MEPCO, PESCO, HAZECO, SEPCO, HESCO, QESCO, TESCO) using consumer reference numbers, parses billing metadata (units consumed, cost of electricity, taxes, FCA, TV fee, arrears), and exports them directly into formatted Microsoft Excel workbooks.",
     features: [
       "Bulk reference number import via text list, CSV, or Excel column",
       "Extracts total payable amount, payable within due date, and arrears",
@@ -117,7 +117,7 @@ const PESCO_TOOLS = [
       prerequisites: [
         "Windows 7 / 8 / 10 / 11",
         "Active Internet connection (for querying live billing servers)",
-        "List of 14-digit PESCO consumer reference numbers"
+        "List of 14-digit DISCO consumer reference numbers (select your DISCO in settings)"
       ],
       steps: [
         {
@@ -142,7 +142,7 @@ const PESCO_TOOLS = [
         }
       ],
       tips: [
-        "Use multi-batch mode for lists over 1,000 reference numbers to prevent sub-divisional network timeouts.",
+        "Use multi-batch mode for lists over 1,000 reference numbers to prevent DISCO sub-divisional network timeouts.",
         "Filtered lists can be exported directly into CP-139 verifier formats."
       ]
     }
@@ -252,7 +252,7 @@ const PESCO_TOOLS = [
     summary: "Analyzes commercial consumer tariffs, flags incorrect tariff categorizations, and projects recovery strategies for chronic defaulters.",
     description: "A specialized data analytics tool designed to inspect consumer billing ledgers for tariff anomalies (e.g. commercial premises billed on domestic tariffs) and profile long-standing arrears to assist sub-divisional recovery teams.",
     features: [
-      "Automatic tariff audit against NEPRA / PESCO authorized rates",
+      "Automatic tariff audit against NEPRA / DISCO authorized rates",
       "Defaulter stratification (30-day, 60-day, 90-day, and 1-year+ chronic arrears)",
       "Recovery projection models and installment scheduler",
       "Export executive recovery dossiers with pie charts and summary tables"
@@ -261,7 +261,7 @@ const PESCO_TOOLS = [
       overview: "Provides commercial officers with actionable audit insights on tariff discrepancies and high-value defaulters.",
       prerequisites: ["Windows 10/11"],
       steps: [{ step: 1, title: "In Active Development", desc: "Slated for upcoming release." }],
-      tips: ["Customized for PESCO tariff schedule."]
+      tips: ["Customized for all DISCO tariff schedules."]
     }
   },
 
@@ -386,7 +386,7 @@ const PESCO_TOOLS = [
     features: [
       "Instant matching of CP-139 bank scrolls with PITC billing server data",
       "Identifies unposted amounts, duplicate postings, and misplaced batches",
-      "Supports all PESCO commercial bank formats (NBP, HBL, UBL, MCB, BOP)",
+      "Supports all commercial bank scroll formats across DISCOs (NBP, HBL, UBL, MCB, BOP)",
       "High-speed parsing of multi-thousand consumer scroll files"
     ],
     tutorial: {
@@ -491,8 +491,8 @@ const PESCO_TOOLS = [
     filename: "FCodeBulkPDFtoExcelConvert.exe",
     updated: "October 2026",
     icon: "file-type-2",
-    summary: "Extracts tabular data from locked PESCO PDF billing ledgers and converts them into editable, formula-ready Excel files.",
-    description: "FCodeBulkPDFtoExcelConvert parses tabular PESCO PDF billing reports, accurately preserving consumer reference numbers, meter numbers, units, and arrears.",
+    summary: "Extracts tabular data from locked DISCO PDF billing ledgers and converts them into editable, formula-ready Excel files.",
+    description: "FCodeBulkPDFtoExcelConvert parses tabular DISCO PDF billing reports, accurately preserving consumer reference numbers, meter numbers, units, and arrears.",
     features: [
       "High-speed extraction with intelligent table structure detection",
       "Preserves leading zeroes on 14-digit reference numbers",
@@ -501,7 +501,7 @@ const PESCO_TOOLS = [
     ],
     tutorial: {
       overview: "Convert locked PDF reports into dynamic Excel sheets without retyping.",
-      prerequisites: ["Windows 10/11", "PESCO PDF Reports"],
+      prerequisites: ["Windows 10/11", "DISCO PDF Reports"],
       steps: [
         { step: 1, title: "Acquire Tool", desc: "Contact developer for licensed executable." },
         { step: 2, title: "Convert to Excel", desc: "Select PDFs and export to structured XLSX." }
@@ -677,7 +677,7 @@ const PESCO_TOOLS = [
       "Department-wise breakdown of current assessed billing vs cash realization",
       "Reconciles at-source deductions by KP Finance Department and Federal ministries",
       "Tracks chronic arrears of Tehsil Municipal Administrations (TMAs)",
-      "Generates executive briefs for CEO and CFO PESCO"
+      "Generates executive briefs for CEO and CFO of any DISCO"
     ],
     tutorial: {
       overview: "Audit government electricity bill assessments and track at-source recoveries.",
@@ -692,20 +692,22 @@ const PESCO_TOOLS = [
 ];
 
 // Master Categories & Statuses
+const PESCO_TOOLS = DISCO_TOOLS; // Backwards compatibility alias
+
 const TOOL_CATEGORIES = [
-  { id: "all", name: "All Softwares", count: PESCO_TOOLS.length },
-  { id: "downloadable", name: "Direct Download (Free)", count: PESCO_TOOLS.filter(t => t.isPublicDownload).length },
-  { id: "on-request", name: "Available on Request", count: PESCO_TOOLS.filter(t => t.status === "on-request").length },
-  { id: "in-development", name: "In Development", count: PESCO_TOOLS.filter(t => t.status === "in-development").length },
-  { id: "flagship", name: "Flagship Suite", count: PESCO_TOOLS.filter(t => t.category === "flagship").length },
-  { id: "posting", name: "Posting Checkers", count: PESCO_TOOLS.filter(t => t.category === "posting").length },
-  { id: "converters", name: "Converters", count: PESCO_TOOLS.filter(t => t.category === "converters").length },
-  { id: "extractors", name: "Scrapers & Extractors", count: PESCO_TOOLS.filter(t => t.category === "extractors").length }
+  { id: "all", name: "All Softwares", count: DISCO_TOOLS.length },
+  { id: "downloadable", name: "Direct Download (Free)", count: DISCO_TOOLS.filter(t => t.isPublicDownload).length },
+  { id: "on-request", name: "Available on Request", count: DISCO_TOOLS.filter(t => t.status === "on-request").length },
+  { id: "in-development", name: "In Development", count: DISCO_TOOLS.filter(t => t.status === "in-development").length },
+  { id: "flagship", name: "Flagship Suite", count: DISCO_TOOLS.filter(t => t.category === "flagship").length },
+  { id: "posting", name: "Posting Checkers", count: DISCO_TOOLS.filter(t => t.category === "posting").length },
+  { id: "converters", name: "Converters", count: DISCO_TOOLS.filter(t => t.category === "converters").length },
+  { id: "extractors", name: "Scrapers & Extractors", count: DISCO_TOOLS.filter(t => t.category === "extractors").length }
 ];
 
 function getToolById(id) {
   if (!id) return null;
-  return PESCO_TOOLS.find(t => t.id === id);
+  return DISCO_TOOLS.find(t => t.id === id);
 }
 
 function getToolByFilename(filename) {
@@ -713,7 +715,7 @@ function getToolByFilename(filename) {
   const target = filename.toLowerCase().trim();
 
   // 1. Direct ID, Name, or Filename exact match
-  let found = PESCO_TOOLS.find(t => 
+  let found = DISCO_TOOLS.find(t => 
     (t.id && t.id.toLowerCase() === target) ||
     (t.name && t.name.toLowerCase() === target) ||
     (t.filename && t.filename.toLowerCase() === target)
@@ -722,15 +724,15 @@ function getToolByFilename(filename) {
 
   // 2. High-priority keyword matching for main downloadable tools
   if (target.includes('pitc')) {
-    return PESCO_TOOLS.find(t => t.id === 'pitc-suite');
+    return DISCO_TOOLS.find(t => t.id === 'pitc-suite');
   }
   if (target.includes('scrapper') || target.includes('scraper') || (target.includes('bill') && !target.includes('downloader') && !target.includes('e-bills'))) {
-    return PESCO_TOOLS.find(t => t.id === 'bill-scrapper');
+    return DISCO_TOOLS.find(t => t.id === 'bill-scrapper');
   }
 
   // 3. Normalized stripped match
   const clean = target.replace(/[\s_\-\.]+/g, '').replace(/exe$/i, '').replace(/setup$/i, '');
-  return PESCO_TOOLS.find(t => {
+  return DISCO_TOOLS.find(t => {
     const tFile = (t.filename || '').toLowerCase().replace(/[\s_\-\.]+/g, '').replace(/exe$/i, '').replace(/setup$/i, '');
     const tId = (t.id || '').toLowerCase().replace(/[\s_\-\.]+/g, '');
     const tName = (t.name || '').toLowerCase().replace(/[\s_\-\.]+/g, '');
