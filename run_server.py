@@ -4,7 +4,15 @@ import webbrowser
 import os
 import sys
 
-PORT = 8080
+# Ensure clean console output on Windows cp1252 / cmd.exe
+if sys.platform == "win32":
+    try:
+        sys.stdout.reconfigure(encoding="utf-8", errors="replace")
+        sys.stderr.reconfigure(encoding="utf-8", errors="replace")
+    except Exception:
+        pass
+
+DEFAULT_PORT = 8080
 DIRECTORY = os.path.dirname(os.path.abspath(__file__))
 
 class Handler(http.server.SimpleHTTPRequestHandler):
@@ -18,25 +26,44 @@ class Handler(http.server.SimpleHTTPRequestHandler):
         self.send_header('Expires', '0')
         super().end_headers()
 
+class ReusableTCPServer(socketserver.TCPServer):
+    allow_reuse_address = True
+
+def find_available_server(start_port=DEFAULT_PORT, max_tries=20):
+    for port in range(start_port, start_port + max_tries):
+        try:
+            httpd = ReusableTCPServer(("", port), Handler)
+            return httpd, port
+        except OSError:
+            continue
+    # Fallback to random free port chosen by OS
+    httpd = ReusableTCPServer(("", 0), Handler)
+    return httpd, httpd.server_address[1]
+
 def main():
     os.chdir(DIRECTORY)
-    with socketserver.TCPServer(("", PORT), Handler) as httpd:
-        url = f"http://localhost:{PORT}/index.html"
-        print("=" * 65)
-        print("   ⚡ PESCO Tools & PITCSuite Web Server Started ⚡")
-        print("=" * 65)
-        print(f"  Access Portal at: {url}")
-        print(f"  Serving Directory: {DIRECTORY}")
-        print("  Press Ctrl+C to stop the server.")
-        print("=" * 65)
-        try:
-            webbrowser.open(url)
-        except Exception:
-            pass
-        try:
-            httpd.serve_forever()
-        except KeyboardInterrupt:
-            print("\nServer gracefully shut down.")
+    httpd, port = find_available_server(DEFAULT_PORT)
+    url = f"http://localhost:{port}/index.html"
+    
+    print("=" * 68)
+    print("   [OK] DISCO Tools & PITCSuite Web Server Started")
+    print("=" * 68)
+    print(f"  Access Portal at: {url}")
+    print(f"  Serving Directory: {DIRECTORY}")
+    print("  Compatible DISCOs: LESCO, GEPCO, FESCO, IESCO, MEPCO,")
+    print("                     PESCO, HAZECO, SEPCO, HESCO, QESCO, TESCO")
+    print("  Press Ctrl+C in this window to stop the server.")
+    print("=" * 68)
+    
+    try:
+        webbrowser.open(url)
+    except Exception:
+        pass
+        
+    try:
+        httpd.serve_forever()
+    except KeyboardInterrupt:
+        print("\nServer gracefully shut down.")
 
 if __name__ == '__main__':
     main()
