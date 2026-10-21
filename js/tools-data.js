@@ -38,7 +38,7 @@ const DISCO_TOOLS = [
     updated: "October 2026",
     icon: "layers",
     summary: "A complete unified workstation package having all the tools in one unified desktop suite. Includes CP posting verifiers, converters, bill scrapers, and ledger reconcilers.",
-    description: "PITCSuite v2.8.97 is the comprehensive flagship all-in-one productivity suite engineered specifically for commercial staff, revenue officers, and computer operators across all Pakistan DISCOs (LESCO, GEPCO, FESCO, IESCO, MEPCO, PESCO, HAZECO, SEPCO, HESCO, QESCO, TESCO). Combines CP-139, CP-136, CP-52, CP-22T posting checkers, bill scrapers, and converters inside a single high-speed dashboard.",
+    description: "PITCSuite is the comprehensive flagship all-in-one productivity suite engineered specifically for commercial staff, revenue officers, and computer operators across all Pakistan DISCOs (LESCO, GEPCO, FESCO, IESCO, MEPCO, PESCO, HAZECO, SEPCO, HESCO, QESCO, TESCO). Combines CP-139, CP-136, CP-52, CP-22T posting checkers, bill scrapers, and converters inside a single high-speed dashboard.",
     features: [
       "Automatic PITC Report Downloader",
       "E/Bill PDF Downloader",
@@ -58,7 +58,7 @@ const DISCO_TOOLS = [
       steps: [
         {
           step: 1,
-          title: "Download & Launch v2.8.97",
+          title: "Download & Launch",
           desc: "Download `PITCSuite_Setup.exe` and run the installer. Launch directly from your desktop shortcut."
         },
         {
@@ -125,7 +125,7 @@ const DISCO_TOOLS = [
       steps: [
         {
           step: 1,
-          title: "Launch Bill Scrapper v1.3.2",
+          title: "Download & Launch",
           desc: "Run `BillScrapper-Setup.exe`. Paste consumer reference numbers into the input box or click 'Import List'."
         },
         {
@@ -186,8 +186,8 @@ const DISCO_TOOLS = [
       steps: [
         {
           step: 1,
-          title: "Development in Progress",
-          desc: "This software is currently in active coding. Click 'Contact / Request Software' to register your interest with Tahir Naqash."
+          title: "Download & Launch",
+          desc: "Contact developer Tahir Naqash to acquire the licensed utility and launch on your workstation."
         }
       ],
       tips: [
@@ -227,8 +227,8 @@ const DISCO_TOOLS = [
       steps: [
         {
           step: 1,
-          title: "Release Pending",
-          desc: "Full executable release scheduled for upcoming update cycle."
+          title: "Download & Launch",
+          desc: "Contact developer Tahir Naqash to acquire the licensed utility and launch on your workstation."
         }
       ],
       tips: ["Will integrate directly into PITCSuite."]
@@ -264,7 +264,7 @@ const DISCO_TOOLS = [
       overview: "Verify CP-139 bank scrolls against PITC records to ensure every collected rupee is credited to consumer accounts without discrepancy.",
       prerequisites: ["Windows 7 / 8 / 10 / 11", "Bank scroll text/dat files", "Billing ledger copy"],
       steps: [
-        { step: 1, title: "Acquire & Launch Executable", desc: "Contact developer to receive licensed `CP139PostingChecker`." },
+        { step: 1, title: "Download & Launch", desc: "Contact developer to receive licensed `CP139PostingChecker`." },
         { step: 2, title: "Select Bank Scroll & Ledger", desc: "Load the bank collection file and ledger dump." },
         { step: 3, title: "Analyze Discrepancies", desc: "Review matched versus unposted receipts." },
         { step: 4, title: "Export Findings", desc: "Save discrepancy summary to Excel." }
@@ -302,7 +302,7 @@ const DISCO_TOOLS = [
       overview: "Reconcile CP-136 monthly collection totals to ensure clean audit compliance.",
       prerequisites: ["Windows 10/11", "Bank scroll extracts"],
       steps: [
-        { step: 1, title: "Acquire Executable", desc: "Contact Tahir Naqash for the standalone build." },
+        { step: 1, title: "Download & Launch", desc: "Contact Tahir Naqash for the standalone build." },
         { step: 2, title: "Execute Audit", desc: "Click reconcile and review mismatch registers." }
       ],
       tips: ["Match by transaction date and scroll ID."]
@@ -338,7 +338,7 @@ const DISCO_TOOLS = [
       overview: "Split bulk billing files into isolated feeder rosters in seconds.",
       prerequisites: ["Windows 10/11"],
       steps: [
-        { step: 1, title: "Acquire Executable", desc: "Request executable from developer." },
+        { step: 1, title: "Download & Launch", desc: "Request executable from developer." },
         { step: 2, title: "Partition by Code", desc: "Select target feeder and click export." }
       ],
       tips: ["Useful for preparing lineman route rosters."]
@@ -374,7 +374,7 @@ const DISCO_TOOLS = [
       overview: "Convert locked PDF reports into dynamic Excel sheets without retyping.",
       prerequisites: ["Windows 10/11", "DISCO PDF Reports"],
       steps: [
-        { step: 1, title: "Acquire Tool", desc: "Contact developer for licensed executable." },
+        { step: 1, title: "Download & Launch", desc: "Contact developer for licensed executable." },
         { step: 2, title: "Convert to Excel", desc: "Select PDFs and export to structured XLSX." }
       ],
       tips: ["Batch mode handles thousands of pages effortlessly."]
@@ -410,7 +410,7 @@ const DISCO_TOOLS = [
       overview: "Transform fixed-width CP-21c statements into clean Excel pivot tables.",
       prerequisites: ["Windows 10/11"],
       steps: [
-        { step: 1, title: "Acquire Executable", desc: "Contact developer." },
+        { step: 1, title: "Download & Launch", desc: "Contact developer." },
         { step: 2, title: "Run Conversion", desc: "Export formatted financial schedules." }
       ],
       tips: ["Use for monthly revenue closing audits."]
@@ -446,7 +446,7 @@ const DISCO_TOOLS = [
       overview: "Trace payments and verify Form 88-L revenue entries easily.",
       prerequisites: ["Windows 10/11"],
       steps: [
-        { step: 1, title: "Acquire Tool", desc: "Contact developer." },
+        { step: 1, title: "Download & Launch", desc: "Contact developer." },
         { step: 2, title: "Extract Payments", desc: "Set filters and export to Excel." }
       ],
       tips: ["Helpful for locating miscredited consumer payments."]
@@ -482,7 +482,7 @@ const DISCO_TOOLS = [
       overview: "Merge individual consumer bills or audit scrolls into one tidy file for printing or archiving.",
       prerequisites: ["Windows 10/11"],
       steps: [
-        { step: 1, title: "Acquire Tool", desc: "Contact developer." },
+        { step: 1, title: "Download & Launch", desc: "Contact developer." },
         { step: 2, title: "Merge & Save", desc: "Click 'Merge PDFs' and save the combined file." }
       ],
       tips: ["Sort by filename to maintain correct reference number order."]
@@ -518,7 +518,7 @@ const DISCO_TOOLS = [
       overview: "Audit CP-22T adjustment entries before closing monthly accounts.",
       prerequisites: ["Windows 10/11"],
       steps: [
-        { step: 1, title: "Acquire Tool", desc: "Contact developer." },
+        { step: 1, title: "Download & Launch", desc: "Contact developer." },
         { step: 2, title: "Cross-Check Sanctions", desc: "Verify approved versus posted credits." }
       ],
       tips: ["Always review FCA adjustments highlighted in orange."]
@@ -554,7 +554,7 @@ const DISCO_TOOLS = [
       overview: "Audit government electricity bill assessments and track at-source recoveries.",
       prerequisites: ["Windows 10/11"],
       steps: [
-        { step: 1, title: "Acquire Tool", desc: "Contact developer." },
+        { step: 1, title: "Download & Launch", desc: "Contact developer." },
         { step: 2, title: "Run Realization Audit", desc: "Correlate assessed billing with credited funds." }
       ],
       tips: ["Filter by Provincial vs Federal departments."]

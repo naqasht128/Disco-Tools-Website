@@ -205,7 +205,7 @@ function renderTutorialContent(toolId) {
             <!-- Step Content Box -->
             <div class="bg-slate-900/60 rounded-2xl p-5 border border-white/5 hover:border-sky-500/30 transition-all">
               <h4 class="text-base font-bold text-white mb-2 flex items-center gap-2">
-                ${st.title}
+                ${st.step === 1 ? 'Download & Launch' : st.title.replace(/\s+v\d+(\.\d+)*/i, '')}
               </h4>
               <p class="text-slate-300 text-sm leading-relaxed">
                 ${st.desc}
