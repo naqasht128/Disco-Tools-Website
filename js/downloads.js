@@ -42,19 +42,19 @@ document.addEventListener('DOMContentLoaded', () => {
   renderDownloads();
 });
 
-// Render Category Filter Pills with large touch targets
+// Render Category Filter Pills as a compact single row
 function renderCategoryPills() {
   const container = document.getElementById('category-pills-container');
   if (!container) return;
 
   container.innerHTML = TOOL_CATEGORIES.map(cat => `
     <button 
-      class="category-pill px-4 py-2.5 rounded-xl text-xs sm:text-sm font-bold border border-white/10 bg-slate-800/80 text-slate-200 hover:text-white hover:bg-slate-700 transition-all flex items-center gap-2 ${cat.id === activeCategory ? 'active' : ''}"
+      class="category-pill px-2.5 py-1 sm:px-3 sm:py-1 rounded-lg text-xs font-semibold border border-white/10 bg-slate-800/80 text-slate-200 hover:text-white hover:bg-slate-700 transition-all flex items-center gap-1.5 shrink-0 ${cat.id === activeCategory ? 'active' : ''}"
       data-category="${cat.id}"
       onclick="setCategory('${cat.id}')"
     >
       <span>${cat.name}</span>
-      <span class="px-2 py-0.5 rounded-full text-xs font-mono bg-slate-900 text-sky-300 border border-white/10">${cat.count}</span>
+      <span class="px-1.5 py-0.2 rounded-full text-[10px] sm:text-[11px] font-mono bg-slate-900/90 text-sky-300 border border-white/10">${cat.count}</span>
     </button>
   `).join('');
 }
@@ -146,7 +146,7 @@ function renderDownloads() {
     return;
   }
 
-  container.innerHTML = filtered.map(tool => {
+    container.innerHTML = filtered.map(tool => {
     const isPublic = tool.isPublicDownload === true;
     const isDev = tool.status === 'in-development';
     const showSpecs = tool.id === 'pitc-suite' || tool.id === 'bill-scrapper';
@@ -157,39 +157,39 @@ function renderDownloads() {
 
     if (isPublic) {
       const startingPrice = tool.id === 'pitc-suite' ? 'Starting from Rs. 600' : (tool.id === 'bill-scrapper' ? 'Starting from Rs. 300' : 'Direct Download');
-      statusPill = `<span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-lg text-xs font-bold bg-emerald-500/20 text-emerald-300 border border-emerald-500/40">
-        <span class="w-2 h-2 rounded-full bg-emerald-400"></span> Direct Download Ready (${startingPrice})
+      statusPill = `<span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-md text-[11px] font-bold bg-emerald-500/20 text-emerald-300 border border-emerald-500/40">
+        <span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span> Direct Download Ready (${startingPrice})
       </span>`;
 
       actionButton = `<button 
         onclick="triggerToolDownload('${tool.id}', '${tool.title}')"
-        class="w-full py-3.5 px-4 rounded-xl bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-500 hover:to-teal-500 text-white font-bold text-sm sm:text-base transition-all shadow-lg shadow-emerald-950/40 flex items-center justify-center gap-2 glow-btn"
+        class="w-full py-2.5 px-3 rounded-lg bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-500 hover:to-teal-500 text-white font-bold text-xs transition-all shadow-md shadow-emerald-950/30 flex items-center justify-center gap-1.5 glow-btn"
         title="Download ${tool.name} for Windows PC"
       >
-        <i data-lucide="download" class="w-5 h-5"></i> Download for Windows
+        <i data-lucide="download" class="w-4 h-4"></i> Download (.EXE)
       </button>`;
     } else if (isDev) {
-      statusPill = `<span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-lg text-xs font-bold bg-amber-500/20 text-amber-300 border border-amber-500/40">
-        <span class="w-2 h-2 rounded-full bg-amber-400 animate-pulse"></span> In Development (Pre-Order)
+      statusPill = `<span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-md text-[11px] font-bold bg-amber-500/20 text-amber-300 border border-amber-500/40">
+        <span class="w-1.5 h-1.5 rounded-full bg-amber-400 animate-pulse"></span> In Development
       </span>`;
 
       actionButton = `<button 
         onclick="openContactRequestModal(getToolById('${tool.id}'))"
-        class="w-full py-3.5 px-4 rounded-xl bg-amber-500/20 hover:bg-amber-500/30 text-amber-200 border border-amber-500/40 font-bold text-sm transition-all flex items-center justify-center gap-2"
+        class="w-full py-2.5 px-3 rounded-lg bg-amber-500/20 hover:bg-amber-500/30 text-amber-200 border border-amber-500/40 font-bold text-xs transition-all flex items-center justify-center gap-1.5"
       >
-        <i data-lucide="clock" class="w-4 h-4 text-amber-400"></i> Request Early Access
+        <i data-lucide="clock" class="w-3.5 h-3.5 text-amber-400"></i> Early Access
       </button>`;
     } else {
       // Available on request
-      statusPill = `<span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-lg text-xs font-bold bg-sky-500/20 text-sky-300 border border-sky-500/40">
-        <span class="w-2 h-2 rounded-full bg-sky-400"></span> Available on Request
+      statusPill = `<span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-md text-[11px] font-bold bg-sky-500/20 text-sky-300 border border-sky-500/40">
+        <span class="w-1.5 h-1.5 rounded-full bg-sky-400"></span> Available on Request
       </span>`;
 
       actionButton = `<button 
         onclick="openContactRequestModal(getToolById('${tool.id}'))"
-        class="w-full py-3.5 px-4 rounded-xl bg-sky-600 hover:bg-sky-500 text-white font-bold text-sm transition-all flex items-center justify-center gap-2 shadow-md shadow-sky-950/30"
+        class="w-full py-2.5 px-3 rounded-lg bg-sky-600 hover:bg-sky-500 text-white font-bold text-xs transition-all flex items-center justify-center gap-1.5 shadow-sm shadow-sky-950/20"
       >
-        <i data-lucide="phone-call" class="w-4 h-4"></i> Request Copy on WhatsApp
+        <i data-lucide="phone-call" class="w-3.5 h-3.5"></i> Request Copy
       </button>`;
     }
 
@@ -199,83 +199,73 @@ function renderDownloads() {
 
     // Filename / specs
     const filenameDisplay = (showSpecs && tool.filename) ? `
-      <p class="text-xs text-slate-300 font-mono mt-0.5 flex items-center gap-1.5">
-        <i data-lucide="file" class="w-3.5 h-3.5 text-sky-400"></i> ${tool.filename}
+      <p class="text-[11px] text-slate-300 font-mono mt-0.5 flex items-center gap-1 truncate">
+        <i data-lucide="file" class="w-3 h-3 text-sky-400 shrink-0"></i> ${tool.filename}
       </p>` : '';
 
     // File specs bar
     const footerSpecs = showSpecs ? `
-      <div class="flex items-center justify-between text-xs sm:text-sm text-slate-300 mb-4 pb-3 border-b border-white/10 font-mono">
-        <span class="flex items-center gap-1.5 text-white font-bold">
-          <i data-lucide="hard-drive" class="w-4 h-4 text-sky-400"></i> Size: <span class="${tool.id === 'pitc-suite' ? 'pitc-size-badge' : 'bill-size-badge'}">${tool.size}</span>
+      <div class="flex items-center justify-between text-[11px] text-slate-300 mb-2.5 font-mono">
+        <span class="flex items-center gap-1 text-white font-semibold">
+          <i data-lucide="hard-drive" class="w-3 h-3 text-sky-400"></i> Size: <span class="${tool.id === 'pitc-suite' ? 'pitc-size-badge' : 'bill-size-badge'}">${tool.size}</span>
         </span>
-        <span class="flex items-center gap-1.5 text-emerald-400 font-bold">
-          <i data-lucide="check-circle-2" class="w-4 h-4"></i> 100% Offline Safe
+        <span class="flex items-center gap-1 text-emerald-400 font-semibold">
+          <i data-lucide="check-circle-2" class="w-3 h-3"></i> 100% Offline
         </span>
       </div>` : `
-      <div class="flex items-center justify-between text-xs sm:text-sm text-slate-300 mb-4 pb-3 border-b border-white/10">
-        <span class="flex items-center gap-1.5 text-sky-300 font-semibold">
-          <i data-lucide="shield" class="w-4 h-4 text-sky-400"></i> Commercial Office Tool
+      <div class="flex items-center justify-between text-[11px] text-slate-400 mb-2.5">
+        <span class="flex items-center gap-1 text-sky-300 font-medium">
+          <i data-lucide="shield" class="w-3 h-3 text-sky-400"></i> Commercial Tool
         </span>
-        <span class="flex items-center gap-1.5 text-emerald-400 font-semibold">
-          <i data-lucide="check" class="w-4 h-4"></i> Windows 7/8/10/11
+        <span class="flex items-center gap-1 text-emerald-400 font-medium">
+          <i data-lucide="check" class="w-3 h-3"></i> Win 7/8/10/11
         </span>
       </div>`;
 
     return `
       <div 
         onclick="navigateToDetails('${tool.id}', event)"
-        class="glass-card rounded-2xl p-6 sm:p-7 flex flex-col justify-between relative group ${cardBorder} cursor-pointer hover:border-sky-400/50 hover:shadow-2xl transition-all duration-200"
+        class="glass-card rounded-xl p-4 sm:p-5 flex flex-col justify-between relative group ${cardBorder} cursor-pointer hover:border-sky-400/50 hover:shadow-xl transition-all duration-200"
         title="Click to view full software details & instructions"
       >
         
         <div>
           <!-- Header Badges -->
-          <div class="flex items-center justify-between gap-2 mb-4">
+          <div class="flex items-center justify-between gap-2 mb-2.5">
             ${statusPill}
           </div>
 
           <!-- Icon & Title -->
-          <div class="flex items-start gap-4 mb-4">
-            <div class="w-12 h-12 rounded-xl ${tool.isFlagship ? 'bg-sky-600/30 text-sky-300 border border-sky-400/40' : (isPublic ? 'bg-emerald-600/20 text-emerald-400 border border-emerald-500/40' : 'bg-slate-800 text-sky-400 border border-white/10')} flex items-center justify-center flex-shrink-0 group-hover:scale-105 transition-transform duration-300">
-              <i data-lucide="${tool.icon}" class="w-6 h-6"></i>
+          <div class="flex items-center gap-3 mb-2.5">
+            <div class="w-10 h-10 rounded-lg ${tool.isFlagship ? 'bg-sky-600/30 text-sky-300 border border-sky-400/40' : (isPublic ? 'bg-emerald-600/20 text-emerald-400 border border-emerald-500/40' : 'bg-slate-800 text-sky-400 border border-white/10')} flex items-center justify-center flex-shrink-0 group-hover:scale-105 transition-transform duration-200">
+              <i data-lucide="${tool.icon}" class="w-5 h-5"></i>
             </div>
-            <div>
-              <h3 class="text-lg sm:text-xl font-extrabold text-white group-hover:text-sky-300 transition-colors leading-snug flex items-center gap-2">
-                ${tool.name}
-                <i data-lucide="arrow-up-right" class="w-4 h-4 text-slate-400 opacity-60 group-hover:opacity-100 group-hover:text-sky-300 transition-all"></i>
+            <div class="min-w-0 flex-1">
+              <h3 class="text-base sm:text-lg font-bold text-white group-hover:text-sky-300 transition-colors leading-tight truncate flex items-center gap-1.5">
+                <span>${tool.name}</span>
+                <i data-lucide="arrow-up-right" class="w-3.5 h-3.5 text-slate-400 opacity-60 group-hover:opacity-100 group-hover:text-sky-300 transition-all shrink-0"></i>
               </h3>
               ${filenameDisplay}
             </div>
           </div>
 
-          <!-- Description (High Contrast, Readable Font) -->
-          <p class="text-slate-200 text-sm sm:text-base leading-relaxed mb-5 font-normal">
+          <!-- Description (Reduced & High Contrast) -->
+          <p class="text-slate-300 text-xs sm:text-sm leading-relaxed mb-3 line-clamp-2">
             ${tool.summary}
           </p>
-
-          <!-- Key Capabilities Checklist -->
-          <div class="space-y-2 mb-6 text-xs sm:text-sm text-slate-300 border-t border-white/10 pt-4">
-            ${tool.features.slice(0, 3).map(f => `
-              <div class="flex items-start gap-2.5">
-                <i data-lucide="check-circle-2" class="w-4 h-4 text-emerald-400 flex-shrink-0 mt-0.5"></i>
-                <span class="line-clamp-1">${f}</span>
-              </div>
-            `).join('')}
-          </div>
         </div>
 
         <!-- Footer Actions -->
-        <div>
+        <div class="pt-2 border-t border-white/5">
           ${footerSpecs}
 
-          <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5" onclick="event.stopPropagation()">
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-2" onclick="event.stopPropagation()">
             ${actionButton}
             <a 
               href="details.html?tool=${tool.id}"
-              class="w-full py-3 px-3 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-100 hover:text-white border border-white/10 font-bold text-xs sm:text-sm transition-all flex items-center justify-center gap-1.5"
+              class="w-full py-2.5 px-3 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-200 hover:text-white border border-white/10 font-bold text-xs transition-all flex items-center justify-center gap-1.5"
             >
-              <i data-lucide="info" class="w-4 h-4 text-sky-400"></i> View Details & Guide
+              <i data-lucide="info" class="w-3.5 h-3.5 text-sky-400"></i> Details & Guide
             </a>
           </div>
         </div>

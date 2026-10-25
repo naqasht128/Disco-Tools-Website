@@ -283,6 +283,25 @@ body {
 }
 
 /* Ensure large, comfortable tap targets on mobile */
-button, a.btn, .glow-btn, .category-pill {
+button, a.btn, .glow-btn {
   min-height: 44px;
+}
+.category-pill {
+  min-height: 28px !important;
+}
+
+/* Compact Category Filter Pills & No-Scrollbar Utility */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.category-pill {
+  min-height: 28px !important;
+  font-size: 0.75rem !important;
+  padding-top: 0.35rem !important;
+  padding-bottom: 0.35rem !important;
 }
