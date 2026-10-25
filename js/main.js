@@ -529,7 +529,7 @@ async function syncLiveGitHubReleases() {
   const toolsToSync = tools.filter(t => t.githubRepo);
   if (!toolsToSync.length) return;
 
-  const CACHE_TTL_MS = 3600 * 1000; // 1-hour cache
+  const CACHE_TTL_MS = 5 * 60 * 1000; // 5-minute cache for fast release sync
 
   for (const tool of toolsToSync) {
     const cacheKey = `disco_live_release_${tool.id}`;
@@ -578,11 +578,18 @@ async function syncLiveGitHubReleases() {
             ? new Date(json.published_at).toLocaleDateString('en-US', { month: 'long', year: 'numeric' })
             : tool.updated;
 
+          const assetList = (json.assets || []).map(a => ({
+            name: a.name,
+            size: a.size,
+            downloadUrl: a.browser_download_url
+          }));
+
           releaseData = {
             version: tag,
             size: sizeStr,
             updated: published,
-            downloadUrl: dlUrl
+            downloadUrl: dlUrl,
+            assets: assetList
           };
 
           try {
@@ -600,12 +607,31 @@ async function syncLiveGitHubReleases() {
       if (releaseData.updated) tool.updated = releaseData.updated;
       if (releaseData.downloadUrl) tool.downloadUrl = releaseData.downloadUrl;
 
+      // Also update builds dynamically if releaseData has assets
+      if (releaseData.assets && tool.builds && tool.builds.length > 0) {
+        tool.builds.forEach(b => {
+          const matched = releaseData.assets.find(a => {
+            const aName = a.name.toLowerCase();
+            if (b.id === 'win7' && (aName.includes('win7') || aName.includes('legacy'))) return true;
+            if (b.id === 'win10' && !aName.includes('win7') && aName.endsWith('.exe')) return true;
+            if (b.id.includes('linux') && (aName.includes('linux') || !aName.includes('.exe'))) return true;
+            return false;
+          });
+          if (matched) {
+            if (matched.size) b.size = (matched.size / (1024 * 1024)).toFixed(1) + ' MB';
+            if (matched.downloadUrl) b.downloadUrl = matched.downloadUrl;
+          }
+        });
+      }
+
       applyLiveBadgeUpdates(tool);
     }
   }
 
-  // If downloads grid is rendered on current page, refresh with live data
-  if (typeof renderToolsGrid === 'function') {
+  // If downloads page is rendered on current page, refresh with live data
+  if (typeof renderDownloads === 'function') {
+    renderDownloads();
+  } else if (typeof renderToolsGrid === 'function') {
     renderToolsGrid();
   }
 }

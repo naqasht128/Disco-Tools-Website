@@ -35,8 +35,8 @@ const DISCO_TOOLS = [
     isFlagship: true,
     status: "ready",
     isPublicDownload: true,
-    version: "v2.8.97",
-    size: "144.8 MB",
+    version: "v2.8.100",
+    size: "131.1 MB",
     filename: "PITCSuite_Setup.exe",
     downloadUrl: "https://github.com/naqasht128/PitcSuite/releases/latest/download/PITCSuite_Setup.exe",
     githubRepo: "naqasht128/PitcSuite",
@@ -223,8 +223,8 @@ const DISCO_TOOLS = [
     isFlagship: false,
     status: "ready",
     isPublicDownload: true,
-    version: "v1.0.0",
-    size: "72.6 MB",
+    version: "v1.0.2",
+    size: "73.3 MB",
     filename: "EBillDownloader-Setup.exe",
     builds: [
       {
@@ -233,7 +233,7 @@ const DISCO_TOOLS = [
         shortLabel: "Win 10/11",
         filename: "EBillDownloader-Setup.exe",
         downloadUrl: "https://github.com/naqasht128/EBillDownloader/releases/latest/download/EBillDownloader-Setup.exe",
-        size: "72.6 MB",
+        size: "73.3 MB",
         icon: "monitor"
       },
       {
@@ -242,7 +242,7 @@ const DISCO_TOOLS = [
         shortLabel: "Win 7",
         filename: "EBillDownloader-Win7-Setup.exe",
         downloadUrl: "https://github.com/naqasht128/EBillDownloader/releases/latest/download/EBillDownloader-Win7-Setup.exe",
-        size: "46.3 MB",
+        size: "46.2 MB",
         icon: "monitor"
       }
     ],
