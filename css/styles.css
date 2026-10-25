@@ -274,11 +274,15 @@ body {
 
 @media (max-width: 640px) {
   body {
-    font-size: 15px;
+    font-size: 14px;
   }
   h1 {
-    font-size: 2.25rem !important;
+    font-size: 1.75rem !important;
     line-height: 1.25 !important;
+  }
+  /* On mobile, comfortable tap targets without excessive vertical bulk */
+  button, a.btn, .glow-btn {
+    min-height: 38px;
   }
 }
 

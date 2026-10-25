@@ -143,13 +143,13 @@ function renderTutorialContent(toolId) {
             <div class="flex flex-wrap sm:flex-nowrap items-center gap-2">
               ${tool.builds.map(b => `
                 <button 
-                  onclick="triggerToolDownload('${tool.id}', '${tool.name} (${b.label})', '${b.downloadUrl}', '${b.filename}')"
+                  onclick="triggerToolDownload('${tool.id}', '${tool.name} - ${b.label}', '${b.downloadUrl}', '${b.filename}')"
                   class="px-3.5 py-2.5 rounded-xl ${b.id === 'win10' ? 'bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-500 hover:to-teal-500 text-white shadow-md shadow-emerald-950/40 glow-btn' : (b.id === 'win7' ? 'bg-slate-800 hover:bg-slate-700 text-emerald-300 hover:text-white border border-emerald-500/40' : 'bg-slate-800 hover:bg-slate-700 text-sky-300 hover:text-white border border-sky-500/40')} font-bold text-xs flex items-center gap-1.5 transition-all"
                   title="Download for ${b.label} (${b.size})"
                 >
                   <i data-lucide="${b.icon || 'download'}" class="w-3.5 h-3.5"></i>
                   <span>${b.label}</span>
-                  <span class="text-[10px] opacity-75 font-mono">(${b.size})</span>
+                  <span class="text-[10px] opacity-75 font-mono">${b.size}</span>
                 </button>
               `).join('')}
             </div>

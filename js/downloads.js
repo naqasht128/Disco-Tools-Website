@@ -167,7 +167,7 @@ function renderDownloads() {
         class="w-full py-2.5 px-3 rounded-lg bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-500 hover:to-teal-500 text-white font-bold text-xs transition-all shadow-md shadow-emerald-950/30 flex items-center justify-center gap-1.5 glow-btn"
         title="Download ${tool.name} for Windows PC"
       >
-        <i data-lucide="download" class="w-4 h-4"></i> Download (.EXE)
+        <i data-lucide="download" class="w-4 h-4"></i> Download EXE
       </button>`;
     } else if (isDev) {
       statusPill = `<span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-md text-[11px] font-bold bg-amber-500/20 text-amber-300 border border-amber-500/40">
@@ -253,7 +253,7 @@ function renderDownloads() {
         <div class="space-y-2" onclick="event.stopPropagation()">
           <div class="grid grid-cols-3 gap-1.5">
             <button 
-              onclick="triggerToolDownload('bill-scrapper', 'Bill Scrapper (Windows 10/11)', 'https://github.com/naqasht128/BillScrapper/releases/latest/download/BillScrapper-Setup.exe', 'BillScrapper-Setup.exe')"
+              onclick="triggerToolDownload('bill-scrapper', 'Bill Scrapper - Windows 10/11', 'https://github.com/naqasht128/BillScrapper/releases/latest/download/BillScrapper-Setup.exe', 'BillScrapper-Setup.exe')"
               class="py-2 px-1 rounded-lg bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs flex flex-col items-center justify-center gap-0.5 text-center transition-all shadow-md shadow-emerald-950/30 glow-btn"
               title="Download Bill Scrapper for Windows 10 & 11 (22.2 MB)"
             >
@@ -262,7 +262,7 @@ function renderDownloads() {
             </button>
 
             <button 
-              onclick="triggerToolDownload('bill-scrapper', 'Bill Scrapper (Windows 7 Legacy)', 'https://github.com/naqasht128/BillScrapper/releases/latest/download/BillScrapper-Win7-Setup.exe', 'BillScrapper-Win7-Setup.exe')"
+              onclick="triggerToolDownload('bill-scrapper', 'Bill Scrapper - Windows 7 Legacy', 'https://github.com/naqasht128/BillScrapper/releases/latest/download/BillScrapper-Win7-Setup.exe', 'BillScrapper-Win7-Setup.exe')"
               class="py-2 px-1 rounded-lg bg-teal-600 hover:bg-teal-500 text-white font-bold text-xs flex flex-col items-center justify-center gap-0.5 text-center transition-all shadow-sm"
               title="Download Bill Scrapper for Windows 7 & Legacy Systems (27.9 MB)"
             >
@@ -271,7 +271,7 @@ function renderDownloads() {
             </button>
 
             <button 
-              onclick="triggerToolDownload('bill-scrapper', 'Bill Scrapper (Linux ARM64)', 'https://github.com/naqasht128/BillScrapper/releases/latest/download/BillScrapper', 'BillScrapper')"
+              onclick="triggerToolDownload('bill-scrapper', 'Bill Scrapper - Linux ARM64', 'https://github.com/naqasht128/BillScrapper/releases/latest/download/BillScrapper', 'BillScrapper')"
               class="py-2 px-1 rounded-lg bg-slate-800 hover:bg-slate-700 text-sky-300 hover:text-white border border-sky-500/30 font-bold text-xs flex flex-col items-center justify-center gap-0.5 text-center transition-all shadow-sm"
               title="Download Bill Scrapper for Linux ARM64 Binary (34.4 MB)"
             >
