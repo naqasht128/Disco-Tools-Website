@@ -212,7 +212,14 @@ const DISCO_TOOLS = [
     name: "E-Bills Downloader",
     title: "E-Bills Downloader - Downloads E-Bills into PDF",
     category: "extractors",
-    badge: "Direct Download",
+    badge: "Starting from Rs. 300",
+    startingPrice: "Rs. 300",
+    pricingPlans: [
+      { name: "1 Month Plan", price: "Rs. 300", validity: "30 Days Validity", devices: "1 Device" },
+      { name: "3 Months Plan", price: "Rs. 700", validity: "90 Days Validity", devices: "Up to 2 Devices" },
+      { name: "6 Months Plan", price: "Rs. 1,200", validity: "180 Days Validity", devices: "Up to 2 Devices" },
+      { name: "1 Year Plan", price: "Rs. 2,000", validity: "365 Days Validity", devices: "Up to 2 Devices" }
+    ],
     isFlagship: false,
     status: "ready",
     isPublicDownload: true,

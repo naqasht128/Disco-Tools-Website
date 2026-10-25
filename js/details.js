@@ -122,7 +122,7 @@ function renderTutorialContent(toolId) {
           <div class="flex flex-wrap items-center gap-2 mb-3">
             <span class="px-3 py-1 rounded-full text-xs font-semibold ${tool.isPublicDownload ? 'bg-emerald-500/20 text-emerald-300 border border-emerald-500/30' : 'bg-sky-500/20 text-sky-300 border border-sky-500/30'} flex items-center gap-1.5">
               ${tool.isPublicDownload ? '<i data-lucide="tag" class="w-3.5 h-3.5 text-emerald-400"></i>' : ''}
-              ${tool.id === 'pitc-suite' ? 'Starting from Rs. 600' : (tool.id === 'bill-scrapper' ? 'Starting from Rs. 300' : (tool.isPublicDownload ? 'Direct Download Ready' : tool.badge))}
+              ${tool.startingPrice ? `Starting from ${tool.startingPrice}` : (tool.id === 'pitc-suite' ? 'Starting from Rs. 600' : (tool.id === 'bill-scrapper' || tool.id === 'e-bills-downloader' ? 'Starting from Rs. 300' : (tool.isPublicDownload ? 'Direct Download Ready' : tool.badge)))}
             </span>
             ${tool.version ? `
             <span class="px-3 py-1 rounded-full text-xs font-mono bg-slate-800 text-slate-300 border border-white/5 ${tool.id === 'pitc-suite' ? 'pitc-version-badge' : (tool.id === 'bill-scrapper' ? 'bill-version-badge' : 'ebill-version-badge')}">
