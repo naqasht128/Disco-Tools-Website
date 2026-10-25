@@ -368,6 +368,38 @@ function renderDownloads() {
           </a>
         </div>
       `;
+    } else if (tool.id === 'pitc-suite') {
+      actionButtonsSection = `
+        <div class="space-y-2" onclick="event.stopPropagation()">
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-2">
+            ${actionButton}
+            <a 
+              href="details.html?tool=pitc-suite"
+              class="w-full py-2.5 px-3 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-200 hover:text-white border border-white/10 font-bold text-xs transition-all flex items-center justify-center gap-1.5"
+            >
+              <i data-lucide="info" class="w-3.5 h-3.5 text-sky-400"></i> Details & Guide
+            </a>
+          </div>
+
+          <!-- MPos Helper Tool Download for Mouse Coordinates -->
+          <div class="p-2 rounded-lg bg-amber-500/10 border border-amber-500/20 flex items-center justify-between gap-2 text-[11px]">
+            <div class="flex items-center gap-1.5 text-amber-300 min-w-0">
+              <i data-lucide="crosshair" class="w-3.5 h-3.5 text-amber-400 shrink-0"></i>
+              <span class="truncate">PDF not downloading?</span>
+            </div>
+            <a 
+              href="downloads/MPos-v.0.5.0-Portable.zip" 
+              download="MPos-v.0.5.0-Portable.zip"
+              class="px-2 py-1 rounded bg-amber-500/20 hover:bg-amber-500/30 text-amber-200 hover:text-white border border-amber-500/30 font-semibold text-[10px] flex items-center gap-1 transition-all shrink-0"
+              title="Download MPos Portable utility for mouse coordinates setup"
+            >
+              <i data-lucide="download" class="w-3 h-3 text-amber-400"></i>
+              <span>MPos Zip</span>
+              <span class="text-amber-400/80 font-mono">118 KB</span>
+            </a>
+          </div>
+        </div>
+      `;
     } else {
       actionButtonsSection = `
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-2" onclick="event.stopPropagation()">

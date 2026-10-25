@@ -62,6 +62,14 @@ function renderToolSidebar() {
   }).join('');
 
   refreshIcons();
+
+  // Scroll to hash target if present (e.g. #mouse-coordinates-guide)
+  if (window.location.hash) {
+    setTimeout(() => {
+      const el = document.querySelector(window.location.hash);
+      if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }, 150);
+  }
 }
 
 // Filter the sidebar list
@@ -267,6 +275,98 @@ function renderTutorialContent(toolId) {
               </a>
             </div>
           `).join('')}
+        </div>
+      </div>
+    ` : ''}
+
+    <!-- PITC Report PDF Printing & Mouse Coordinates Guide -->
+    ${tool.id === 'pitc-suite' ? `
+      <div id="mouse-coordinates-guide" class="glass-panel rounded-3xl p-6 sm:p-8 border border-amber-500/40 bg-gradient-to-b from-amber-950/20 via-slate-900/95 to-slate-900 mb-8 shadow-xl shadow-amber-950/20">
+        
+        <!-- Section Header -->
+        <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-6 pb-5 border-b border-white/10">
+          <div>
+            <div class="flex items-center gap-2 mb-1.5">
+              <span class="px-2.5 py-0.5 rounded-md text-[11px] font-bold bg-amber-500/20 text-amber-300 border border-amber-500/40 flex items-center gap-1.5">
+                <i data-lucide="crosshair" class="w-3.5 h-3.5 text-amber-400"></i> Report Automation Setup
+              </span>
+              <span class="text-xs text-slate-400 font-mono">Helper Utility</span>
+            </div>
+            <h2 class="text-xl sm:text-2xl font-bold text-white">
+              PDF Not Downloading? Configure Mouse Coordinates
+            </h2>
+            <p class="text-slate-300 text-xs sm:text-sm mt-1">
+              If a PITC report window has no &quot;Print this Report&quot; button (e.g. <em>Bill Adjustment Detail</em>), set up mouse coordinates to auto-click the printer icon.
+            </p>
+          </div>
+          
+          <div class="flex-shrink-0">
+            <a 
+              href="downloads/MPos-v.0.5.0-Portable.zip" 
+              download="MPos-v.0.5.0-Portable.zip"
+              class="px-4 py-2.5 rounded-xl bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold text-xs flex items-center gap-2 transition-all shadow-md shadow-amber-500/25"
+              title="Download MPos Portable utility to capture mouse screen coordinates"
+            >
+              <i data-lucide="download" class="w-4 h-4 text-slate-950"></i>
+              <span>Download MPos Utility</span>
+              <span class="text-[10px] text-slate-900 font-mono font-semibold">118 KB .zip</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- 2-Column Content: Picture Preview & Step-by-Step Guide -->
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-center">
+          
+          <!-- Image Box with Highlight Annotation -->
+          <div class="lg:col-span-6 bg-slate-950/80 p-4 sm:p-5 rounded-2xl border border-white/10 flex flex-col items-center justify-center">
+            <div class="relative rounded-xl overflow-hidden border border-amber-500/30 shadow-2xl max-w-full bg-slate-900">
+              <img 
+                src="assets/images/pitc-print-coordinates.png" 
+                alt="PITC Bill Adjustment Detail - Top Left Print Icon Coordinates" 
+                class="w-full h-auto object-contain block"
+              />
+            </div>
+            <div class="mt-3 text-xs text-slate-300 text-center flex items-center justify-center gap-2">
+              <span class="w-2 h-2 rounded-full bg-rose-500 animate-pulse"></span>
+              <span>Red circle marks the top-left <strong>Print icon</strong> to capture with MPos</span>
+            </div>
+          </div>
+
+          <!-- Step-by-Step Instructions -->
+          <div class="lg:col-span-6 space-y-2.5">
+            <div class="flex items-start gap-3 p-3 rounded-xl bg-slate-900/60 border border-white/5">
+              <span class="w-6 h-6 rounded-lg bg-amber-500/20 text-amber-400 font-mono font-bold text-xs flex items-center justify-center shrink-0">1</span>
+              <div class="text-xs text-slate-300">
+                <strong class="text-white block mb-0.5">Download &amp; Launch MPos</strong>
+                Download <code class="text-amber-300 font-mono px-1 py-0.2 bg-slate-800 rounded">MPos-v.0.5.0-Portable.zip</code> and run <code class="text-amber-300 font-mono px-1 py-0.2 bg-slate-800 rounded">MPos.exe</code>. It is a lightweight, zero-install portable tool that tracks live screen coordinates.
+              </div>
+            </div>
+
+            <div class="flex items-start gap-3 p-3 rounded-xl bg-slate-900/60 border border-white/5">
+              <span class="w-6 h-6 rounded-lg bg-amber-500/20 text-amber-400 font-mono font-bold text-xs flex items-center justify-center shrink-0">2</span>
+              <div class="text-xs text-slate-300">
+                <strong class="text-white block mb-0.5">Open the PITC Report</strong>
+                Open your PITC report (e.g. <em>Power Information Technology Company - Bill Adjustment Detail</em>). When the report renders in the viewer with no web &quot;Print this Report&quot; button, locate the top-left toolbar.
+              </div>
+            </div>
+
+            <div class="flex items-start gap-3 p-3 rounded-xl bg-slate-900/60 border border-white/5">
+              <span class="w-6 h-6 rounded-lg bg-amber-500/20 text-amber-400 font-mono font-bold text-xs flex items-center justify-center shrink-0">3</span>
+              <div class="text-xs text-slate-300">
+                <strong class="text-white block mb-0.5">Capture Coordinates (X, Y)</strong>
+                Hover your mouse pointer over the printer icon in the top toolbar (circled in red in the screenshot). MPos will display your exact screen coordinates.
+              </div>
+            </div>
+
+            <div class="flex items-start gap-3 p-3 rounded-xl bg-slate-900/60 border border-white/5">
+              <span class="w-6 h-6 rounded-lg bg-amber-500/20 text-amber-400 font-mono font-bold text-xs flex items-center justify-center shrink-0">4</span>
+              <div class="text-xs text-slate-300">
+                <strong class="text-white block mb-0.5">Enter Coordinates in PITCSuite</strong>
+                Enter these X and Y coordinates into PITCSuite settings. PITCSuite will now automatically click the Print icon and automate batch PDF saving without needing a manual print button.
+              </div>
+            </div>
+          </div>
+
         </div>
       </div>
     ` : ''}

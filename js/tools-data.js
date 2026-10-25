@@ -44,6 +44,13 @@ const DISCO_TOOLS = [
     githubRepoUrl: "https://github.com/naqasht128/PitcSuite",
     updated: "October 2026",
     icon: "layers",
+    helperTool: {
+      name: "MPos Portable",
+      filename: "MPos-v.0.5.0-Portable.zip",
+      downloadUrl: "downloads/MPos-v.0.5.0-Portable.zip",
+      size: "118 KB",
+      purpose: "Mouse Coordinates Utility for PITC reports lacking a Print button"
+    },
     summary: "All-in-one workstation for DISCO billing, scraping, and CP reconciliations.",
     description: "PITCSuite is the flagship all-in-one productivity workstation engineered specifically for Commercial Assistants, Revenue Officers, Computer Operators, and Sub-Divisional Clerks across all 11 Pakistan electricity distribution companies (LESCO, GEPCO, FESCO, IESCO, MEPCO, PESCO, HAZECO, SEPCO, HESCO, QESCO, TESCO). It unites automatic PITC report downloads, bulk duplicate E-bill fetching, high-speed web bill scraping, 88-L payment extraction, CP-52 disconnect roster generation, CP-139 / CP-136 / CP-22T bank posting checkers, and government department reconciliation into one cohesive desktop application. Operating 100% locally and offline without external cloud dependencies for audit privacy, PITCSuite drastically compresses multi-day month-end commercial closing tasks into minutes.",
     features: [
@@ -88,7 +95,8 @@ const DISCO_TOOLS = [
       ],
       tips: [
         "Press Ctrl+F inside any module to instantly search for a specific 14-digit consumer reference number.",
-        "Custom DISCO endpoints or proxy settings can be adjusted in the Settings tab for specialized sub-divisional networks."
+        "Custom DISCO endpoints or proxy settings can be adjusted in the Settings tab for specialized sub-divisional networks.",
+        "PDF not downloading? If a PITC report window (e.g. Bill Adjustment Detail) lacks a web 'Print this Report' button, download MPos Portable (118 KB) to configure mouse screen coordinates for the top-left printer icon."
       ]
     }
   },
