@@ -164,7 +164,7 @@ function renderTutorialContent(toolId) {
             onclick="openContactRequestModal(getToolById('${tool.id}'))"
             class="px-6 py-3 rounded-xl bg-slate-800 hover:bg-slate-700 text-sky-300 hover:text-white border border-sky-500/30 font-bold text-sm shadow-lg transition-all flex items-center justify-center gap-2"
           >
-            <i data-lucide="phone-call" class="w-4 h-4 text-sky-400"></i> Contact / Request Tool
+            <i data-lucide="phone-call" class="w-4 h-4 text-sky-400"></i> Request Software
           </button>`)}
         </div>
       </div>

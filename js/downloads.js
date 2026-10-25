@@ -223,7 +223,7 @@ function renderDownloads() {
         onclick="openContactRequestModal(getToolById('${tool.id}'))"
         class="w-full py-2.5 px-3 rounded-lg bg-sky-600 hover:bg-sky-500 text-white font-bold text-xs transition-all flex items-center justify-center gap-1.5 shadow-sm shadow-sky-950/20"
       >
-        <i data-lucide="phone-call" class="w-3.5 h-3.5"></i> Request Copy
+        <i data-lucide="phone-call" class="w-3.5 h-3.5"></i> Request Software
       </button>`;
     }
 
