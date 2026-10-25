@@ -171,7 +171,8 @@ function renderDownloads() {
     container.innerHTML = filtered.map(tool => {
     const isPublic = tool.isPublicDownload === true;
     const isDev = tool.status === 'in-development';
-    const showSpecs = tool.id === 'pitc-suite' || tool.id === 'bill-scrapper';
+    const showSpecs = tool.id === 'pitc-suite' || tool.id === 'bill-scrapper' || tool.id === 'e-bills-downloader';
+    const isEBillDownloader = tool.id === 'e-bills-downloader';
     const isBillScrapper = tool.id === 'bill-scrapper';
 
     // Status Badge & Action Buttons
@@ -179,9 +180,9 @@ function renderDownloads() {
     let actionButton = '';
 
     if (isPublic) {
-      const startingPrice = tool.id === 'pitc-suite' ? 'Starting from Rs. 600' : (tool.id === 'bill-scrapper' ? 'Starting from Rs. 300' : 'Direct Download');
+      const priceTag = tool.id === 'pitc-suite' ? ' (Starting from Rs. 600)' : (tool.id === 'bill-scrapper' ? ' (Starting from Rs. 300)' : '');
       statusPill = `<span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-md text-[11px] font-bold bg-emerald-500/20 text-emerald-300 border border-emerald-500/40">
-        <span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span> Direct Download Ready (${startingPrice})
+        <span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span> Direct Download Ready${priceTag}
       </span>`;
 
       if (tool.id === 'pitc-suite') {
@@ -238,6 +239,11 @@ function renderDownloads() {
         <p class="text-[11px] text-slate-400 font-mono mt-0.5 flex items-center gap-1 truncate">
           <i data-lucide="layers" class="w-3 h-3 text-sky-400 shrink-0"></i> Windows 10/11 • Windows 7 • Linux ARM64
         </p>`;
+    } else if (isEBillDownloader) {
+      filenameDisplay = `
+        <p class="text-[11px] text-slate-400 font-mono mt-0.5 flex items-center gap-1 truncate">
+          <i data-lucide="layers" class="w-3 h-3 text-sky-400 shrink-0"></i> Windows 10/11 • Windows 7 Legacy
+        </p>`;
     } else if (showSpecs && tool.filename) {
       filenameDisplay = `
         <p class="text-[11px] text-slate-300 font-mono mt-0.5 flex items-center gap-1 truncate">
@@ -255,6 +261,16 @@ function renderDownloads() {
           </span>
           <span class="flex items-center gap-1 text-emerald-400 font-semibold">
             <i data-lucide="check-circle-2" class="w-3 h-3"></i> 100% Offline
+          </span>
+        </div>`;
+    } else if (isEBillDownloader) {
+      footerSpecs = `
+        <div class="flex items-center justify-between text-[11px] text-slate-300 mb-2.5 font-mono">
+          <span class="flex items-center gap-1 text-white font-semibold">
+            <i data-lucide="hard-drive" class="w-3 h-3 text-sky-400"></i> 2 Builds (46M - 73M)
+          </span>
+          <span class="flex items-center gap-1 text-emerald-400 font-semibold">
+            <i data-lucide="check-circle-2" class="w-3 h-3"></i> PDF Generator
           </span>
         </div>`;
     } else if (showSpecs) {
@@ -315,6 +331,37 @@ function renderDownloads() {
 
           <a 
             href="details.html?tool=bill-scrapper"
+            class="w-full py-1.5 px-3 rounded-lg bg-slate-800/80 hover:bg-slate-700 text-slate-300 hover:text-white border border-white/10 font-bold text-xs transition-all flex items-center justify-center gap-1.5"
+          >
+            <i data-lucide="info" class="w-3.5 h-3.5 text-sky-400"></i> Details & Guide
+          </a>
+        </div>
+      `;
+    } else if (isEBillDownloader) {
+      actionButtonsSection = `
+        <div class="space-y-2" onclick="event.stopPropagation()">
+          <div class="grid grid-cols-2 gap-2">
+            <button 
+              onclick="triggerToolDownload('e-bills-downloader', 'E-Bills Downloader - Windows 10/11', 'https://github.com/naqasht128/EBillDownloader/releases/latest/download/EBillDownloader-Setup.exe', 'EBillDownloader-Setup.exe')"
+              class="py-2 px-2 rounded-lg bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs flex flex-col items-center justify-center gap-0.5 text-center transition-all shadow-md shadow-emerald-950/30 glow-btn"
+              title="Download E-Bills Downloader for Windows 10 & 11"
+            >
+              <span class="flex items-center gap-1 leading-none"><i data-lucide="monitor" class="w-3.5 h-3.5"></i> Win 10/11</span>
+              <span class="text-[10px] text-emerald-200 font-mono font-normal"><span class="ebill-size-badge">72.6 MB</span> .exe</span>
+            </button>
+
+            <button 
+              onclick="triggerToolDownload('e-bills-downloader', 'E-Bills Downloader - Windows 7 Legacy', 'https://github.com/naqasht128/EBillDownloader/releases/latest/download/EBillDownloader-Win7-Setup.exe', 'EBillDownloader-Win7-Setup.exe')"
+              class="py-2 px-2 rounded-lg bg-teal-600 hover:bg-teal-500 text-white font-bold text-xs flex flex-col items-center justify-center gap-0.5 text-center transition-all shadow-sm"
+              title="Download E-Bills Downloader for Windows 7 & Legacy Systems"
+            >
+              <span class="flex items-center gap-1 leading-none"><i data-lucide="monitor" class="w-3.5 h-3.5"></i> Win 7</span>
+              <span class="text-[10px] text-teal-200 font-mono font-normal">46.3 MB .exe</span>
+            </button>
+          </div>
+
+          <a 
+            href="details.html?tool=e-bills-downloader"
             class="w-full py-1.5 px-3 rounded-lg bg-slate-800/80 hover:bg-slate-700 text-slate-300 hover:text-white border border-white/10 font-bold text-xs transition-all flex items-center justify-center gap-1.5"
           >
             <i data-lucide="info" class="w-3.5 h-3.5 text-sky-400"></i> Details & Guide

@@ -112,17 +112,17 @@ function renderTutorialContent(toolId) {
       <div class="relative z-10 flex flex-col md:flex-row md:items-center justify-between gap-6">
         <div>
           <div class="flex flex-wrap items-center gap-2 mb-3">
-            <span class="px-3 py-1 rounded-full text-xs font-semibold ${tool.id === 'pitc-suite' || tool.id === 'bill-scrapper' ? 'bg-emerald-500/20 text-emerald-300 border border-emerald-500/30' : 'bg-sky-500/20 text-sky-300 border border-sky-500/30'} flex items-center gap-1.5">
-              ${tool.id === 'pitc-suite' || tool.id === 'bill-scrapper' ? '<i data-lucide="tag" class="w-3.5 h-3.5 text-emerald-400"></i>' : ''}
-              ${tool.id === 'pitc-suite' ? 'Starting from Rs. 600' : (tool.id === 'bill-scrapper' ? 'Starting from Rs. 300' : tool.badge)}
+            <span class="px-3 py-1 rounded-full text-xs font-semibold ${tool.isPublicDownload ? 'bg-emerald-500/20 text-emerald-300 border border-emerald-500/30' : 'bg-sky-500/20 text-sky-300 border border-sky-500/30'} flex items-center gap-1.5">
+              ${tool.isPublicDownload ? '<i data-lucide="tag" class="w-3.5 h-3.5 text-emerald-400"></i>' : ''}
+              ${tool.id === 'pitc-suite' ? 'Starting from Rs. 600' : (tool.id === 'bill-scrapper' ? 'Starting from Rs. 300' : (tool.isPublicDownload ? 'Direct Download Ready' : tool.badge))}
             </span>
-            ${(tool.id === 'pitc-suite' || tool.id === 'bill-scrapper') && tool.version ? `
-            <span class="px-3 py-1 rounded-full text-xs font-mono bg-slate-800 text-slate-300 border border-white/5 ${tool.id === 'pitc-suite' ? 'pitc-version-badge' : 'bill-version-badge'}">
+            ${tool.version ? `
+            <span class="px-3 py-1 rounded-full text-xs font-mono bg-slate-800 text-slate-300 border border-white/5 ${tool.id === 'pitc-suite' ? 'pitc-version-badge' : (tool.id === 'bill-scrapper' ? 'bill-version-badge' : 'ebill-version-badge')}">
               ${tool.version}
             </span>` : ''}
-            ${(tool.id === 'pitc-suite' || tool.id === 'bill-scrapper') && tool.size ? `
+            ${tool.size ? `
             <span class="text-xs text-slate-400 flex items-center gap-1">
-              <i data-lucide="hard-drive" class="w-3.5 h-3.5"></i> <span class="${tool.id === 'pitc-suite' ? 'pitc-size-badge' : 'bill-size-badge'}">${tool.size}</span>
+              <i data-lucide="hard-drive" class="w-3.5 h-3.5"></i> <span class="${tool.id === 'pitc-suite' ? 'pitc-size-badge' : (tool.id === 'bill-scrapper' ? 'bill-size-badge' : 'ebill-size-badge')}">${tool.size}</span>
             </span>` : ''}
           </div>
           <h1 class="text-2xl sm:text-3xl font-extrabold text-white tracking-tight mb-2">
@@ -145,7 +145,7 @@ function renderTutorialContent(toolId) {
                 <button 
                   onclick="triggerToolDownload('${tool.id}', '${tool.name} - ${b.label}', '${b.downloadUrl}', '${b.filename}')"
                   class="px-3.5 py-2.5 rounded-xl ${b.id === 'win10' ? 'bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-500 hover:to-teal-500 text-white shadow-md shadow-emerald-950/40 glow-btn' : (b.id === 'win7' ? 'bg-slate-800 hover:bg-slate-700 text-emerald-300 hover:text-white border border-emerald-500/40' : 'bg-slate-800 hover:bg-slate-700 text-sky-300 hover:text-white border border-sky-500/40')} font-bold text-xs flex items-center gap-1.5 transition-all"
-                  title="Download for ${b.label} (${b.size})"
+                  title="Download for ${b.label}"
                 >
                   <i data-lucide="${b.icon || 'download'}" class="w-3.5 h-3.5"></i>
                   <span>${b.label}</span>

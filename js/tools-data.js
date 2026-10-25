@@ -197,20 +197,44 @@ const DISCO_TOOLS = [
   },
 
   // =========================================================================
-  // 3. E-BILLS DOWNLOADER (AVAILABLE ON REQUEST)
+  // 3. E-BILLS DOWNLOADER (PUBLIC DOWNLOADABLE - HAS REPO)
   // =========================================================================
   {
     id: "e-bills-downloader",
     name: "E-Bills Downloader",
     title: "E-Bills Downloader - Downloads E-Bills into PDF",
     category: "extractors",
-    badge: "Available on Request",
+    badge: "Direct Download",
     isFlagship: false,
-    status: "on-request",
-    isPublicDownload: false,
-    version: "",
-    size: "",
-    filename: "",
+    status: "ready",
+    isPublicDownload: true,
+    version: "v1.0.0",
+    size: "72.6 MB",
+    filename: "EBillDownloader-Setup.exe",
+    builds: [
+      {
+        id: "win10",
+        label: "Windows 10 / 11",
+        shortLabel: "Win 10/11",
+        filename: "EBillDownloader-Setup.exe",
+        downloadUrl: "https://github.com/naqasht128/EBillDownloader/releases/latest/download/EBillDownloader-Setup.exe",
+        size: "72.6 MB",
+        icon: "monitor"
+      },
+      {
+        id: "win7",
+        label: "Windows 7 / Legacy",
+        shortLabel: "Win 7",
+        filename: "EBillDownloader-Win7-Setup.exe",
+        downloadUrl: "https://github.com/naqasht128/EBillDownloader/releases/latest/download/EBillDownloader-Win7-Setup.exe",
+        size: "46.3 MB",
+        icon: "monitor"
+      }
+    ],
+    downloadUrl: "https://github.com/naqasht128/EBillDownloader/releases/latest/download/EBillDownloader-Setup.exe",
+    githubRepo: "naqasht128/EBillDownloader",
+    githubReleaseUrl: "https://github.com/naqasht128/EBillDownloader/releases/latest",
+    githubRepoUrl: "https://github.com/naqasht128/EBillDownloader",
     updated: "October 2026",
     icon: "file-down",
     summary: "Bulk downloads official consumer electricity duplicate bills into PDF files.",
@@ -225,7 +249,7 @@ const DISCO_TOOLS = [
     tutorial: {
       overview: "Automates mass generation and archiving of official duplicate electricity bills for commercial desks and recovery teams.",
       prerequisites: [
-        "Windows 10 / 11",
+        "Windows 10 / 11 or Windows 7 (Legacy)",
         "Active Internet Connection (for contacting DISCO billing endpoints)",
         "List of 14-digit consumer reference numbers"
       ],
@@ -233,7 +257,7 @@ const DISCO_TOOLS = [
         {
           step: 1,
           title: "Download & Launch",
-          desc: "Contact the DISCO Tools Support Team via WhatsApp (0333-9962474) to acquire this software."
+          desc: "Download and run EBillDownloader-Setup.exe (or Windows 7 legacy setup). Launch the utility on your Windows PC."
         },
         {
           step: 2,
