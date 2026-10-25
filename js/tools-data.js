@@ -1,10 +1,10 @@
 /**
  * DISCO Tools Website & PITCSuite - Master Tools Data Registry
- * Corporate & Developer Metadata, Software Catalog, Download Targets, and Details
+ * Developers & Software Metadata, Software Catalog, Download Targets, and Details
  */
 
 const DEVELOPER_PROFILE = {
-  corporateName: "DISCO Tools & Commercial IT Support",
+  corporateName: "TN Developers & Co.",
   developerName: "DISCO Tools Support Desk",
   role: "Developer",
   email: "tahir.naqash4@gmail.com",

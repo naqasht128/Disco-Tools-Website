@@ -195,7 +195,7 @@ function openContactRequestModal(tool) {
   }
 
   const profile = typeof DEVELOPER_PROFILE !== 'undefined' ? DEVELOPER_PROFILE : {
-    corporateName: "DISCO Tools Support Desk",
+    corporateName: "TN Developers & Co.",
     developerName: "DISCO Tools Support Desk",
     email: "tahir.naqash4@gmail.com",
     cell: "0333-9962474",
@@ -349,7 +349,7 @@ function openRequestSoftwareModal(presetToolName = '') {
   }
 
   const profile = typeof DEVELOPER_PROFILE !== 'undefined' ? DEVELOPER_PROFILE : {
-    corporateName: "DISCO Tools Support Desk",
+    corporateName: "TN Developers & Co.",
     developerName: "DISCO Tools Support Desk",
     email: "tahir.naqash4@gmail.com",
     cell: "0333-9962474"
