@@ -437,6 +437,13 @@ function renderTutorialContent(toolId) {
   `;
 
   refreshIcons();
+
+  if (window.location.hash) {
+    setTimeout(() => {
+      const el = document.querySelector(window.location.hash);
+      if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }, 200);
+  }
 }
 
 // Next / Previous navigation
