@@ -240,7 +240,7 @@ function renderDownloads() {
       footerSpecs = `
         <div class="flex items-center justify-between text-[11px] text-slate-300 mb-2.5 font-mono">
           <span class="flex items-center gap-1 text-white font-semibold">
-            <i data-lucide="hard-drive" class="w-3 h-3 text-sky-400"></i> 3 Builds (22M - 34M)
+            <i data-lucide="hard-drive" class="w-3 h-3 text-sky-400"></i> Size: <span class="bill-size-badge">22.2 MB</span>
           </span>
           <span class="flex items-center gap-1 text-emerald-400 font-semibold">
             <i data-lucide="check-circle-2" class="w-3 h-3"></i> 100% Offline
@@ -272,42 +272,31 @@ function renderDownloads() {
     let actionButtonsSection = '';
     if (isBillScrapper) {
       actionButtonsSection = `
-        <div class="space-y-2" onclick="event.stopPropagation()">
-          <div class="grid grid-cols-3 gap-1.5">
+        <div class="space-y-1.5" onclick="event.stopPropagation()">
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-2">
             <button 
               onclick="triggerToolDownload('bill-scrapper', 'Bill Scrapper - Windows 10/11', 'https://github.com/naqasht128/BillScrapper/releases/latest/download/BillScrapper-Setup.exe', 'BillScrapper-Setup.exe')"
-              class="py-2 px-1 rounded-lg bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs flex flex-col items-center justify-center gap-0.5 text-center transition-all shadow-md shadow-emerald-950/30 glow-btn"
+              class="w-full py-2.5 px-3 rounded-lg bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-500 hover:to-teal-500 text-white font-bold text-xs transition-all shadow-md shadow-emerald-950/30 flex items-center justify-center gap-1.5 glow-btn"
               title="Download Bill Scrapper for Windows 10 & 11 (22.2 MB)"
             >
-              <span class="flex items-center gap-1 leading-none"><i data-lucide="monitor" class="w-3 h-3"></i> Win 10/11</span>
-              <span class="text-[10px] text-emerald-200 font-mono font-normal">22 MB .exe</span>
+              <i data-lucide="download" class="w-4 h-4"></i> Download Windows 10/11
             </button>
-
-            <button 
-              onclick="triggerToolDownload('bill-scrapper', 'Bill Scrapper - Windows 7 Legacy', 'https://github.com/naqasht128/BillScrapper/releases/latest/download/BillScrapper-Win7-Setup.exe', 'BillScrapper-Win7-Setup.exe')"
-              class="py-2 px-1 rounded-lg bg-teal-600 hover:bg-teal-500 text-white font-bold text-xs flex flex-col items-center justify-center gap-0.5 text-center transition-all shadow-sm"
-              title="Download Bill Scrapper for Windows 7 & Legacy Systems (27.9 MB)"
+            <a 
+              href="details.html?tool=bill-scrapper"
+              class="w-full py-2.5 px-3 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-200 hover:text-white border border-white/10 font-bold text-xs transition-all flex items-center justify-center gap-1.5"
             >
-              <span class="flex items-center gap-1 leading-none"><i data-lucide="monitor" class="w-3 h-3"></i> Win 7</span>
-              <span class="text-[10px] text-teal-200 font-mono font-normal">28 MB .exe</span>
-            </button>
-
-            <button 
-              onclick="triggerToolDownload('bill-scrapper', 'Bill Scrapper - Linux ARM64', 'https://github.com/naqasht128/BillScrapper/releases/latest/download/BillScrapper', 'BillScrapper')"
-              class="py-2 px-1 rounded-lg bg-slate-800 hover:bg-slate-700 text-sky-300 hover:text-white border border-sky-500/30 font-bold text-xs flex flex-col items-center justify-center gap-0.5 text-center transition-all shadow-sm"
-              title="Download Bill Scrapper for Linux ARM64 Binary (34.4 MB)"
-            >
-              <span class="flex items-center gap-1 leading-none"><i data-lucide="terminal" class="w-3 h-3"></i> Linux</span>
-              <span class="text-[10px] text-sky-200 font-mono font-normal">ARM64</span>
-            </button>
+              <i data-lucide="info" class="w-3.5 h-3.5 text-sky-400"></i> Details & Guide
+            </a>
           </div>
-
-          <a 
-            href="details.html?tool=bill-scrapper"
-            class="w-full py-1.5 px-3 rounded-lg bg-slate-800/80 hover:bg-slate-700 text-slate-300 hover:text-white border border-white/10 font-bold text-xs transition-all flex items-center justify-center gap-1.5"
-          >
-            <i data-lucide="info" class="w-3.5 h-3.5 text-sky-400"></i> Details & Guide
-          </a>
+          <div class="flex items-center justify-between text-[11px] text-slate-400 px-0.5 pt-0.5">
+            <span class="text-slate-400">Windows 10/11 (22.2 MB)</span>
+            <div class="flex items-center gap-1.5">
+              <span class="text-slate-500">Other:</span>
+              <button onclick="triggerToolDownload('bill-scrapper', 'Bill Scrapper - Windows 7 Legacy', 'https://github.com/naqasht128/BillScrapper/releases/latest/download/BillScrapper-Win7-Setup.exe', 'BillScrapper-Win7-Setup.exe')" class="text-teal-400 hover:underline">Win 7</button>
+              <span class="text-slate-600">•</span>
+              <button onclick="triggerToolDownload('bill-scrapper', 'Bill Scrapper - Linux ARM64', 'https://github.com/naqasht128/BillScrapper/releases/latest/download/BillScrapper', 'BillScrapper')" class="text-sky-400 hover:underline">Linux</button>
+            </div>
+          </div>
         </div>
       `;
     } else {
