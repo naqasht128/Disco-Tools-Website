@@ -112,9 +112,38 @@ const DISCO_TOOLS = [
     isFlagship: false,
     status: "ready",
     isPublicDownload: true,
-    version: "v1.3.2",
-    size: "22.1 MB",
+    version: "v1.3.4",
+    size: "22.2 MB",
     filename: "BillScrapper-Setup.exe",
+    builds: [
+      {
+        id: "win10",
+        label: "Windows 10 / 11",
+        shortLabel: "Win 10/11",
+        filename: "BillScrapper-Setup.exe",
+        downloadUrl: "https://github.com/naqasht128/BillScrapper/releases/latest/download/BillScrapper-Setup.exe",
+        size: "22.2 MB",
+        icon: "monitor"
+      },
+      {
+        id: "win7",
+        label: "Windows 7 / Legacy",
+        shortLabel: "Win 7",
+        filename: "BillScrapper-Win7-Setup.exe",
+        downloadUrl: "https://github.com/naqasht128/BillScrapper/releases/latest/download/BillScrapper-Win7-Setup.exe",
+        size: "27.9 MB",
+        icon: "monitor"
+      },
+      {
+        id: "linux-arm64",
+        label: "Linux (ARM64)",
+        shortLabel: "Linux ARM64",
+        filename: "BillScrapper",
+        downloadUrl: "https://github.com/naqasht128/BillScrapper/releases/latest/download/BillScrapper",
+        size: "34.4 MB",
+        icon: "terminal"
+      }
+    ],
     downloadUrl: "https://github.com/naqasht128/BillScrapper/releases/latest/download/BillScrapper-Setup.exe",
     githubRepo: "naqasht128/BillScrapper",
     githubReleaseUrl: "https://github.com/naqasht128/BillScrapper/releases/latest",
@@ -134,7 +163,7 @@ const DISCO_TOOLS = [
     tutorial: {
       overview: "Quickly scrape complete billing records for hundreds of consumer reference numbers into an Excel sheet for analysis.",
       prerequisites: [
-        "Windows 7 / 8 / 10 / 11",
+        "Windows 10 / 11, Windows 7 (Legacy), or Linux (ARM64)",
         "Active Internet connection (for querying live billing servers)",
         "List of 14-digit DISCO consumer reference numbers (select your DISCO in settings)"
       ],

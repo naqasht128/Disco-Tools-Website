@@ -138,10 +138,11 @@ function showToast(message, type = 'info', title = 'Notice') {
 // Download Trigger Helper
 // ONLY PITCSuite and Bill Scrapper are directly downloadable.
 // All other tools trigger the Contact/Request modal with developer info!
-function triggerToolDownload(filenameOrId, toolTitle) {
+function triggerToolDownload(filenameOrId, toolTitle, customUrl, customFilename) {
   // Track download event in Vercel Analytics
+  const dlIdentifier = customFilename || (typeof filenameOrId === 'string' ? filenameOrId : 'unknown');
   if (typeof window !== 'undefined' && window.va) {
-    try { window.va('event', { name: 'tool_download_' + (typeof filenameOrId === 'string' ? filenameOrId.replace(/[^a-zA-Z0-9_-]/g, '_') : 'unknown') }); } catch (e) {}
+    try { window.va('event', { name: 'tool_download_' + dlIdentifier.replace(/[^a-zA-Z0-9_-]/g, '_') }); } catch (e) {}
   }
   let tool = null;
   if (typeof getToolById === 'function') {
@@ -157,10 +158,9 @@ function triggerToolDownload(filenameOrId, toolTitle) {
     return;
   }
 
-  // Handle direct download for PITCSuite and Bill Scrapper
-  // Directly downloads the latest executable setup installer from GitHub Releases
-  const downloadTarget = (tool && tool.downloadUrl) ? tool.downloadUrl : `downloads/${tool.filename || filenameOrId}`;
-  const targetFilename = (tool && tool.filename) ? tool.filename : filenameOrId;
+  // Handle direct download (supports custom OS builds for Bill Scrapper and standard installers)
+  const downloadTarget = customUrl || (tool && tool.downloadUrl) || `downloads/${tool.filename || filenameOrId}`;
+  const targetFilename = customFilename || (tool && tool.filename) || filenameOrId;
 
   const link = document.createElement('a');
   link.href = downloadTarget;
@@ -172,7 +172,7 @@ function triggerToolDownload(filenameOrId, toolTitle) {
   document.body.removeChild(link);
 
   showToast(
-    `Starting download for <strong>${tool ? tool.name : targetFilename}</strong> from GitHub Releases.`,
+    `Starting download for <strong>${tool ? tool.name : targetFilename}</strong> (${targetFilename}).`,
     'success',
     'Download Initiated'
   );
