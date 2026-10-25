@@ -159,7 +159,7 @@ const DISCO_TOOLS = [
     updated: "October 2026",
     icon: "file-spreadsheet",
     summary: "Extracts consumer bills, arrears, and tariff data directly into clean Excel spreadsheets.",
-    description: "Bill Scrapper is a dedicated high-speed utility engineered for commercial staff who need to analyze and verify billing records across large consumer batches. By querying official DISCO web billing servers across all 11 Pakistan DISCOs (LESCO, GEPCO, FESCO, IESCO, MEPCO, PESCO, HAZECO, SEPCO, HESCO, QESCO, TESCO), it automatically extracts complete consumer billing matrices—including 14-digit reference number, consumer name, address, tariff code, units consumed, cost of electricity, meter rent, fuel price adjustment (FCA), sales tax, further tax, TV fee, total bill within due date, payable after due date, and payment status—and outputs them into cleanly structured, formula-ready Microsoft Excel (.xlsx) workbooks.",
+    description: "Bill Scrapper is a dedicated high-speed utility engineered for Commercial, Technical & Managerial staff who need to analyze and verify billing records across large consumer batches. By querying official DISCO web billing servers across all 11 Pakistan DISCOs (LESCO, GEPCO, FESCO, IESCO, MEPCO, PESCO, HAZECO, SEPCO, HESCO, QESCO, TESCO), it automatically extracts complete consumer billing matrices—including 14-digit reference number, consumer name, address, tariff code, units consumed, cost of electricity, meter rent, fuel price adjustment (FCA), sales tax, further tax, TV fee, total bill within due date, payable after due date, and payment status—and outputs them into cleanly structured, formula-ready Microsoft Excel (.xlsx) workbooks.",
     features: [
       "Bulk reference number import via text list, CSV file, or copy-pasting an Excel column",
       "Extracts full tariff breakdowns, government taxes, fuel adjustments (FCA/FPA), and surcharges",
@@ -682,7 +682,7 @@ const DISCO_TOOLS = [
       "Flags unauthorized credit postings, altered consumer names, and unverified reference numbers",
       "Audits Fuel Price Adjustment (FPA) credits, TR subsidy adjustments, and delayed payment wavers",
       "Generates comprehensive discrepancy rosters highlighting deviations from standard operating procedures",
-      "Maintains an immutable audit log to protect honest commercial staff during internal reviews"
+      "Maintains an immutable audit log to protect honest Commercial, Technical & Managerial personnel during internal reviews"
     ],
     tutorial: {
       overview: "Audit CP-22T adjustment entries before closing monthly accounts to ensure 100% regulatory compliance.",

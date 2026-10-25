@@ -230,7 +230,7 @@ function renderTutorialContent(toolId) {
               Choose Your License Plan
             </h2>
             <p class="text-slate-300 text-xs sm:text-sm mt-1">
-              Hardware-locked subscription keys for DISCO commercial staff with instant online/offline activation.
+              Hardware-locked subscription keys for DISCO Commercial, Technical & Managerial teams with instant online/offline activation.
             </p>
           </div>
           <div class="flex-shrink-0">
