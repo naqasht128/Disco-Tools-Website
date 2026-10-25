@@ -29,6 +29,14 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
+  // Setup mobile category dropdown
+  const categorySelect = document.getElementById('category-select');
+  if (categorySelect) {
+    categorySelect.addEventListener('change', (e) => {
+      setCategory(e.target.value);
+    });
+  }
+
   // Check URL query parameters (e.g. ?category=downloadable or ?search=bill)
   const params = new URLSearchParams(window.location.search);
   if (params.has('category')) {
@@ -42,21 +50,30 @@ document.addEventListener('DOMContentLoaded', () => {
   renderDownloads();
 });
 
-// Render Category Filter Pills as a compact single row
+// Render Category Filters (Pills for desktop, Dropdown for mobile)
 function renderCategoryPills() {
   const container = document.getElementById('category-pills-container');
-  if (!container) return;
+  if (container) {
+    container.innerHTML = TOOL_CATEGORIES.map(cat => `
+      <button 
+        class="category-pill px-2.5 py-1 sm:px-3 sm:py-1 rounded-lg text-xs font-semibold border border-white/10 bg-slate-800/80 text-slate-200 hover:text-white hover:bg-slate-700 transition-all flex items-center gap-1.5 shrink-0 ${cat.id === activeCategory ? 'active' : ''}"
+        data-category="${cat.id}"
+        onclick="setCategory('${cat.id}')"
+      >
+        <span>${cat.name}</span>
+        <span class="px-1.5 py-0.2 rounded-full text-[10px] sm:text-[11px] font-mono bg-slate-900/90 text-sky-300 border border-white/10">${cat.count}</span>
+      </button>
+    `).join('');
+  }
 
-  container.innerHTML = TOOL_CATEGORIES.map(cat => `
-    <button 
-      class="category-pill px-2.5 py-1 sm:px-3 sm:py-1 rounded-lg text-xs font-semibold border border-white/10 bg-slate-800/80 text-slate-200 hover:text-white hover:bg-slate-700 transition-all flex items-center gap-1.5 shrink-0 ${cat.id === activeCategory ? 'active' : ''}"
-      data-category="${cat.id}"
-      onclick="setCategory('${cat.id}')"
-    >
-      <span>${cat.name}</span>
-      <span class="px-1.5 py-0.2 rounded-full text-[10px] sm:text-[11px] font-mono bg-slate-900/90 text-sky-300 border border-white/10">${cat.count}</span>
-    </button>
-  `).join('');
+  const categorySelect = document.getElementById('category-select');
+  if (categorySelect) {
+    categorySelect.innerHTML = TOOL_CATEGORIES.map(cat => `
+      <option value="${cat.id}" ${cat.id === activeCategory ? 'selected' : ''}>
+        ${cat.name} (${cat.count})
+      </option>
+    `).join('');
+  }
 }
 
 function setCategory(catId) {
@@ -73,6 +90,11 @@ function updateActivePill() {
       pill.classList.remove('active');
     }
   });
+
+  const categorySelect = document.getElementById('category-select');
+  if (categorySelect && categorySelect.value !== activeCategory) {
+    categorySelect.value = activeCategory;
+  }
 }
 
 // Render Download / Request Cards with maximum legibility and large buttons
@@ -356,6 +378,8 @@ function resetFilters() {
   if (searchInput) searchInput.value = '';
   const sortSelect = document.getElementById('sort-select');
   if (sortSelect) sortSelect.value = 'default';
+  const categorySelect = document.getElementById('category-select');
+  if (categorySelect) categorySelect.value = 'all';
   updateActivePill();
   renderDownloads();
 }
