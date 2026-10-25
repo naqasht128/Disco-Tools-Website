@@ -209,7 +209,7 @@ function renderTutorialContent(toolId) {
           </div>
           <div class="flex-shrink-0">
             <a 
-              href="https://wa.me/923335022833?text=Hello%20Tahir%20Naqash%2C%20I%20want%20to%20order%20a%20license%20for%20${encodeURIComponent(tool.name)}" 
+              href="https://wa.me/923335022833?text=Hello%2C%20I%20want%20to%20order%20a%20license%20for%20${encodeURIComponent(tool.name)}" 
               target="_blank"
               rel="noopener"
               class="px-4 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs flex items-center gap-2 transition-all shadow-md shadow-emerald-600/25"
@@ -240,7 +240,7 @@ function renderTutorialContent(toolId) {
                 </div>
               </div>
               <a 
-                href="https://wa.me/923335022833?text=Hello%20Tahir%20Naqash%2C%20I%20want%20to%20order%20the%20${encodeURIComponent(tool.name)}%20${encodeURIComponent(plan.name)}%20(${encodeURIComponent(plan.price)})" 
+                href="https://wa.me/923335022833?text=Hello%2C%20I%20want%20to%20order%20the%20${encodeURIComponent(tool.name)}%20${encodeURIComponent(plan.name)}%20(${encodeURIComponent(plan.price)})" 
                 target="_blank"
                 rel="noopener"
                 class="w-full py-2 px-3 rounded-xl bg-slate-800 hover:bg-emerald-600 text-slate-200 hover:text-white border border-white/10 hover:border-emerald-500 font-semibold text-xs flex items-center justify-center gap-1.5 transition-all text-center"

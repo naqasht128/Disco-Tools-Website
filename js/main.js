@@ -195,8 +195,8 @@ function openContactRequestModal(tool) {
   }
 
   const profile = typeof DEVELOPER_PROFILE !== 'undefined' ? DEVELOPER_PROFILE : {
-    corporateName: "TN Developers & Co.",
-    developerName: "Tahir Naqash",
+    corporateName: "DISCO Tools Support Desk",
+    developerName: "DISCO Tools Support Desk",
     email: "tahir.naqash4@gmail.com",
     cell: "0333-9962474",
     whatsappNumber: "923339962474"
@@ -209,11 +209,11 @@ function openContactRequestModal(tool) {
 
   // Pre-filled messages for WhatsApp & Email
   const waText = encodeURIComponent(
-    `Hello Tahir Naqash, I am contacting you regarding "${toolName}" (${toolFilename}). I would like to inquire about obtaining the executable / sub-division license.`
+    `Hello, I am contacting you regarding "${toolName}" (${toolFilename}). I would like to inquire about obtaining the executable / sub-division license.`
   );
   const mailSubject = encodeURIComponent(`Software Request: ${toolName}`);
   const mailBody = encodeURIComponent(
-    `Hello Tahir Naqash,\n\nI am interested in acquiring the executable for:\nSoftware: ${toolName} (${toolFilename})\n\nPlease provide licensing / purchase details and delivery instructions.\n\nThank you,\n[Your Name & Sub-Division]`
+    `Hello,\n\nI am interested in acquiring the executable for:\nSoftware: ${toolName} (${toolFilename})\n\nPlease provide licensing / purchase details and delivery instructions.\n\nThank you,\n[Your Name & Sub-Division]`
   );
 
   const badgeHtml = isDev
@@ -239,8 +239,8 @@ function openContactRequestModal(tool) {
 
       <p class="text-xs sm:text-sm text-slate-300 leading-relaxed mb-6">
         ${isDev 
-          ? 'This utility is currently under active development. Contact developer <strong>Tahir Naqash</strong> (TN Developers & Co.) to request priority access, suggest features, or pre-order for your sub-division.'
-          : 'This standalone software is distributed directly upon request. Contact developer <strong>Tahir Naqash</strong> (TN Developers & Co.) to arrange payment, licensing, and receive the executable file directly.'}
+          ? 'This utility is currently under active development. Contact the <strong>DISCO Tools Support Desk</strong> to request priority access, suggest features, or pre-order for your sub-division.'
+          : 'This standalone software is distributed directly upon request. Contact the <strong>DISCO Tools Support Desk</strong> to arrange payment, licensing, and receive the executable file directly.'}
       </p>
 
       <!-- Developer Contact Information Card -->
@@ -256,7 +256,7 @@ function openContactRequestModal(tool) {
           target="_blank"
           class="w-full py-3 px-4 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs sm:text-sm transition-all flex items-center justify-center gap-2.5 shadow-lg shadow-emerald-600/20"
         >
-          <i data-lucide="phone-call" class="w-4 h-4"></i> WhatsApp Tahir Naqash (0333-9962474)
+          <i data-lucide="phone-call" class="w-4 h-4"></i> WhatsApp Support Helpline (0333-9962474)
         </a>
 
         <!-- Email Button -->
@@ -329,7 +329,7 @@ function submitQuickInquiry(e, toolName) {
   closeContactRequestModal();
 
   showToast(
-    `Thank you <strong>${name}</strong>! Your inquiry for <em>"${toolName}"</em> has been logged. Tahir Naqash will connect with you via ${contact}.`,
+    `Thank you <strong>${name}</strong>! Your inquiry for <em>"${toolName}"</em> has been logged. Our support team will connect with you via ${contact}.`,
     'success',
     'Request Dispatched'
   );
@@ -349,8 +349,8 @@ function openRequestSoftwareModal(presetToolName = '') {
   }
 
   const profile = typeof DEVELOPER_PROFILE !== 'undefined' ? DEVELOPER_PROFILE : {
-    corporateName: "TN Developers & Co.",
-    developerName: "Tahir Naqash",
+    corporateName: "DISCO Tools Support Desk",
+    developerName: "DISCO Tools Support Desk",
     email: "tahir.naqash4@gmail.com",
     cell: "0333-9962474"
   };
@@ -372,7 +372,7 @@ function openRequestSoftwareModal(presetToolName = '') {
       </div>
 
       <p class="text-xs text-slate-300 leading-relaxed mb-6">
-        Need a specialized DISCO billing utility, bank scroll matcher, PDF converter, or custom Excel macro? Compatible across all DISCOs (LESCO, GEPCO, FESCO, IESCO, MEPCO, PESCO, HAZECO, SEPCO, HESCO, QESCO, TESCO). Submit your requirements directly to Tahir Naqash (TN Developers & Co.).
+        Need a specialized DISCO billing utility, bank scroll matcher, PDF converter, or custom Excel macro? Compatible across all DISCOs (LESCO, GEPCO, FESCO, IESCO, MEPCO, PESCO, HAZECO, SEPCO, HESCO, QESCO, TESCO). Submit your requirements directly to our support desk.
       </p>
 
       <form id="software-request-form" onsubmit="submitSoftwareRequest(event)" class="space-y-4">
@@ -496,7 +496,7 @@ function submitSoftwareRequest(e) {
   closeRequestModal();
 
   showToast(
-    `Thank you <strong>${userName}</strong>! Your proposal for <em>"${toolName}"</em> has been dispatched to Tahir Naqash.`,
+    `Thank you <strong>${userName}</strong>! Your proposal for <em>"${toolName}"</em> has been dispatched to our support team.`,
     'success',
     'Proposal Dispatched'
   );

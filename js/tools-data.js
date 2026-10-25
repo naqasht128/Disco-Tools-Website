@@ -4,8 +4,8 @@
  */
 
 const DEVELOPER_PROFILE = {
-  corporateName: "TN Developers & Co.",
-  developerName: "Tahir Naqash",
+  corporateName: "DISCO Tools & Commercial IT Support",
+  developerName: "DISCO Tools Support Desk",
   role: "Developer",
   email: "tahir.naqash4@gmail.com",
   cell: "0333-9962474",
@@ -204,7 +204,7 @@ const DISCO_TOOLS = [
         {
           step: 1,
           title: "Download & Launch",
-          desc: "Contact developer Tahir Naqash to acquire the licensed utility and launch on your workstation."
+          desc: "Contact the DISCO Tools Support Team via WhatsApp (0333-9962474) to acquire this software."
         },
         {
           step: 2,
@@ -266,7 +266,7 @@ const DISCO_TOOLS = [
         {
           step: 1,
           title: "Download & Launch",
-          desc: "Contact developer Tahir Naqash to acquire the licensed utility and launch on your workstation."
+          desc: "Contact the DISCO Tools Support Team via WhatsApp (0333-9962474) to acquire this software."
         },
         {
           step: 2,
@@ -389,7 +389,7 @@ const DISCO_TOOLS = [
         {
           step: 1,
           title: "Download & Launch",
-          desc: "Contact Tahir Naqash to acquire the standalone licensed executable."
+          desc: "Contact the DISCO Tools Support Team via WhatsApp (0333-9962474) to acquire this software."
         },
         {
           step: 2,
@@ -450,7 +450,7 @@ const DISCO_TOOLS = [
         {
           step: 1,
           title: "Download & Launch",
-          desc: "Contact developer Tahir Naqash to receive the ConvertCP21c executable."
+          desc: "Contact the DISCO Tools Support Team via WhatsApp (0333-9962474) to acquire this software."
         },
         {
           step: 2,
@@ -572,7 +572,7 @@ const DISCO_TOOLS = [
         {
           step: 1,
           title: "Download & Launch",
-          desc: "Contact developer Tahir Naqash to acquire the standalone utility."
+          desc: "Contact the DISCO Tools Support Team via WhatsApp (0333-9962474) to acquire this software."
         },
         {
           step: 2,
@@ -634,7 +634,7 @@ const DISCO_TOOLS = [
         {
           step: 1,
           title: "Download & Launch",
-          desc: "Contact developer Tahir Naqash to acquire `CP22T_Posting_Checker`."
+          desc: "Contact the DISCO Tools Support Team via WhatsApp (0333-9962474) to acquire this software."
         },
         {
           step: 2,
@@ -696,7 +696,7 @@ const DISCO_TOOLS = [
         {
           step: 1,
           title: "Download & Launch",
-          desc: "Contact developer Tahir Naqash to acquire the licensed utility."
+          desc: "Contact the DISCO Tools Support Team via WhatsApp (0333-9962474) to acquire this software."
         },
         {
           step: 2,
