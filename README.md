@@ -42,7 +42,6 @@ d:\Projects\DISCO Tools Website\
 ├── tutorials.html               # Step-by-Step Usage Guides & SOPs
 ├── contact.html                 # Contact Us & Technical FAQ
 ├── run_server.py                # Python local development web server
-├── start_website.bat            # Windows 1-click launcher
 ├── css\
 │   └── styles.css               # Fluent animations, glassmorphism & typography
 ├── js\
@@ -71,19 +70,13 @@ d:\Projects\DISCO Tools Website\
 
 ---
 
-## 🚀 How to Run the Website Locally
+## 🚀 How to Run the Website Locally (Development)
 
-### Method 1: Double-Click Launcher (Windows)
-Simply double-click **`start_website.bat`**. It will automatically start a local server and launch your default web browser to:
-```
-http://localhost:8080/index.html
-```
-
-### Method 2: Command Line (Python)
 Run:
 ```powershell
 python run_server.py
 ```
+This will start a local server and launch your default web browser to http://localhost:8080/index.html.
 
 ---
 
