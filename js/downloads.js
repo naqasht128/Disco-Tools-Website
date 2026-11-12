@@ -180,7 +180,7 @@ function renderDownloads() {
     let actionButton = '';
 
     if (isPublic) {
-      const startingPrice = tool.startingPrice || (tool.id === 'pitc-suite' ? 'Rs. 600' : (tool.id === 'bill-scrapper' || tool.id === 'e-bills-downloader' ? 'Rs. 300' : ''));
+      const startingPrice = tool.startingPrice || (tool.id === 'pitc-suite' ? 'Rs. 4,000' : (tool.id === 'bill-scrapper' || tool.id === 'e-bills-downloader' ? 'Rs. 3,000' : ''));
       const priceTag = startingPrice ? ` (Starting from ${startingPrice})` : '';
       statusPill = `<span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-md text-[11px] font-bold bg-emerald-500/20 text-emerald-300 border border-emerald-500/40">
         <span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span> Direct Download Ready${priceTag}

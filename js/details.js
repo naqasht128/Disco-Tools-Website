@@ -122,7 +122,7 @@ function renderTutorialContent(toolId) {
           <div class="flex flex-wrap items-center gap-2 mb-3">
             <span class="px-3 py-1 rounded-full text-xs font-semibold ${tool.isPublicDownload ? 'bg-emerald-500/20 text-emerald-300 border border-emerald-500/30' : 'bg-sky-500/20 text-sky-300 border border-sky-500/30'} flex items-center gap-1.5">
               ${tool.isPublicDownload ? '<i data-lucide="tag" class="w-3.5 h-3.5 text-emerald-400"></i>' : ''}
-              ${tool.startingPrice ? `Starting from ${tool.startingPrice}` : (tool.id === 'pitc-suite' ? 'Starting from Rs. 600' : (tool.id === 'bill-scrapper' || tool.id === 'e-bills-downloader' ? 'Starting from Rs. 300' : (tool.isPublicDownload ? 'Direct Download Ready' : tool.badge)))}
+              ${tool.startingPrice ? `Starting from ${tool.startingPrice}` : (tool.id === 'pitc-suite' ? 'Starting from Rs. 4,000' : (tool.id === 'bill-scrapper' || tool.id === 'e-bills-downloader' ? 'Starting from Rs. 3,000' : (tool.isPublicDownload ? 'Direct Download Ready' : tool.badge)))}
             </span>
             ${tool.version ? `
             <span class="px-3 py-1 rounded-full text-xs font-mono bg-slate-800 text-slate-300 border border-white/5 ${tool.id === 'pitc-suite' ? 'pitc-version-badge' : (tool.id === 'bill-scrapper' ? 'bill-version-badge' : 'ebill-version-badge')}">
@@ -245,7 +245,7 @@ function renderTutorialContent(toolId) {
           </div>
         </div>
 
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+        <div class="grid grid-cols-1 sm:grid-cols-2 ${tool.pricingPlans.length > 2 ? 'lg:grid-cols-4' : 'max-w-2xl'} gap-4">
           ${tool.pricingPlans.map((plan, pIdx) => `
             <div class="glass-card rounded-2xl p-5 border ${pIdx === tool.pricingPlans.length - 1 ? 'border-emerald-500/50 bg-emerald-950/20' : 'border-white/10 bg-slate-900/60'} flex flex-col justify-between relative hover:border-emerald-400/50 transition-all group">
               ${pIdx === tool.pricingPlans.length - 1 ? `

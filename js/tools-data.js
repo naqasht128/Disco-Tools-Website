@@ -24,13 +24,11 @@ const DISCO_TOOLS = [
     name: "PITCSuite",
     title: "PITCSuite - All-In-One Enterprise Workstation",
     category: "flagship",
-    badge: "Starting from Rs. 600",
-    startingPrice: "Rs. 600",
+    badge: "Starting from Rs. 4,000",
+    startingPrice: "Rs. 4,000",
     pricingPlans: [
-      { name: "1 Month Plan", price: "Rs. 600", validity: "30 Days Validity", devices: "1 Device Limit" },
-      { name: "3 Months Plan", price: "Rs. 1,400", validity: "90 Days Validity", devices: "Up to 2 Devices" },
-      { name: "6 Months Plan", price: "Rs. 2,400", validity: "180 Days Validity", devices: "Up to 2 Devices" },
-      { name: "1 Year Plan", price: "Rs. 4,000", validity: "365 Days Validity", devices: "Up to 3 Devices" }
+      { name: "6 Months Plan", price: "Rs. 4,000", validity: "180 Days Validity", devices: "Up to 2 Devices" },
+      { name: "1 Year Plan", price: "Rs. 7,000", validity: "365 Days Validity", devices: "Up to 3 Devices" }
     ],
     isFlagship: true,
     status: "ready",
@@ -109,13 +107,11 @@ const DISCO_TOOLS = [
     name: "Bill Scrapper",
     title: "Bill Scrapper - Scrape Billing Information into Excel",
     category: "extractors",
-    badge: "Starting from Rs. 300",
-    startingPrice: "Rs. 300",
+    badge: "Starting from Rs. 3,000",
+    startingPrice: "Rs. 3,000",
     pricingPlans: [
-      { name: "1 Month Plan", price: "Rs. 300", validity: "30 Days Validity", devices: "1 Device" },
-      { name: "3 Months Plan", price: "Rs. 700", validity: "90 Days Validity", devices: "Up to 2 Devices" },
-      { name: "6 Months Plan", price: "Rs. 1,200", validity: "180 Days Validity", devices: "Up to 2 Devices" },
-      { name: "1 Year Plan", price: "Rs. 2,000", validity: "365 Days Validity", devices: "Up to 2 Devices" }
+      { name: "6 Months Plan", price: "Rs. 3,000", validity: "180 Days Validity", devices: "Up to 2 Devices" },
+      { name: "1 Year Plan", price: "Rs. 5,000", validity: "365 Days Validity", devices: "Up to 2 Devices" }
     ],
     isFlagship: false,
     status: "ready",
@@ -212,13 +208,11 @@ const DISCO_TOOLS = [
     name: "E-Bills Downloader",
     title: "E-Bills Downloader - Downloads E-Bills into PDF",
     category: "extractors",
-    badge: "Starting from Rs. 300",
-    startingPrice: "Rs. 300",
+    badge: "Starting from Rs. 3,000",
+    startingPrice: "Rs. 3,000",
     pricingPlans: [
-      { name: "1 Month Plan", price: "Rs. 300", validity: "30 Days Validity", devices: "1 Device" },
-      { name: "3 Months Plan", price: "Rs. 700", validity: "90 Days Validity", devices: "Up to 2 Devices" },
-      { name: "6 Months Plan", price: "Rs. 1,200", validity: "180 Days Validity", devices: "Up to 2 Devices" },
-      { name: "1 Year Plan", price: "Rs. 2,000", validity: "365 Days Validity", devices: "Up to 2 Devices" }
+      { name: "6 Months Plan", price: "Rs. 3,000", validity: "180 Days Validity", devices: "Up to 2 Devices" },
+      { name: "1 Year Plan", price: "Rs. 5,000", validity: "365 Days Validity", devices: "Up to 2 Devices" }
     ],
     isFlagship: false,
     status: "ready",

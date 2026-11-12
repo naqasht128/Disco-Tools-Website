@@ -17,7 +17,7 @@ def extract_pitc_prices():
         return None
     with open(path, "r", encoding="utf-8", errors="ignore") as f:
         text = f.read()
-    m = re.search(r'plans_data\s*=\s*\[([\s\S]*?)\]', text)
+    m = re.search(r'(?:plans_data|plans)\s*=\s*\[([\s\S]*?)\]', text)
     if not m: return None
     plans = []
     for line in m.group(1).splitlines():
@@ -39,7 +39,7 @@ def extract_bill_scrapper_prices():
         return None
     with open(path, "r", encoding="utf-8", errors="ignore") as f:
         text = f.read()
-    m = re.search(r'plans_data\s*=\s*\[([\s\S]*?)\]', text)
+    m = re.search(r'(?:plans_data|plans)\s*=\s*\[([\s\S]*?)\]', text)
     if not m: return None
     plans = []
     for line in m.group(1).splitlines():
@@ -57,9 +57,35 @@ def extract_bill_scrapper_prices():
             })
     return plans
 
+def extract_ebill_downloader_prices():
+    path = os.path.join(PROJECTS_DIR, "EBillDownloader", "main.py")
+    if not os.path.exists(path):
+        return None
+    with open(path, "r", encoding="utf-8", errors="ignore") as f:
+        text = f.read()
+    m = re.search(r'(?:plans_data|plans)\s*=\s*\[([\s\S]*?)\]', text)
+    if not m: return None
+    plans = []
+    for line in m.group(1).splitlines():
+        line = line.strip()
+        if not line or line.startswith('#'): continue
+        t_m = re.search(r'\(\s*"([^"]+)"\s*,\s*"([^"]+)"\s*,\s*"([^"]+)"\s*\)', line)
+        if t_m:
+            raw_title = t_m.group(1)
+            p_name = "6 Months Plan" if "6 Months" in raw_title else ("1 Year Plan" if "1 Year" in raw_title else raw_title)
+            val = "180 Days Validity" if "6 Months" in raw_title else "365 Days Validity"
+            plans.append({
+                "name": p_name,
+                "price": t_m.group(2),
+                "validity": val,
+                "devices": "Up to 2 Devices"
+            })
+    return plans
+
 def main():
     pitc_plans = extract_pitc_prices()
     bs_plans = extract_bill_scrapper_prices()
+    eb_plans = extract_ebill_downloader_prices()
 
     pricing = {}
     if pitc_plans:
@@ -73,6 +99,12 @@ def main():
             "startingPrice": bs_plans[0]["price"],
             "badge": f"Starting from {bs_plans[0]['price']}",
             "plans": bs_plans
+        }
+    if eb_plans:
+        pricing["e-bills-downloader"] = {
+            "startingPrice": eb_plans[0]["price"],
+            "badge": f"Starting from {eb_plans[0]['price']}",
+            "plans": eb_plans
         }
 
     json_path = os.path.join(BASE_DIR, "data", "pricing.json")
