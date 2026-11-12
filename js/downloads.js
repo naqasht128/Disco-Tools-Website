@@ -171,9 +171,10 @@ function renderDownloads() {
     container.innerHTML = filtered.map(tool => {
     const isPublic = tool.isPublicDownload === true;
     const isDev = tool.status === 'in-development';
-    const showSpecs = tool.id === 'pitc-suite' || tool.id === 'bill-scrapper' || tool.id === 'e-bills-downloader';
+    const showSpecs = tool.id === 'pitc-suite' || tool.id === 'bill-scrapper' || tool.id === 'e-bills-downloader' || tool.id === 'mco-maker';
     const isEBillDownloader = tool.id === 'e-bills-downloader';
     const isBillScrapper = tool.id === 'bill-scrapper';
+    const isMCOMaker = tool.id === 'mco-maker';
 
     // Status Badge & Action Buttons
     let statusPill = '';
@@ -188,7 +189,7 @@ function renderDownloads() {
 
       if (tool.id === 'pitc-suite') {
         actionButton = `<button 
-          onclick="triggerToolDownload('${tool.id}', '${tool.title}')"
+          onclick="triggerToolDownload('${tool.id}', '${tool.title}', '${tool.downloadUrl}', '${tool.filename}')"
           class="w-full py-2 px-3 rounded-lg bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-500 hover:to-teal-500 text-white font-bold text-xs transition-all shadow-md shadow-emerald-950/30 flex flex-col items-center justify-center gap-0.5 text-center glow-btn"
           title="Download ${tool.name} for Windows 10 & 11"
         >
@@ -241,6 +242,11 @@ function renderDownloads() {
           <i data-lucide="layers" class="w-3 h-3 text-sky-400 shrink-0"></i> Windows 10/11 • Windows 7 • Linux ARM64
         </p>`;
     } else if (isEBillDownloader) {
+      filenameDisplay = `
+        <p class="text-[11px] text-slate-400 font-mono mt-0.5 flex items-center gap-1 truncate">
+          <i data-lucide="layers" class="w-3 h-3 text-sky-400 shrink-0"></i> Windows 10/11 • Windows 7 Legacy
+        </p>`;
+    } else if (isMCOMaker) {
       filenameDisplay = `
         <p class="text-[11px] text-slate-400 font-mono mt-0.5 flex items-center gap-1 truncate">
           <i data-lucide="layers" class="w-3 h-3 text-sky-400 shrink-0"></i> Windows 10/11 • Windows 7 Legacy
@@ -363,6 +369,37 @@ function renderDownloads() {
 
           <a 
             href="details.html?tool=e-bills-downloader"
+            class="w-full py-1.5 px-3 rounded-lg bg-slate-800/80 hover:bg-slate-700 text-slate-300 hover:text-white border border-white/10 font-bold text-xs transition-all flex items-center justify-center gap-1.5"
+          >
+            <i data-lucide="info" class="w-3.5 h-3.5 text-sky-400"></i> Details & Guide
+          </a>
+        </div>
+      `;
+    } else if (isMCOMaker) {
+      actionButtonsSection = `
+        <div class="space-y-2" onclick="event.stopPropagation()">
+          <div class="grid grid-cols-2 gap-2">
+            <button 
+              onclick="triggerToolDownload('mco-maker', 'MCO Maker - Windows 10/11', 'https://github.com/naqasht128/MCOMaker/releases/latest/download/MCOMaker-Setup.exe', 'MCOMaker-Setup.exe')"
+              class="py-2 px-2 rounded-lg bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs flex flex-col items-center justify-center gap-0.5 text-center transition-all shadow-md shadow-emerald-950/30 glow-btn"
+              title="Download MCO Maker for Windows 10 & 11"
+            >
+              <span class="flex items-center gap-1 leading-none"><i data-lucide="monitor" class="w-3.5 h-3.5"></i> Win 10/11</span>
+              <span class="text-[10px] text-emerald-200 font-mono font-normal">34.5 MB .exe</span>
+            </button>
+
+            <button 
+              onclick="triggerToolDownload('mco-maker', 'MCO Maker - Windows 7 Legacy', 'https://github.com/naqasht128/MCOMaker/releases/latest/download/MCOMaker-Win7-Setup.exe', 'MCOMaker-Win7-Setup.exe')"
+              class="py-2 px-2 rounded-lg bg-teal-600 hover:bg-teal-500 text-white font-bold text-xs flex flex-col items-center justify-center gap-0.5 text-center transition-all shadow-sm"
+              title="Download MCO Maker for Windows 7 & Legacy Systems"
+            >
+              <span class="flex items-center gap-1 leading-none"><i data-lucide="monitor" class="w-3.5 h-3.5"></i> Win 7</span>
+              <span class="text-[10px] text-teal-200 font-mono font-normal">26.8 MB .exe</span>
+            </button>
+          </div>
+
+          <a 
+            href="details.html?tool=mco-maker"
             class="w-full py-1.5 px-3 rounded-lg bg-slate-800/80 hover:bg-slate-700 text-slate-300 hover:text-white border border-white/10 font-bold text-xs transition-all flex items-center justify-center gap-1.5"
           >
             <i data-lucide="info" class="w-3.5 h-3.5 text-sky-400"></i> Details & Guide

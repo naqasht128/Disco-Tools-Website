@@ -103,7 +103,7 @@ def update_tools_data_js(pricing):
         )
 
         def repl(match):
-            return f'{match.group(1)}{badge}{match.group(2)}{starting_price}"\n    {plans_js_block}'
+            return f'{match.group(1)}{badge}{match.group(2)}{starting_price}",\n    {plans_js_block}'
 
         new_content, count = pattern.subn(repl, content)
         if count > 0:

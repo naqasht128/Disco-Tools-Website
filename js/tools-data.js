@@ -25,7 +25,7 @@ const DISCO_TOOLS = [
     title: "PITCSuite - All-In-One Enterprise Workstation",
     category: "flagship",
     badge: "Starting from Rs. 5,000",
-    startingPrice: "Rs. 5,000"
+    startingPrice: "Rs. 5,000",
     pricingPlans: [
       { name: "6 Months Plan", price: "Rs. 5,000", validity: "180 Days Validity", devices: "Up to 2 Devices" },
       { name: "1 Year Plan", price: "Rs. 9,000", validity: "365 Days Validity", devices: "Up to 3 Devices" }
@@ -108,7 +108,7 @@ const DISCO_TOOLS = [
     title: "Bill Scrapper - Scrape Billing Information into Excel",
     category: "extractors",
     badge: "Starting from Rs. 3,000",
-    startingPrice: "Rs. 3,000"
+    startingPrice: "Rs. 3,000",
     pricingPlans: [
       { name: "6 Months Plan", price: "Rs. 3,000", validity: "180 Days Validity", devices: "Up to 2 Devices" },
       { name: "1 Year Plan", price: "Rs. 5,000", validity: "365 Days Validity", devices: "Up to 2 Devices" }
@@ -209,7 +209,7 @@ const DISCO_TOOLS = [
     title: "E-Bills Downloader - Downloads E-Bills into PDF",
     category: "extractors",
     badge: "Starting from Rs. 3,000",
-    startingPrice: "Rs. 3,000"
+    startingPrice: "Rs. 3,000",
     pricingPlans: [
       { name: "6 Months Plan", price: "Rs. 3,000", validity: "180 Days Validity", devices: "Up to 2 Devices" },
       { name: "1 Year Plan", price: "Rs. 5,000", validity: "365 Days Validity", devices: "Up to 2 Devices" }
@@ -300,7 +300,7 @@ const DISCO_TOOLS = [
     title: "MCO Maker - Automated Meter Change Order Generator & PITC Bill Scraper",
     category: "extractors",
     badge: "Starting from Rs. 3,000",
-    startingPrice: "Rs. 3,000"
+    startingPrice: "Rs. 3,000",
     pricingPlans: [
       { name: "6 Months Plan", price: "Rs. 3,000", validity: "180 Days Validity", devices: "1 Device" },
       { name: "1 Year Plan", price: "Rs. 5,000", validity: "365 Days Validity", devices: "1 Device" }

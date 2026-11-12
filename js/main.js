@@ -152,8 +152,9 @@ function triggerToolDownload(filenameOrId, toolTitle, customUrl, customFilename)
     tool = getToolByFilename(filenameOrId);
   }
 
-  // If this tool is not flagged as a public download, open the contact/request modal
-  if (!tool || !tool.isPublicDownload) {
+  // If this tool is not flagged as a public download and no direct customUrl is provided, open the contact/request modal
+  const isDirectDownload = Boolean(customUrl || (tool && tool.isPublicDownload));
+  if (!isDirectDownload) {
     openContactRequestModal(tool || { name: toolTitle, filename: filenameOrId, status: 'on-request' });
     return;
   }
