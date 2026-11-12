@@ -252,9 +252,6 @@ function renderTutorialContent(toolId) {
                   <div class="flex items-center gap-1.5">
                     <i data-lucide="clock" class="w-3.5 h-3.5 text-slate-400"></i> ${plan.validity}
                   </div>
-                  <div class="flex items-center gap-1.5">
-                    <i data-lucide="laptop" class="w-3.5 h-3.5 text-slate-400"></i> ${plan.devices}
-                  </div>
                 </div>
               </div>
               <a 

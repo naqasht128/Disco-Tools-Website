@@ -27,8 +27,8 @@ const DISCO_TOOLS = [
     badge: "Starting from Rs. 5,000",
     startingPrice: "Rs. 5,000",
     pricingPlans: [
-      { name: "6 Months Plan", price: "Rs. 5,000", validity: "180 Days Validity", devices: "Up to 2 Devices" },
-      { name: "1 Year Plan", price: "Rs. 9,000", validity: "365 Days Validity", devices: "Up to 3 Devices" }
+      { name: "6 Months Plan", price: "Rs. 5,000", validity: "180 Days Validity" },
+      { name: "1 Year Plan", price: "Rs. 9,000", validity: "365 Days Validity" }
     ],
     isFlagship: true,
     status: "ready",
@@ -110,8 +110,8 @@ const DISCO_TOOLS = [
     badge: "Starting from Rs. 3,000",
     startingPrice: "Rs. 3,000",
     pricingPlans: [
-      { name: "6 Months Plan", price: "Rs. 3,000", validity: "180 Days Validity", devices: "Up to 2 Devices" },
-      { name: "1 Year Plan", price: "Rs. 5,000", validity: "365 Days Validity", devices: "Up to 2 Devices" }
+      { name: "6 Months Plan", price: "Rs. 3,000", validity: "180 Days Validity" },
+      { name: "1 Year Plan", price: "Rs. 5,000", validity: "365 Days Validity" }
     ],
     isFlagship: false,
     status: "ready",
@@ -211,8 +211,8 @@ const DISCO_TOOLS = [
     badge: "Starting from Rs. 3,000",
     startingPrice: "Rs. 3,000",
     pricingPlans: [
-      { name: "6 Months Plan", price: "Rs. 3,000", validity: "180 Days Validity", devices: "Up to 2 Devices" },
-      { name: "1 Year Plan", price: "Rs. 5,000", validity: "365 Days Validity", devices: "Up to 2 Devices" }
+      { name: "6 Months Plan", price: "Rs. 3,000", validity: "180 Days Validity" },
+      { name: "1 Year Plan", price: "Rs. 5,000", validity: "365 Days Validity" }
     ],
     isFlagship: false,
     status: "ready",
@@ -302,8 +302,8 @@ const DISCO_TOOLS = [
     badge: "Starting from Rs. 3,000",
     startingPrice: "Rs. 3,000",
     pricingPlans: [
-      { name: "6 Months Plan", price: "Rs. 3,000", validity: "180 Days Validity", devices: "1 Device" },
-      { name: "1 Year Plan", price: "Rs. 5,000", validity: "365 Days Validity", devices: "1 Device" }
+      { name: "6 Months Plan", price: "Rs. 3,000", validity: "180 Days Validity" },
+      { name: "1 Year Plan", price: "Rs. 5,000", validity: "365 Days Validity" }
     ],
     isFlagship: false,
     status: "ready",

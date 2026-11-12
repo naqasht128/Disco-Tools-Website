@@ -92,7 +92,7 @@ def update_tools_data_js(pricing):
         plan_lines = []
         for p in plans:
             plan_lines.append(
-                f'      {{ name: "{p["name"]}", price: "{p["price"]}", validity: "{p["validity"]}", devices: "{p["devices"]}" }}'
+                f'      {{ name: "{p["name"]}", price: "{p["price"]}", validity: "{p["validity"]}" }}'
             )
         plans_js_block = "pricingPlans: [\n" + ",\n".join(plan_lines) + "\n    ]"
 
@@ -154,27 +154,13 @@ def update_index_html(pricing):
 
 
 def update_pitcsuite_code(p_6m, p_1y):
-    if os.path.exists(PITC_LICENSE_MGR):
-        with open(PITC_LICENSE_MGR, "r", encoding="utf-8") as f:
-            code = f.read()
-        new_block = (
-            f'plans_data = [\n'
-            f'            ("6 Months Plan", "{p_6m}", "180 Days Validity", "Up to 2 Devices"),\n'
-            f'            ("1 Year Plan", "{p_1y}", "365 Days Validity", "Up to 3 Devices"),\n'
-            f'        ]'
-        )
-        code = re.sub(r'plans_data\s*=\s*\[[\s\S]*?\]', new_block, code, count=1)
-        with open(PITC_LICENSE_MGR, "w", encoding="utf-8") as f:
-            f.write(code)
-        print(f"[✓] Updated PitcSuite/pitcsuite/license_manager.py")
-
     if os.path.exists(PITC_GEN_KEY):
         with open(PITC_GEN_KEY, "r", encoding="utf-8") as f:
             code = f.read()
         new_plans = (
             f'PLANS = [\n'
-            f'    ("6_months", "6 Months  —  {p_6m}  (180 Days, Up to 2 Devices)"),\n'
-            f'    ("1_year", "1 Year  —  {p_1y}  (365 Days, Up to 3 Devices)"),\n'
+            f'    ("6_months", "6 Months  —  {p_6m}  (180 Days, 1 Device)"),\n'
+            f'    ("1_year", "1 Year  —  {p_1y}  (365 Days, 1 Device)"),\n'
             f']'
         )
         code = re.sub(r'PLANS\s*=\s*\[[\s\S]*?\n\]', new_plans, code, count=1)
@@ -184,27 +170,13 @@ def update_pitcsuite_code(p_6m, p_1y):
 
 
 def update_billscrapper_code(p_6m, p_1y):
-    if os.path.exists(BILL_MAIN):
-        with open(BILL_MAIN, "r", encoding="utf-8") as f:
-            code = f.read()
-        new_block = (
-            f'plans_data = [\n'
-            f'            ("6 Months", "{p_6m}", "Up to 2 Devices", "#d2a8ff"),\n'
-            f'            ("1 Year", "{p_1y}", "Up to 2 Devices", "#ffa657"),\n'
-            f'        ]'
-        )
-        code = re.sub(r'plans_data\s*=\s*\[[\s\S]*?\n\]', new_block, code, count=1)
-        with open(BILL_MAIN, "w", encoding="utf-8") as f:
-            f.write(code)
-        print(f"[✓] Updated BillScrapper/main.py")
-
     if os.path.exists(BILL_GEN_KEY):
         with open(BILL_GEN_KEY, "r", encoding="utf-8") as f:
             code = f.read()
         new_plans = (
             f'PLANS = [\n'
-            f'    ("6_months", "6 Months  —  {p_6m}  (180 Days, Up to 2 Devices)"),\n'
-            f'    ("1_year", "1 Year  —  {p_1y}  (365 Days, Up to 2 Devices)"),\n'
+            f'    ("6_months", "6 Months  —  {p_6m}  (180 Days, 1 Device)"),\n'
+            f'    ("1_year", "1 Year  —  {p_1y}  (365 Days, 1 Device)"),\n'
             f']'
         )
         code = re.sub(r'PLANS\s*=\s*\[[\s\S]*?\n\]', new_plans, code, count=1)
@@ -214,27 +186,13 @@ def update_billscrapper_code(p_6m, p_1y):
 
 
 def update_ebilldownloader_code(p_6m, p_1y):
-    if os.path.exists(EBILL_MAIN):
-        with open(EBILL_MAIN, "r", encoding="utf-8") as f:
-            code = f.read()
-        new_block = (
-            f'plans = [\n'
-            f'            ("6 Months Subscription", "{p_6m}", "180 Days Validity  •  Up to 2 Devices"),\n'
-            f'            ("1 Year Subscription (Best Value)", "{p_1y}", "365 Days Validity  •  Up to 2 Devices"),\n'
-            f'        ]'
-        )
-        code = re.sub(r'plans\s*=\s*\[[\s\S]*?\]', new_block, code, count=1)
-        with open(EBILL_MAIN, "w", encoding="utf-8") as f:
-            f.write(code)
-        print(f"[✓] Updated EBillDownloader/main.py")
-
     if os.path.exists(EBILL_GEN_KEY):
         with open(EBILL_GEN_KEY, "r", encoding="utf-8") as f:
             code = f.read()
         new_plans = (
             f'PLANS = [\n'
-            f'    ("6_months", "6 Months  —  {p_6m}  (180 Days, Up to 2 Devices)"),\n'
-            f'    ("1_year", "1 Year  —  {p_1y}  (365 Days, Up to 2 Devices)"),\n'
+            f'    ("6_months", "6 Months  —  {p_6m}  (180 Days, 1 Device)"),\n'
+            f'    ("1_year", "1 Year  —  {p_1y}  (365 Days, 1 Device)"),\n'
             f']'
         )
         code = re.sub(r'PLANS\s*=\s*\[[\s\S]*?\n\]', new_plans, code, count=1)
@@ -351,8 +309,8 @@ def main():
             "startingPrice": p_6m,
             "badge": f"Starting from {p_6m}",
             "plans": [
-                {"name": "6 Months Plan", "price": p_6m, "validity": "180 Days Validity", "devices": "Up to 2 Devices"},
-                {"name": "1 Year Plan", "price": p_1y, "validity": "365 Days Validity", "devices": "Up to 3 Devices"}
+                {"name": "6 Months Plan", "price": p_6m, "validity": "180 Days Validity"},
+                {"name": "1 Year Plan", "price": p_1y, "validity": "365 Days Validity"}
             ]
         }
         update_pitcsuite_code(p_6m, p_1y)
@@ -363,8 +321,8 @@ def main():
             "startingPrice": p_6m,
             "badge": f"Starting from {p_6m}",
             "plans": [
-                {"name": "6 Months Plan", "price": p_6m, "validity": "180 Days Validity", "devices": "Up to 2 Devices"},
-                {"name": "1 Year Plan", "price": p_1y, "validity": "365 Days Validity", "devices": "Up to 2 Devices"}
+                {"name": "6 Months Plan", "price": p_6m, "validity": "180 Days Validity"},
+                {"name": "1 Year Plan", "price": p_1y, "validity": "365 Days Validity"}
             ]
         }
         update_billscrapper_code(p_6m, p_1y)
@@ -375,8 +333,8 @@ def main():
             "startingPrice": p_6m,
             "badge": f"Starting from {p_6m}",
             "plans": [
-                {"name": "6 Months Plan", "price": p_6m, "validity": "180 Days Validity", "devices": "Up to 2 Devices"},
-                {"name": "1 Year Plan", "price": p_1y, "validity": "365 Days Validity", "devices": "Up to 2 Devices"}
+                {"name": "6 Months Plan", "price": p_6m, "validity": "180 Days Validity"},
+                {"name": "1 Year Plan", "price": p_1y, "validity": "365 Days Validity"}
             ]
         }
         update_ebilldownloader_code(p_6m, p_1y)
@@ -387,8 +345,8 @@ def main():
             "startingPrice": p_6m,
             "badge": f"Starting from {p_6m}",
             "plans": [
-                {"name": "6 Months Plan", "price": p_6m, "validity": "180 Days Validity", "devices": "1 Device"},
-                {"name": "1 Year Plan", "price": p_1y, "validity": "365 Days Validity", "devices": "1 Device"}
+                {"name": "6 Months Plan", "price": p_6m, "validity": "180 Days Validity"},
+                {"name": "1 Year Plan", "price": p_1y, "validity": "365 Days Validity"}
             ]
         }
         update_mcomaker_code(p_6m, p_1y)

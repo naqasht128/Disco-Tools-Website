@@ -6,14 +6,12 @@
       {
         "name": "6 Months Plan",
         "price": "Rs. 5,000",
-        "validity": "180 Days Validity",
-        "devices": "Up to 2 Devices"
+        "validity": "180 Days Validity"
       },
       {
         "name": "1 Year Plan",
         "price": "Rs. 9,000",
-        "validity": "365 Days Validity",
-        "devices": "Up to 3 Devices"
+        "validity": "365 Days Validity"
       }
     ]
   },
@@ -24,14 +22,12 @@
       {
         "name": "6 Months Plan",
         "price": "Rs. 3,000",
-        "validity": "180 Days Validity",
-        "devices": "Up to 2 Devices"
+        "validity": "180 Days Validity"
       },
       {
         "name": "1 Year Plan",
         "price": "Rs. 5,000",
-        "validity": "365 Days Validity",
-        "devices": "Up to 2 Devices"
+        "validity": "365 Days Validity"
       }
     ]
   },
@@ -42,14 +38,12 @@
       {
         "name": "6 Months Plan",
         "price": "Rs. 3,000",
-        "validity": "180 Days Validity",
-        "devices": "Up to 2 Devices"
+        "validity": "180 Days Validity"
       },
       {
         "name": "1 Year Plan",
         "price": "Rs. 5,000",
-        "validity": "365 Days Validity",
-        "devices": "Up to 2 Devices"
+        "validity": "365 Days Validity"
       }
     ]
   },
@@ -60,14 +54,12 @@
       {
         "name": "6 Months Plan",
         "price": "Rs. 3,000",
-        "validity": "180 Days Validity",
-        "devices": "1 Device"
+        "validity": "180 Days Validity"
       },
       {
         "name": "1 Year Plan",
         "price": "Rs. 5,000",
-        "validity": "365 Days Validity",
-        "devices": "1 Device"
+        "validity": "365 Days Validity"
       }
     ]
   }
