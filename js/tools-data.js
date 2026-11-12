@@ -338,10 +338,10 @@ const DISCO_TOOLS = [
     updated: "November 2026",
     icon: "file-text",
     summary: "Automated Electricity Meter Change Order (MCO) Generator & PITC Bill Scraper.",
-    description: "MCO Maker automates the generation of official Meter Change Orders (MCOs) for Sub-Divisions and Regional Offices (RO / CP-FORM-138) across all Pakistan electricity distribution companies. By feeding an Excel workbook of consumer reference numbers and new meter details, the software automatically queries online PITC billing servers, extracts consumer names, addresses, feeder codes, old removed meter numbers, final readings, and tariff codes, and instantly exports formatted Word (.docx) and PDF (.pdf) documents ready for SDO and RO audit signatures.",
+    description: "MCO Maker automates the generation of official Meter Change Orders (MCOs) for Sub-Divisions and Regional Offices (RO / CP-FORM-138) across all Pakistan electricity distribution companies. By feeding an Excel workbook of consumer reference numbers and new meter details, the software automatically queries online PITC billing servers, extracts consumer names, addresses, feeder codes, old removed meter numbers, final readings, and tariff codes, and instantly exports formatted Word (.docx) documents ready for SDO and RO audit signatures.",
     features: [
       "Automated PITC live online billing data extraction for removed meter numbers and final readings",
-      "Generates official Sub-Division Meter Change Orders and RO CP-FORM-138 rosters in Word (.docx) and vector PDF",
+      "Generates official Sub-Division Meter Change Orders and RO CP-FORM-138 rosters in Word (.docx)",
       "Smart Excel column auto-detection (Reference Number, MSN, SIM Number, ICCID, Installation Date, Telco, SCO No)",
       "High-speed batch processing with local caching and offline recovery",
       "Hardware-locked licensing with instant online activation and multi-OS support (Windows 10/11 & Windows 7 Legacy)"
@@ -372,7 +372,7 @@ const DISCO_TOOLS = [
         {
           step: 4,
           title: "Generate Sub-Division & RO MCOs",
-          desc: "Choose between Sub-Division MCO or RO Office CP-FORM-138 and click 'Generate MCO Documents' to export print-ready Word (.docx) and PDF files."
+          desc: "Choose between Sub-Division MCO or RO Office CP-FORM-138 and click 'Generate MCO Documents' to export print-ready Word (.docx) documents."
         }
       ],
       tips: [
