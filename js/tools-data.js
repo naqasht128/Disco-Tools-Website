@@ -24,11 +24,11 @@ const DISCO_TOOLS = [
     name: "PITCSuite",
     title: "PITCSuite - All-In-One Enterprise Workstation",
     category: "flagship",
-    badge: "Starting from Rs. 4,000",
-    startingPrice: "Rs. 4,000",
+    badge: "Starting from Rs. 5,000",
+    startingPrice: "Rs. 5,000"
     pricingPlans: [
-      { name: "6 Months Plan", price: "Rs. 4,000", validity: "180 Days Validity", devices: "Up to 2 Devices" },
-      { name: "1 Year Plan", price: "Rs. 7,000", validity: "365 Days Validity", devices: "Up to 3 Devices" }
+      { name: "6 Months Plan", price: "Rs. 5,000", validity: "180 Days Validity", devices: "Up to 2 Devices" },
+      { name: "1 Year Plan", price: "Rs. 9,000", validity: "365 Days Validity", devices: "Up to 3 Devices" }
     ],
     isFlagship: true,
     status: "ready",
@@ -108,7 +108,7 @@ const DISCO_TOOLS = [
     title: "Bill Scrapper - Scrape Billing Information into Excel",
     category: "extractors",
     badge: "Starting from Rs. 3,000",
-    startingPrice: "Rs. 3,000",
+    startingPrice: "Rs. 3,000"
     pricingPlans: [
       { name: "6 Months Plan", price: "Rs. 3,000", validity: "180 Days Validity", devices: "Up to 2 Devices" },
       { name: "1 Year Plan", price: "Rs. 5,000", validity: "365 Days Validity", devices: "Up to 2 Devices" }
@@ -209,7 +209,7 @@ const DISCO_TOOLS = [
     title: "E-Bills Downloader - Downloads E-Bills into PDF",
     category: "extractors",
     badge: "Starting from Rs. 3,000",
-    startingPrice: "Rs. 3,000",
+    startingPrice: "Rs. 3,000"
     pricingPlans: [
       { name: "6 Months Plan", price: "Rs. 3,000", validity: "180 Days Validity", devices: "Up to 2 Devices" },
       { name: "1 Year Plan", price: "Rs. 5,000", validity: "365 Days Validity", devices: "Up to 2 Devices" }
@@ -292,7 +292,98 @@ const DISCO_TOOLS = [
   },
 
   // =========================================================================
-  // 4. CP-52 POSTING INTO PDF (AVAILABLE ON REQUEST)
+  // 4. MCO MAKER (PUBLIC DOWNLOADABLE - HAS REPO)
+  // =========================================================================
+  {
+    id: "mco-maker",
+    name: "MCO Maker",
+    title: "MCO Maker - Automated Meter Change Order Generator & PITC Bill Scraper",
+    category: "extractors",
+    badge: "Starting from Rs. 3,000",
+    startingPrice: "Rs. 3,000"
+    pricingPlans: [
+      { name: "6 Months Plan", price: "Rs. 3,000", validity: "180 Days Validity", devices: "1 Device" },
+      { name: "1 Year Plan", price: "Rs. 5,000", validity: "365 Days Validity", devices: "1 Device" }
+    ],
+    isFlagship: false,
+    status: "ready",
+    isPublicDownload: true,
+    version: "v1.0.5",
+    size: "34.5 MB",
+    filename: "MCOMaker-Setup.exe",
+    builds: [
+      {
+        id: "win10",
+        label: "Windows 10 / 11",
+        shortLabel: "Win 10/11",
+        filename: "MCOMaker-Setup.exe",
+        downloadUrl: "https://github.com/naqasht128/MCOMaker/releases/latest/download/MCOMaker-Setup.exe",
+        size: "34.5 MB",
+        icon: "monitor"
+      },
+      {
+        id: "win7",
+        label: "Windows 7 / Legacy",
+        shortLabel: "Win 7",
+        filename: "MCOMaker-Win7-Setup.exe",
+        downloadUrl: "https://github.com/naqasht128/MCOMaker/releases/latest/download/MCOMaker-Win7-Setup.exe",
+        size: "26.8 MB",
+        icon: "monitor"
+      }
+    ],
+    downloadUrl: "https://github.com/naqasht128/MCOMaker/releases/latest/download/MCOMaker-Setup.exe",
+    githubRepo: "naqasht128/MCOMaker",
+    githubReleaseUrl: "https://github.com/naqasht128/MCOMaker/releases/latest",
+    githubRepoUrl: "https://github.com/naqasht128/MCOMaker",
+    updated: "November 2026",
+    icon: "file-text",
+    summary: "Automated Electricity Meter Change Order (MCO) Generator & PITC Bill Scraper.",
+    description: "MCO Maker automates the generation of official Meter Change Orders (MCOs) for Sub-Divisions and Regional Offices (RO / CP-FORM-138) across all Pakistan electricity distribution companies. By feeding an Excel workbook of consumer reference numbers and new meter details, the software automatically queries online PITC billing servers, extracts consumer names, addresses, feeder codes, old removed meter numbers, final readings, and tariff codes, and instantly exports formatted Word (.docx) and PDF (.pdf) documents ready for SDO and RO audit signatures.",
+    features: [
+      "Automated PITC live online billing data extraction for removed meter numbers and final readings",
+      "Generates official Sub-Division Meter Change Orders and RO CP-FORM-138 rosters in Word (.docx) and vector PDF",
+      "Smart Excel column auto-detection (Reference Number, MSN, SIM Number, ICCID, Installation Date, Telco, SCO No)",
+      "High-speed batch processing with local caching and offline recovery",
+      "Hardware-locked licensing with instant online activation and multi-OS support (Windows 10/11 & Windows 7 Legacy)"
+    ],
+    tutorial: {
+      overview: "Automates the generation of official Meter Change Orders (MCOs) for sub-divisional offices and RO audit sections without manual typing.",
+      prerequisites: [
+        "Windows 7, 8, 10, or 11 (32-bit or 64-bit)",
+        "Microsoft Excel (.xlsx / .xls) containing consumer reference numbers and new meter serials",
+        "Active Internet connection for online PITC bill scraping"
+      ],
+      steps: [
+        {
+          step: 1,
+          title: "Download & Install",
+          desc: "Download `MCOMaker-Setup.exe` (or Windows 7 legacy build) from the Downloads repository and launch the application."
+        },
+        {
+          step: 2,
+          title: "Import Consumer Excel File",
+          desc: "Click 'Browse Excel File' to load your consumer list. MCO Maker automatically detects column mappings for Reference Number, MSN, SIM, and Date."
+        },
+        {
+          step: 3,
+          title: "Execute PITC Online Bill Fetch",
+          desc: "Click 'Start Scraping' to automatically query PITC online servers and retrieve consumer names, feeder codes, old removed meter numbers, and final meter readings."
+        },
+        {
+          step: 4,
+          title: "Generate Sub-Division & RO MCOs",
+          desc: "Choose between Sub-Division MCO or RO Office CP-FORM-138 and click 'Generate MCO Documents' to export print-ready Word (.docx) and PDF files."
+        }
+      ],
+      tips: [
+        "Ensure reference numbers in Excel are formatted as 14-digit text to avoid missing leading zeros.",
+        "MCO Maker caches scraped records locally, so re-generating documents for the same batch requires zero waiting time."
+      ]
+    }
+  },
+
+  // =========================================================================
+  // 5. CP-52 POSTING INTO PDF (AVAILABLE ON REQUEST)
   // =========================================================================
   {
     id: "cp52-posting-pdf",
@@ -820,6 +911,9 @@ function getToolByFilename(filename) {
   }
   if (target.includes('scrapper') || target.includes('scraper') || (target.includes('bill') && !target.includes('downloader') && !target.includes('e-bills'))) {
     return DISCO_TOOLS.find(t => t.id === 'bill-scrapper');
+  }
+  if (target.includes('mco')) {
+    return DISCO_TOOLS.find(t => t.id === 'mco-maker');
   }
 
   // 3. Normalized stripped match

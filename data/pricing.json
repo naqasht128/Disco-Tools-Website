@@ -1,17 +1,17 @@
 {
   "pitc-suite": {
-    "startingPrice": "Rs. 4,000",
-    "badge": "Starting from Rs. 4,000",
+    "startingPrice": "Rs. 5,000",
+    "badge": "Starting from Rs. 5,000",
     "plans": [
       {
         "name": "6 Months Plan",
-        "price": "Rs. 4,000",
+        "price": "Rs. 5,000",
         "validity": "180 Days Validity",
         "devices": "Up to 2 Devices"
       },
       {
         "name": "1 Year Plan",
-        "price": "Rs. 7,000",
+        "price": "Rs. 9,000",
         "validity": "365 Days Validity",
         "devices": "Up to 3 Devices"
       }
@@ -50,6 +50,24 @@
         "price": "Rs. 5,000",
         "validity": "365 Days Validity",
         "devices": "Up to 2 Devices"
+      }
+    ]
+  },
+  "mco-maker": {
+    "startingPrice": "Rs. 3,000",
+    "badge": "Starting from Rs. 3,000",
+    "plans": [
+      {
+        "name": "6 Months Plan",
+        "price": "Rs. 3,000",
+        "validity": "180 Days Validity",
+        "devices": "1 Device"
+      },
+      {
+        "name": "1 Year Plan",
+        "price": "Rs. 5,000",
+        "validity": "365 Days Validity",
+        "devices": "1 Device"
       }
     ]
   }
