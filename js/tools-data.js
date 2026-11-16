@@ -130,15 +130,6 @@ const DISCO_TOOLS = [
         icon: "monitor"
       },
       {
-        id: "win7",
-        label: "Windows 7 / Legacy",
-        shortLabel: "Win 7",
-        filename: "BillScrapper-Win7-Setup.exe",
-        downloadUrl: "https://github.com/naqasht128/BillScrapper/releases/latest/download/BillScrapper-Win7-Setup.exe",
-        size: "27.9 MB",
-        icon: "monitor"
-      },
-      {
         id: "linux-arm64",
         label: "Linux (ARM64)",
         shortLabel: "Linux ARM64",
@@ -167,7 +158,7 @@ const DISCO_TOOLS = [
     tutorial: {
       overview: "Quickly scrape complete billing records for hundreds of consumer reference numbers into an Excel sheet for analysis.",
       prerequisites: [
-        "Windows 10 / 11, Windows 7 (Legacy), or Linux (ARM64)",
+        "Windows 10 / 11 or Linux (ARM64)",
         "Active Internet connection (for querying live billing servers)",
         "List of 14-digit DISCO consumer reference numbers (select your DISCO in settings)"
       ],
@@ -220,26 +211,6 @@ const DISCO_TOOLS = [
     version: "v1.0.2",
     size: "73.3 MB",
     filename: "EBillDownloader-Setup.exe",
-    builds: [
-      {
-        id: "win10",
-        label: "Windows 10 / 11",
-        shortLabel: "Win 10/11",
-        filename: "EBillDownloader-Setup.exe",
-        downloadUrl: "https://github.com/naqasht128/EBillDownloader/releases/latest/download/EBillDownloader-Setup.exe",
-        size: "73.3 MB",
-        icon: "monitor"
-      },
-      {
-        id: "win7",
-        label: "Windows 7 / Legacy",
-        shortLabel: "Win 7",
-        filename: "EBillDownloader-Win7-Setup.exe",
-        downloadUrl: "https://github.com/naqasht128/EBillDownloader/releases/latest/download/EBillDownloader-Win7-Setup.exe",
-        size: "46.2 MB",
-        icon: "monitor"
-      }
-    ],
     downloadUrl: "https://github.com/naqasht128/EBillDownloader/releases/latest/download/EBillDownloader-Setup.exe",
     githubRepo: "naqasht128/EBillDownloader",
     githubReleaseUrl: "https://github.com/naqasht128/EBillDownloader/releases/latest",
@@ -258,7 +229,7 @@ const DISCO_TOOLS = [
     tutorial: {
       overview: "Automates mass generation and archiving of official duplicate electricity bills for commercial desks and recovery teams.",
       prerequisites: [
-        "Windows 10 / 11 or Windows 7 (Legacy)",
+        "Windows 10 / 11",
         "Active Internet Connection (for contacting DISCO billing endpoints)",
         "List of 14-digit consumer reference numbers"
       ],
@@ -266,7 +237,7 @@ const DISCO_TOOLS = [
         {
           step: 1,
           title: "Download & Launch",
-          desc: "Download and run EBillDownloader-Setup.exe (or Windows 7 legacy setup). Launch the utility on your Windows PC."
+          desc: "Download and run EBillDownloader-Setup.exe. Launch the utility on your Windows PC."
         },
         {
           step: 2,
@@ -311,26 +282,6 @@ const DISCO_TOOLS = [
     version: "v1.0.5",
     size: "34.5 MB",
     filename: "MCOMaker-Setup.exe",
-    builds: [
-      {
-        id: "win10",
-        label: "Windows 10 / 11",
-        shortLabel: "Win 10/11",
-        filename: "MCOMaker-Setup.exe",
-        downloadUrl: "https://github.com/naqasht128/MCOMaker/releases/latest/download/MCOMaker-Setup.exe",
-        size: "34.5 MB",
-        icon: "monitor"
-      },
-      {
-        id: "win7",
-        label: "Windows 7 / Legacy",
-        shortLabel: "Win 7",
-        filename: "MCOMaker-Win7-Setup.exe",
-        downloadUrl: "https://github.com/naqasht128/MCOMaker/releases/latest/download/MCOMaker-Win7-Setup.exe",
-        size: "26.8 MB",
-        icon: "monitor"
-      }
-    ],
     downloadUrl: "https://github.com/naqasht128/MCOMaker/releases/latest/download/MCOMaker-Setup.exe",
     githubRepo: "naqasht128/MCOMaker",
     githubReleaseUrl: "https://github.com/naqasht128/MCOMaker/releases/latest",
@@ -344,12 +295,12 @@ const DISCO_TOOLS = [
       "Generates official Sub-Division Meter Change Orders and RO CP-FORM-138 rosters in Word (.docx)",
       "Smart Excel column auto-detection (Reference Number, MSN, SIM Number, ICCID, Installation Date, Telco, SCO No)",
       "High-speed batch processing with local caching and offline recovery",
-      "Hardware-locked licensing with instant online activation and multi-OS support (Windows 10/11 & Windows 7 Legacy)"
+      "Hardware-locked licensing with instant online activation and Windows 10/11 support"
     ],
     tutorial: {
       overview: "Automates the generation of official Meter Change Orders (MCOs) for sub-divisional offices and RO audit sections without manual typing.",
       prerequisites: [
-        "Windows 7, 8, 10, or 11 (32-bit or 64-bit)",
+        "Windows 10 or 11 (64-bit)",
         "Microsoft Excel (.xlsx / .xls) containing consumer reference numbers and new meter serials",
         "Active Internet connection for online PITC bill scraping"
       ],
@@ -357,7 +308,7 @@ const DISCO_TOOLS = [
         {
           step: 1,
           title: "Download & Install",
-          desc: "Download `MCOMaker-Setup.exe` (or Windows 7 legacy build) from the Downloads repository and launch the application."
+          desc: "Download `MCOMaker-Setup.exe` from the Downloads repository and launch the application."
         },
         {
           step: 2,

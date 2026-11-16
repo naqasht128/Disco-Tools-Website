@@ -560,10 +560,10 @@ async function syncLiveGitHubReleases() {
           let dlUrl = tool.downloadUrl;
 
           if (json.assets && json.assets.length > 0) {
-            const setupAsset = json.assets.find(a => 
-              a.name.toLowerCase().endsWith('-setup.exe') || 
-              a.name.toLowerCase().endsWith('_setup.exe')
-            ) || json.assets.find(a => a.name.toLowerCase().endsWith('.exe')) || json.assets[0];
+            const setupAsset = json.assets.find(a => {
+              const nm = a.name.toLowerCase();
+              return !nm.includes('win7') && !nm.includes('legacy') && (nm.endsWith('-setup.exe') || nm.endsWith('_setup.exe'));
+            }) || json.assets.find(a => !a.name.toLowerCase().includes('win7') && !a.name.toLowerCase().includes('legacy') && a.name.toLowerCase().endsWith('.exe')) || json.assets[0];
 
             if (setupAsset) {
               if (setupAsset.size) {
