@@ -117,7 +117,7 @@ function renderTutorialContent(toolId) {
   container.innerHTML = `
     <!-- Tool Header Banner -->
     <div class="glass-panel rounded-3xl p-6 sm:p-8 mb-8 relative overflow-hidden border border-white/10 ${tool.isFlagship ? 'border-sky-500/40 bg-gradient-to-r from-sky-950/40 via-slate-900 to-slate-900' : ''}">
-      <div class="relative z-10 flex flex-col md:flex-row md:items-center justify-between gap-6">
+      <div class="relative z-10 flex flex-col">
         <div>
           <div class="flex flex-wrap items-center gap-2 mb-3">
             <span class="px-3 py-1 rounded-full text-xs font-semibold ${tool.isPublicDownload ? 'bg-emerald-500/20 text-emerald-300 border border-emerald-500/30' : 'bg-sky-500/20 text-sky-300 border border-sky-500/30'} flex items-center gap-1.5">
@@ -125,55 +125,83 @@ function renderTutorialContent(toolId) {
               ${tool.startingPrice ? `Starting from ${tool.startingPrice}` : (tool.id === 'pitc-suite' ? 'Starting from Rs. 4,000' : (tool.id === 'bill-scrapper' || tool.id === 'e-bills-downloader' ? 'Starting from Rs. 3,000' : (tool.isPublicDownload ? 'Direct Download Ready' : tool.badge)))}
             </span>
             ${tool.version ? `
-            <span class="px-3 py-1 rounded-full text-xs font-mono bg-slate-800 text-slate-300 border border-white/5 ${tool.id === 'pitc-suite' ? 'pitc-version-badge' : (tool.id === 'bill-scrapper' ? 'bill-version-badge' : 'ebill-version-badge')}">
+            <span class="px-3 py-1 rounded-full text-xs font-mono bg-slate-800 text-slate-300 border border-white/5 ${tool.id === 'pitc-suite' ? 'pitc-version-badge' : (tool.id === 'bill-scrapper' ? 'bill-version-badge' : (tool.id === 'mco-maker' ? 'mco-version-badge' : 'ebill-version-badge'))}">
               ${tool.version}
             </span>` : ''}
             ${tool.size ? `
             <span class="text-xs text-slate-400 flex items-center gap-1">
-              <i data-lucide="hard-drive" class="w-3.5 h-3.5"></i> <span class="${tool.id === 'pitc-suite' ? 'pitc-size-badge' : (tool.id === 'bill-scrapper' ? 'bill-size-badge' : 'ebill-size-badge')}">${tool.size}</span>
+              <i data-lucide="hard-drive" class="w-3.5 h-3.5"></i> <span class="${tool.id === 'pitc-suite' ? 'pitc-size-badge' : (tool.id === 'bill-scrapper' ? 'bill-size-badge' : (tool.id === 'mco-maker' ? 'mco-size-badge' : 'ebill-size-badge'))}">${tool.size}</span>
             </span>` : ''}
           </div>
-          <h1 class="text-2xl sm:text-3xl font-extrabold text-white tracking-tight mb-2">
+          <h1 class="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-white tracking-tight mb-3">
             ${tool.title}
           </h1>
-          <p class="text-slate-300 text-sm sm:text-base leading-relaxed max-w-2xl">
+          <p class="text-slate-300 text-sm sm:text-base leading-relaxed max-w-4xl">
             ${tool.description}
           </p>
         </div>
 
-        <!-- Download or Request Action Card in Details Header -->
-        <div class="flex-shrink-0 flex items-center">
+        <!-- Download or Request Action Card in Details Header (Placed Below Description) -->
+        <div class="pt-5 sm:pt-6 mt-6 border-t border-white/10 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
           ${tool.builds && tool.builds.length > 1 ? `
-          <div class="flex flex-col gap-2">
-            <span class="text-xs font-semibold text-slate-300 flex items-center gap-1.5">
+          <div class="flex flex-col sm:flex-row sm:items-center gap-3">
+            <span class="text-xs font-semibold text-slate-300 flex items-center gap-1.5 shrink-0">
               <i data-lucide="download" class="w-3.5 h-3.5 text-emerald-400"></i> Choose OS to Download:
             </span>
-            <div class="flex flex-wrap sm:flex-nowrap items-center gap-2">
+            <div class="flex flex-wrap items-center gap-2.5">
               ${tool.builds.map(b => `
                 <button 
                   onclick="triggerToolDownload('${tool.id}', '${tool.name} - ${b.label}', '${b.downloadUrl}', '${b.filename}')"
-                  class="px-3.5 py-2.5 rounded-xl ${b.id === 'win10' ? 'bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-500 hover:to-teal-500 text-white shadow-md shadow-emerald-950/40 glow-btn' : 'bg-slate-800 hover:bg-slate-700 text-sky-300 hover:text-white border border-sky-500/40'} font-bold text-xs flex items-center gap-1.5 transition-all"
+                  class="px-4 py-2.5 rounded-xl ${b.id === 'win10' ? 'bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-500 hover:to-teal-500 text-white shadow-md shadow-emerald-950/40 glow-btn' : 'bg-slate-800 hover:bg-slate-700 text-sky-300 hover:text-white border border-sky-500/40'} font-bold text-xs sm:text-sm flex items-center gap-2 transition-all"
                   title="Download for ${b.label}"
                 >
-                  <i data-lucide="${b.icon || 'download'}" class="w-3.5 h-3.5"></i>
+                  <i data-lucide="${b.icon || 'download'}" class="w-4 h-4"></i>
                   <span>${b.label}</span>
-                  <span class="text-[10px] opacity-75 font-mono">${b.size}</span>
+                  <span class="text-[11px] opacity-80 font-mono">(${b.size})</span>
                 </button>
               `).join('')}
             </div>
           </div>` : (tool.isPublicDownload ? `
-          <button 
-            onclick="triggerToolDownload('${tool.id}', '${tool.title}', '${tool.downloadUrl || ''}', '${tool.filename || ''}')"
-            class="px-6 py-3 rounded-xl bg-gradient-to-r from-sky-600 to-sky-500 hover:from-sky-500 hover:to-sky-400 text-white font-bold text-sm shadow-lg shadow-sky-600/30 transition-all flex items-center justify-center gap-2 glow-btn"
-          >
-            <i data-lucide="download" class="w-4 h-4"></i> Download ${tool.name}
-          </button>` : `
-          <button 
-            onclick="openContactRequestModal(getToolById('${tool.id}'))"
-            class="px-6 py-3 rounded-xl bg-slate-800 hover:bg-slate-700 text-sky-300 hover:text-white border border-sky-500/30 font-bold text-sm shadow-lg transition-all flex items-center justify-center gap-2"
-          >
-            <i data-lucide="phone-call" class="w-4 h-4 text-sky-400"></i> Request Software
-          </button>`)}
+          <div class="flex flex-wrap items-center gap-3">
+            <button 
+              onclick="triggerToolDownload('${tool.id}', '${tool.title}', '${tool.downloadUrl || ''}', '${tool.filename || ''}')"
+              class="px-6 py-3 rounded-xl ${tool.isFlagship ? 'bg-gradient-to-r from-sky-600 to-sky-500 hover:from-sky-500 hover:to-sky-400 shadow-sky-600/30' : 'bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-500 hover:to-teal-500 shadow-emerald-950/40'} text-white font-bold text-xs sm:text-sm shadow-lg transition-all flex items-center justify-center gap-2 glow-btn"
+            >
+              <i data-lucide="download" class="w-4 h-4"></i> Download ${tool.name} (Windows 10 &amp; 11)
+            </button>
+            ${tool.helperTool ? `
+              <a 
+                href="${tool.helperTool.downloadUrl}" 
+                download="${tool.helperTool.filename}"
+                class="px-4 py-3 rounded-xl bg-amber-500/10 hover:bg-amber-500/20 text-amber-300 hover:text-white border border-amber-500/30 font-semibold text-xs flex items-center gap-2 transition-all"
+                title="Download ${tool.helperTool.name}"
+              >
+                <i data-lucide="crosshair" class="w-4 h-4 text-amber-400"></i>
+                <span>${tool.helperTool.name}</span>
+                <span class="text-[10px] text-amber-400/80 font-mono">(${tool.helperTool.size})</span>
+              </a>
+            ` : ''}
+          </div>` : `
+          <div class="flex flex-wrap items-center gap-3">
+            <button 
+              onclick="openContactRequestModal(getToolById('${tool.id}'))"
+              class="px-6 py-3 rounded-xl bg-slate-800 hover:bg-slate-700 text-sky-300 hover:text-white border border-sky-500/30 font-bold text-xs sm:text-sm shadow-lg transition-all flex items-center justify-center gap-2"
+            >
+              <i data-lucide="phone-call" class="w-4 h-4 text-sky-400"></i> Request Software Access
+            </button>
+          </div>`)}
+
+          <div class="flex flex-wrap items-center gap-3 text-xs text-slate-400">
+            <span class="flex items-center gap-1.5 text-emerald-400 font-medium">
+              <i data-lucide="shield-check" class="w-4 h-4"></i> 100% Offline &amp; Safe
+            </span>
+            ${tool.githubReleaseUrl ? `
+              <span class="text-slate-600 hidden sm:inline">•</span>
+              <a href="${tool.githubReleaseUrl}" target="_blank" rel="noopener noreferrer" class="text-sky-400 hover:text-sky-300 underline underline-offset-2 flex items-center gap-1 transition-colors">
+                GitHub Releases <i data-lucide="external-link" class="w-3 h-3"></i>
+              </a>
+            ` : ''}
+          </div>
         </div>
       </div>
     </div>
