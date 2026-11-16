@@ -367,7 +367,7 @@ function renderDownloads() {
               title="Download MCO Maker for Windows 10 & 11"
             >
               <span class="flex items-center gap-1 leading-none"><i data-lucide="monitor" class="w-3.5 h-3.5"></i> Win 10/11</span>
-              <span class="text-[10px] text-emerald-200 font-mono font-normal"><span class="mco-size-badge">34.5 MB</span> .exe</span>
+              <span class="text-[10px] text-emerald-200 font-mono font-normal"><span class="mco-size-badge">166.6 MB</span> .exe</span>
             </button>
 
             <a 

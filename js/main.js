@@ -647,6 +647,9 @@ function applyLiveBadgeUpdates(tool) {
   } else if (tool.id === 'e-bills-downloader') {
     document.querySelectorAll('.ebill-version-badge').forEach(el => { el.textContent = tool.version; });
     document.querySelectorAll('.ebill-size-badge').forEach(el => { el.textContent = tool.size; });
+  } else if (tool.id === 'mco-maker') {
+    document.querySelectorAll('.mco-version-badge').forEach(el => { el.textContent = tool.version; });
+    document.querySelectorAll('.mco-size-badge').forEach(el => { el.textContent = tool.size; });
   }
 }
 
